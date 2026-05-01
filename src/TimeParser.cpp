@@ -19,3 +19,13 @@ bool TimeParser::isValid(const std::string& input)
     return result;
 }
 
+int TimeParser::getHour() const 
+{
+    return hour;
+}
+
+int TimeParser::getMinute() const 
+{
+    return minute;
+}
+

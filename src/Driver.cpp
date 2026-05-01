@@ -3,8 +3,11 @@
 
 void Driver::run()
 {
-    std::cout<< "Enter filepath: ";
-    std::cin>> filepath;
+    do
+    {
+        std::cout<< "Enter filepath: ";
+        std::cin>> filepath;
+    } while (!systemAgent.isValid(filepath));
 
     do
     {

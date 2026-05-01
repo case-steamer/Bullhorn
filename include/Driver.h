@@ -2,6 +2,7 @@
 
 #include <string>
 #include "TimeParser.h"
+#include "FileSysOp.h"
 
 class Driver 
 {
@@ -11,5 +12,6 @@ class Driver
     private:
         std::string filepath;
         std::string scheduledTime;
-        TimeParser parser;
+        TimeParser  parser;
+        FileSysOp   systemAgent;
 };
