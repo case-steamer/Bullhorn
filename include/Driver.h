@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "TimeParser.h"
 
 class Driver 
 {
@@ -10,4 +11,5 @@ class Driver
     private:
         std::string filepath;
         std::string scheduledTime;
+        TimeParser parser;
 };

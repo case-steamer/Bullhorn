@@ -10,6 +10,10 @@ bool TimeParser::isValid(std::string input)
         (input[3] - '0') * 10 + (input[4] - '0') < 60)
     {
         result = true;
+
+        hour = (input[0] - '0') * 10 + (input[1] - '0');
+        minute = (input[3] - '0') * 10 + (input[4] - '0');
+
         return result;
     }
     return result;
