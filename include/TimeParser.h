@@ -5,7 +5,7 @@
 class TimeParser
 {
     public:
-        bool isValid(std::string input);
+        bool isValid(const std::string& input);
 
     private:
         int hour;

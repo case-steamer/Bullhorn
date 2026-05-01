@@ -1,6 +1,6 @@
 #include "TimeParser.h"
 
-bool TimeParser::isValid(std::string input)
+bool TimeParser::isValid(const std::string& input)
 {
     if (input.length() != 5) return false;
 
