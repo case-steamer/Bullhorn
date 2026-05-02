@@ -6,11 +6,13 @@ class TimeParser
 {
     public:
         bool isValid(const std::string& input);
-        bool isValidTime() const;
+        bool isValidTime();
         int getHour() const;
         int getMinute() const;
+        double secondsUntil() const;
 
     private:
         int hour;
         int minute;
+        double secondsToGo;
 };

@@ -1,4 +1,6 @@
 #include "Driver.h"
+#include <thread>
+#include <chrono>
 #include <iostream>
 #include <string>
 
@@ -30,4 +32,9 @@ void Driver::run()
     } while (!parser.isValid(scheduledTime) || !parser.isValidTime());
 
     std::cout<< "Scheduled " << filepath << " to play at " << scheduledTime << std::endl;
+
+    std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
+
+    std::cout<<"Playing now."<<std::endl;
+
 }

@@ -21,7 +21,7 @@ bool TimeParser::isValid(const std::string& input)
     return result;
 }
 
-bool TimeParser::isValidTime() const
+bool TimeParser::isValidTime() 
 {
     auto    now         =   std::chrono::system_clock::now();
     std::time_t now_time_t =std::chrono::system_clock::to_time_t(now);
@@ -47,9 +47,15 @@ bool TimeParser::isValidTime() const
     if (secondsToGo > 0)
     {
         result = true;
+        this->secondsToGo = secondsToGo;
         return result;
     }
     return result;
+}
+
+double TimeParser::secondsUntil() const
+{
+    return secondsToGo;
 }
 
 int TimeParser::getHour() const
