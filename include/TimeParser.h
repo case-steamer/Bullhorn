@@ -6,6 +6,7 @@ class TimeParser
 {
     public:
         bool isValid(const std::string& input);
+        bool isValidTime() const;
         int getHour() const;
         int getMinute() const;
 
