@@ -10,4 +10,4 @@ add_executable(Bullhorn)
 add_subdirectory(src)
 add_subdirectory(libs)
 
-target_include_directories(Bullhorn PRIVATE include/ libs/)
+target_include_directories(Bullhorn PRIVATE include/ include/dataclasses/ libs/)

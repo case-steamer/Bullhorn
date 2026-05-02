@@ -1,4 +1,4 @@
 target_sources(Bullhorn PRIVATE
-    Block.cpp
-    Queue.cpp
+    Block.h
+    Queue.h
 )
