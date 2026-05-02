@@ -1,5 +1,6 @@
 #include "Driver.h"
 #include <iostream>
+#include <string>
 
 void Driver::run()
 {
@@ -9,6 +10,7 @@ void Driver::run()
         std::cin>> filepath;
     } while (!systemAgent.isValid(filepath));
 
+    std::string scheduledTime;
     do
     {
         std::cout<< "Enter scheduled time (HH:MM): ";

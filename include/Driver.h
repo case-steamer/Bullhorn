@@ -11,7 +11,6 @@ class Driver
 
     private:
         std::string filepath;
-        std::string scheduledTime;
         TimeParser  parser;
         FileSysOp   systemAgent;
 };
