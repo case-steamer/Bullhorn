@@ -35,6 +35,5 @@ void Driver::run()
 
     std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
 
-    std::cout<<"Playing now."<<std::endl;
-
+    audioPlayer.playTrack(filepath);
 }

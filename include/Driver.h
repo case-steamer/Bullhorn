@@ -3,6 +3,7 @@
 #include <string>
 #include "TimeParser.h"
 #include "FileSysOp.h"
+#include "AudioPlayer.h"
 
 class Driver 
 {
@@ -13,4 +14,5 @@ class Driver
         std::string filepath;
         TimeParser  parser;
         FileSysOp   systemAgent;
+        AudioPlayer audioPlayer;
 };
