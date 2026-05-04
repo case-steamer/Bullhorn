@@ -12,10 +12,5 @@ void XMLIO::readXML(const fs::path& filepath)
 
 void XMLIO::writeXML()
 {
-    //transpose block as defined by user onto this->block dynamically, then write this->block to XML.
-}
-
-void XMLIO::writeXML(block&)
-{
     //Whatever exists at this->block gets written to our xml
 }
