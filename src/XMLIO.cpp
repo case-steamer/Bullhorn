@@ -4,13 +4,20 @@
 
 filepath = "/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test.xml"
 
-void XMLIO::readXML(const fs::path& filepath)
+void XMLIO::initBlock()
 {
-    this->filepath  = filepath;
-    this->block     = //block defined in xml at filepath.
+    block = Block{};
 }
 
-void XMLIO::writeXML()
+void XMLIO::setTime(int hour, int minute)
 {
-    //Whatever exists at this->block gets written to our xml
+    block.hour = hour;
+    block.minute = minute;
+}
+
+void XMLIO::addData(const fs::path& filepath)
+{
+    Block::Track track;
+    track.filepath = filepath;
+    block.allTracks.push_back(track);
 }

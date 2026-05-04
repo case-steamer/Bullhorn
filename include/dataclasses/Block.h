@@ -12,7 +12,7 @@ struct Block
     struct Track
     {
         fs::path filepath;
-        float volume;
+        float volume = 1.0;
         fs::path outputPath;
     };
     std::vector<Track> allTracks;

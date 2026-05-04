@@ -16,9 +16,10 @@ class XMLIO
     public:
         void        initBlock();
         void        readXML(const fs::path& filepath);
-        void        writeXML();
+        void        buildXML();
         void        setTime(int hour, int minute);
         void        addData(const fs::path& filepath);
-        void        addData(const float volume);
+        //void        addData(const float volume);
+        //^Will bring this function back in eventually^
 };
 
