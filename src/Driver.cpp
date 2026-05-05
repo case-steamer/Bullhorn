@@ -38,7 +38,7 @@ void Driver::run()
 
     xmlio.setTime(parser.getHour(), parser.getMinute());
     xmlio.addData(filepath);
-    xmlio.writeXML();
+    xmlio.writeBlock();
 
     std::cout<< "Scheduled " << filepath << " to play at " << scheduledTime << std::endl;
 

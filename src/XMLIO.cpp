@@ -7,7 +7,12 @@ void XMLIO::initBlock()
     block = Block{};
 }
 
-void XMLIO::readXML(const fs::path& filepath)
+void XMLIO::initQueue()
+{
+    queue = Queue{};
+}
+
+void XMLIO::readBlock(const fs::path& filepath)
 {
     tinyxml2::XMLDocument doc;
     doc.LoadFile(filepath.c_str());
@@ -29,7 +34,31 @@ void XMLIO::readXML(const fs::path& filepath)
     }
 }
 
-std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildXML()
+void XMLIO::readQueue(const fs::path& filepath)
+{
+    tinyxml2::XMLDocument doc;
+    doc.LoadFile(filepath.c_str());
+
+    auto*   queue_element   = doc.FirstChildElement("queue");
+    auto*   block_entry     = queue_element->FirstChildElement("block");
+
+    while   (block_entry  != nullptr)
+    {
+        initBlock();
+        auto*   path_element    = block_entry->FirstChildElement("filepath");
+        readBlock(fs::path(path_element->GetText()));
+        const char* behavior = block_entry->Attribute("behavior");
+
+        Queue::BlockEntry entry;
+        entry.filepath  = path_element->GetText();
+        entry.block     = block;
+        entry.override  = (std::string(behavior) == "override");
+        queue.allBlocks.push_back(entry);
+        block_entry             = block_entry->NextSiblingElement("block");
+    }
+}
+
+std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
 {
     auto    doc = std::make_unique<tinyxml2::XMLDocument>();
     auto*   block_element   = doc->NewElement("block");
@@ -71,8 +100,8 @@ void XMLIO::addData(const fs::path& filepath)
     block.allTracks.push_back(track);
 }
 
-void XMLIO::writeXML() 
+void XMLIO::writeBlock() 
 {
-    auto doc_to_write = buildXML();
+    auto doc_to_write = buildBlock();
     doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml");
 }
