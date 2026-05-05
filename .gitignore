@@ -1,2 +1,4 @@
 build/*
 !build/.gitkeep
+
+test-assets/test_block.xml
