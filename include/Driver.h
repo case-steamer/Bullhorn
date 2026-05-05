@@ -4,10 +4,12 @@
 #include "TimeParser.h"
 #include "FileSysOp.h"
 #include "AudioPlayer.h"
+#include "XMLIO.h"
 
-class Driver 
+class Driver
 {
     public:
+        Driver(XMLIO& xmlio);
         void run();
 
     private:
@@ -15,4 +17,5 @@ class Driver
         TimeParser  parser;
         FileSysOp   systemAgent;
         AudioPlayer audioPlayer;
+        XMLIO&      xmlio;
 };

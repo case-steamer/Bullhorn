@@ -4,4 +4,5 @@ target_sources(Bullhorn PRIVATE
     TimeParser.cpp
     FileSysOp.cpp
     AudioPlayer.cpp
+    XMLIO.cpp
 )

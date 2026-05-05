@@ -22,5 +22,6 @@ class XMLIO
         void        addData(const fs::path& filepath);
         //void        addData(const float volume);
         //^Will bring this function back in eventually^
+        void        writeXML();
 };
 

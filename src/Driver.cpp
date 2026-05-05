@@ -4,8 +4,13 @@
 #include <iostream>
 #include <string>
 
+Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
+{
+}
+
 void Driver::run()
 {
+    xmlio.initBlock();
     do
     {
         std::cout<< "Enter filepath: ";
@@ -30,6 +35,10 @@ void Driver::run()
         else if (!parser.isValidTime())
             std::cout<< "Enter a time in the future."<<std::endl;
     } while (!parser.isValid(scheduledTime) || !parser.isValidTime());
+
+    xmlio.setTime(parser.getHour(), parser.getMinute());
+    xmlio.addData(filepath);
+    xmlio.writeXML();
 
     std::cout<< "Scheduled " << filepath << " to play at " << scheduledTime << std::endl;
 

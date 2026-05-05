@@ -1,8 +1,10 @@
+#include "XMLIO.h"
 #include "Driver.h"
 
 int main()
 {
-    Driver driver;
+    XMLIO xmlio;
+    Driver driver(xmlio);
     driver.run();
 
     return 0;

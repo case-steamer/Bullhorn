@@ -70,3 +70,9 @@ void XMLIO::addData(const fs::path& filepath)
     track.filepath = filepath;
     block.allTracks.push_back(track);
 }
+
+void XMLIO::writeXML() 
+{
+    auto doc_to_write = buildXML();
+    doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml");
+}
