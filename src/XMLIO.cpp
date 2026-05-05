@@ -12,18 +12,21 @@ void XMLIO::readXML(const fs::path& filepath)
     tinyxml2::XMLDocument doc;
     doc.LoadFile(filepath.c_str());
 
-    auto*   time_element    = doc.FirstChildElement("timecode").GetText();
-    block.hour              = time_element[0] + time_element[1];
-    block.minute            = time_element[3] + time_element[4];
+    auto*   block_element   = doc.FirstChildElement("block");
+    auto*   time_element    = block_element->FirstChildElement("timecode");
+    std::string timecode    = time_element->GetText();
+    block.hour              = std::stoi(timecode.substr(0,2));
+    block.minute            = std::stoi(timecode.substr(3,2));
 
-    Block::Track track;
-    auto*   track_element   = doc.FirstChildElement("track");
-    auto*   filepath_element= track_element.FirstChildElement("filepath").GetText();
-    auto*   volume_element= track_element.FirstChildElement("volume").GetText();
-    track.filepath          = filepath_element;
-    track.volume            = volume_element;
-    track.outputPath        = filepath_element;
-    block.allTracks.push_back(track);
+    auto* track_element     = block_element->FirstChildElement("track");
+    while (track_element    != nullptr)
+    {
+        Block::Track track;
+        track.filepath      = track_element->FirstChildElement("filepath")->GetText();
+        track.volume        = std::stof(track_element->FirstChildElement("volume")->GetText());
+        block.allTracks.push_back(track);
+        track_element = track_element->NextSiblingElement("track");
+    }
 }
 
 std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildXML()
