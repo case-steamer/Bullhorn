@@ -54,7 +54,7 @@ void XMLIO::readQueue(const fs::path& filepath)
         Queue::BlockEntry entry;
         entry.filepath  = path_element->GetText();
         entry.block     = block;
-        entry.override  = (std::string(behavior) == "override");
+        entry.isOverride  = (std::string(behavior) == "isOverride");
         queue.allBlocks.push_back(entry);
         block_entry             = block_entry->NextSiblingElement("block");
     }
@@ -92,6 +92,25 @@ std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
     return doc;
 }
 
+std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildQueue()
+{
+    auto    doc             = std::make_unique<tinyxml2::XMLDocument>();
+    auto*   queue_element   = doc->NewElement("queue");
+    for (const Queue::BlockEntry& block : queue.allBlocks)
+    {
+        auto* block_entry = doc->NewElement("block");
+        auto* filepath_element=doc->NewElement("filepath");
+
+        filepath_element->SetText(block.filepath.c_str());
+        block_entry->SetAttribute("behavior", block.isOverride ? "override" : "wait");
+
+        block_entry->InsertEndChild(filepath_element);
+        queue_element->InsertEndChild(block_entry);
+    }
+    doc->InsertEndChild(queue_element);
+    return doc;
+}
+
 void XMLIO::setTime(int hour, int minute)
 {
     block.hour = hour;
@@ -105,8 +124,19 @@ void XMLIO::addData(const fs::path& filepath)
     block.allTracks.push_back(track);
 }
 
+void XMLIO::addBlock(const Queue::BlockEntry& entry)
+{
+    queue.allBlocks.push_back(entry);
+}
+
 void XMLIO::writeBlock() 
 {
     auto doc_to_write = buildBlock();
     doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml");
+}
+
+void XMLIO::writeQueue()
+{
+    auto doc_to_write = buildQueue();
+    doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
 }

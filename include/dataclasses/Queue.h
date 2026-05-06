@@ -13,7 +13,7 @@ struct Queue
     {
         fs::path filepath;
         Block block;
-        bool override = false;
+        bool isOverride = false;
     };
     std::vector<BlockEntry> allBlocks;
 };

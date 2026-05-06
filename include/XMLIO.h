@@ -25,6 +25,7 @@ class XMLIO
         std::unique_ptr<tinyxml2::XMLDocument> buildQueue();
         void        setTime(int hour, int minute);
         void        addData(const fs::path& filepath);
+        void        addBlock(const Queue::BlockEntry& entry);
         //void        addData(const float volume);
         //^Will bring this function back in eventually^
         void        writeBlock();

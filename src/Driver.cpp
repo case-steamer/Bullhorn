@@ -40,6 +40,12 @@ void Driver::run()
     xmlio.addData(filepath);
     xmlio.writeBlock();
 
+    Queue::BlockEntry entry;
+    entry.filepath = "/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml";
+    entry.isOverride = false;
+    xmlio.addBlock(entry);
+    xmlio.writeQueue();
+
     std::cout<< "Scheduled " << filepath << " to play at " << scheduledTime << std::endl;
 
     std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
