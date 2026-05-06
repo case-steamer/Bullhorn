@@ -1,6 +1,8 @@
 #include "XMLIO.h"
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 
 void XMLIO::initBlock()
 {
@@ -64,7 +66,10 @@ std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
     auto*   block_element   = doc->NewElement("block");
     auto*   time_element    = doc->NewElement("timecode");
 
-    std::string timecode    = std::to_string(block.hour) + ":" + std::to_string(block.minute);
+    std::ostringstream oss;
+    oss << std::setw(2) << std::setfill('0') << block.hour << ":"
+        << std::setw(2) << std::setfill('0') << block.minute;
+    std::string timecode = oss.str();
     time_element->SetText(timecode.c_str());
     block_element->InsertEndChild(time_element);
 
