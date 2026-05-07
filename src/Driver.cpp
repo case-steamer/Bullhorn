@@ -8,7 +8,7 @@ Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
 {
 }
 
-void Driver::run()
+void Driver::edit()
 {
     xmlio.initBlock();
     do
@@ -32,8 +32,6 @@ void Driver::run()
         std::cin>> scheduledTime;
         if (!parser.isValid(scheduledTime))
             std::cout<< "Invalid format. Please use HH:MM"<<std::endl;
-        else if (!parser.isValidTime())
-            std::cout<< "Enter a time in the future."<<std::endl;
     } while (!parser.isValid(scheduledTime) || !parser.isValidTime());
 
     xmlio.setTime(parser.getHour(), parser.getMinute());
@@ -45,10 +43,29 @@ void Driver::run()
     entry.isOverride = false;
     xmlio.addBlock(entry);
     xmlio.writeQueue();
-
-    std::cout<< "Scheduled " << filepath << " to play at " << scheduledTime << std::endl;
-
-    std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
-
-    audioPlayer.playTrack(filepath);
 }
+
+void Driver::perform()
+{
+    xmlio.initQueue();
+    xmlio.readQueue("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
+    const Queue& queue = xmlio.getQueue();
+    for (Queue::BlockEntry blockEntry : queue.allBlocks)
+    {
+        xmlio.initBlock();
+        xmlio.readBlock(blockEntry.filepath);
+        const Block& block = xmlio.getBlock();
+        std::string scheduledTime = std::to_string(block.hour) + ":" + std::to_string(block.minute);
+        parser.isValid(scheduledTime);
+        if (!parser.isValidTime())
+        {
+            continue;
+        }
+        std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
+        for (const Block::Track& track : block.allTracks)
+        {
+            audioPlayer.playTrack(track.filepath);
+        }
+    }
+}
+

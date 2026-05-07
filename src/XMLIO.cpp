@@ -54,7 +54,7 @@ void XMLIO::readQueue(const fs::path& filepath)
         Queue::BlockEntry entry;
         entry.filepath  = path_element->GetText();
         entry.block     = block;
-        entry.isOverride  = (std::string(behavior) == "isOverride");
+        entry.isOverride  = (std::string(behavior) == "override");
         queue.allBlocks.push_back(entry);
         block_entry             = block_entry->NextSiblingElement("block");
     }
@@ -140,3 +140,14 @@ void XMLIO::writeQueue()
     auto doc_to_write = buildQueue();
     doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
 }
+
+const Block& XMLIO::getBlock()
+{
+    return block;
+}
+
+const Queue& XMLIO::getQueue()
+{
+    return queue;
+}
+

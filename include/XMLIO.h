@@ -30,5 +30,7 @@ class XMLIO
         //^Will bring this function back in eventually^
         void        writeBlock();
         void        writeQueue();
+        const Block& getBlock();
+        const Queue& getQueue();
 };
 

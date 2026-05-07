@@ -10,7 +10,8 @@ class Driver
 {
     public:
         Driver(XMLIO& xmlio);
-        void run();
+        void perform();
+        void edit();
 
     private:
         std::string filepath;
