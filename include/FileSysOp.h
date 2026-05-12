@@ -2,7 +2,7 @@
 
 #include <filesystem>
 #include <string>
-#include<array>
+#include <array>
 
 namespace fs = std::filesystem;
 
