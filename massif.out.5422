@@ -1,0 +1,1403 @@
+desc: (none)
+cmd: build/Bullhorn
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=3077763
+mem_heap_B=136068
+mem_heap_extra_B=3388
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=9133972
+mem_heap_B=136708
+mem_heap_extra_B=3428
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=11286031
+mem_heap_B=1474449
+mem_heap_extra_B=6847
+mem_stacks_B=0
+heap_tree=peak
+n5: 1474449 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78384 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16584 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=12623510
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=15208785
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=17239570
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=19746261
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=23000408
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=9
+#-----------
+time=25008602
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=27489132
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=30725685
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=32739823
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=36017940
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=39257939
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=43028766
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=46268914
+mem_heap_B=1474377
+mem_heap_extra_B=6831
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=49777650
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=52355369
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=54386154
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=56892845
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=60146992
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=62155186
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=64635716
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=67872269
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=69886407
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=26
+#-----------
+time=73164524
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=76365100
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=28
+#-----------
+time=77637390
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=80175350
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=82149783
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=85384087
+mem_heap_B=1474417
+mem_heap_extra_B=6951
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=88839868
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=91417587
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=93408949
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=95955063
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=99209210
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=37
+#-----------
+time=101217404
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=104446606
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=107683159
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=110213765
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=41
+#-----------
+time=112187319
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=114718182
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=116699608
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=119237568
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=121212001
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=46
+#-----------
+time=123975026
+mem_heap_B=232253
+mem_heap_extra_B=6971
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=126725588
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=129303307
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=132579658
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=50
+#-----------
+time=133880206
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=135823162
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=137096255
+mem_heap_B=1474449
+mem_heap_extra_B=6959
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=139103124
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=141583654
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=143593734
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=145568879
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=146873768
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=149324367
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=151337325
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=detailed
+n5: 1474377 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1251293 0x1132CA: ma__malloc_default(unsigned long, void*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+  n5: 1251293 0x15BB4A: ma_malloc (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 1048599 0x175F28: ma_stack_init(unsigned long, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 1048599 0x176652: ma_node_graph_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 1048599 0x17F0AB: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 1048599 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 1048599 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 1048599 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 110720 0x115AA3: ma_job_queue_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 110720 0x16E895: ma_resource_manager_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 110720 0x17F4A4: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 110720 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 110720 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n0: 110720 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 39408 in 15 places, all below massif's threshold (1.00%)
+   n1: 32504 0x1640F3: ma_decoding_backend_init_memory__mp3(void*, void const*, unsigned long, ma_decoding_backend_config const*, ma_allocation_callbacks const*, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 32504 0x16139E: ma_decoder_init_from_memory__internal(ma_decoding_backend_vtable const*, void*, void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 32504 0x164296: ma_decoder_init_mp3_from_memory__internal(void const*, unsigned long, ma_decoder_config const*, ma_decoder*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 32504 0x165035: ma_decoder_init_memory (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 32504 0x16F3E0: ma_resource_manager_data_buffer_init_connector(ma_resource_manager_data_buffer*, ma_resource_manager_data_source_config const*, void*, ma_fence*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 32504 0x1710FB: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 32504 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 32504 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 32504 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 32504 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 32504 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n1: 32504 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+               n1: 32504 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                n0: 32504 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n1: 20062 0x160340: ma_vfs_open_and_read_file_ex(void*, char const*, wchar_t const*, void**, unsigned long*, ma_allocation_callbacks const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+    n1: 20062 0x16F82A: ma_resource_manager_data_buffer_node_init_supply_encoded(ma_resource_manager*, ma_resource_manager_data_buffer_node*, char const*, wchar_t const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n1: 20062 0x17073A: ma_resource_manager_data_buffer_node_acquire(ma_resource_manager*, char const*, wchar_t const*, unsigned int, unsigned int, ma_resource_manager_data_supply const*, ma_fence*, ma_fence*, ma_resource_manager_data_buffer_node**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 20062 0x170FFA: ma_resource_manager_data_buffer_init_ex_internal(ma_resource_manager*, ma_resource_manager_data_source_config const*, unsigned int, ma_resource_manager_data_buffer*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 20062 0x171485: ma_resource_manager_data_buffer_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 20062 0x174132: ma_resource_manager_data_source_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 20062 0x180ECE: ma_sound_init_from_file_internal(ma_engine*, ma_sound_config const*, ma_sound*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 20062 0x181A42: ma_sound_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 20062 0x181347: ma_sound_init_from_file (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n1: 20062 0x1CCE92: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+             n1: 20062 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+              n0: 20062 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+ n2: 78312 0x51A2A1E: pa_xmalloc0 (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+  n2: 61800 0x51EB3D4: pa_flist_new_with_name (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+   n1: 32848 0x51F7D70: pa_mempool_new (in /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-16.1.so)
+    n1: 32848 0x517806D: pa_context_new_with_proplist (in /usr/lib/x86_64-linux-gnu/libpulse.so.0.24.2)
+     n2: 32848 0x11F609: ma_init_pa_mainloop_and_pa_context__pulse(ma_context*, char const*, char const*, unsigned int, void**, void**) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x12111D: ma_device_init__pulse(ma_device*, ma_device_config const*, ma_device_descriptor*, ma_device_descriptor*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x128F96: ma_device_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A048: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+      n1: 16424 0x123C97: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+       n1: 16424 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+        n1: 16424 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+         n1: 16424 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+          n1: 16424 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+           n1: 16424 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+            n0: 16424 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+   n0: 28952 in 7 places, all below massif's threshold (1.00%)
+  n0: 16512 in 13 places, all below massif's threshold (1.00%)
+ n1: 72704 0x490C7B9: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+  n1: 72704 0x40049CD: call_init (dl-init.c:74)
+   n1: 72704 0x40049CD: call_init (dl-init.c:26)
+    n1: 72704 0x4004AB3: _dl_init (dl-init.c:121)
+     n0: 72704 0x401AB4F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+ n0: 39870 in 41 places, all below massif's threshold (1.00%)
+ n1: 32198 0x400AC69: calloc (rtld-malloc.h:44)
+  n1: 32198 0x400AC69: _dl_new_object (dl-object.c:92)
+   n1: 32198 0x400662E: _dl_map_object_from_fd (dl-load.c:1063)
+    n2: 32198 0x4008074: _dl_map_object (dl-load.c:2272)
+     n1: 30962 0x4002260: openaux (dl-deps.c:64)
+      n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+       n1: 30962 0x40025C9: _dl_map_object_deps (dl-deps.c:232)
+        n1: 30962 0x400BA6C: dl_open_worker_begin (dl-open.c:592)
+         n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+          n1: 30962 0x400B1C5: dl_open_worker (dl-open.c:782)
+           n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+            n1: 30962 0x400B5B7: _dl_open (dl-open.c:884)
+             n1: 30962 0x4C064B7: dlopen_doit (dlopen.c:56)
+              n1: 30962 0x4CD0219: _dl_catch_exception (dl-error-skeleton.c:208)
+               n1: 30962 0x4CD02CE: _dl_catch_error (dl-error-skeleton.c:227)
+                n1: 30962 0x4C05FA6: _dlerror_run (dlerror.c:138)
+                 n1: 30962 0x4C06568: dlopen_implementation (dlopen.c:71)
+                  n1: 30962 0x4C06568: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 30962 0x116390: ma_dlopen(ma_log*, char const*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                    n1: 30962 0x122D81: ma_context_init__pulse(ma_context*, ma_context_config const*, ma_backend_callbacks*) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                     n1: 30962 0x127BC2: ma_context_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                      n1: 30962 0x12A022: ma_device_init_ex (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                       n1: 30962 0x17EF01: ma_engine_init (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                        n1: 30962 0x1CCE4A: AudioPlayer::playTrack(std::filesystem::__cxx11::path const&) (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                         n1: 30962 0x10FAFF: Driver::perform() (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+                          n0: 30962 0x10EA99: main (in /home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/build/Bullhorn)
+     n0: 1236 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=153313038
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=154585328
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=155857821
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=157832518
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=159137144
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=161112094
+mem_heap_B=1474377
+mem_heap_extra_B=6943
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=162395097
+mem_heap_B=158732
+mem_heap_extra_B=3852
+mem_stacks_B=0
+heap_tree=empty

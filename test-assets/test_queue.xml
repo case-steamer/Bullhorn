@@ -2,4 +2,7 @@
     <block behavior="wait">
         <filepath>/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml</filepath>
     </block>
+    <block behavior="wait">
+        <filepath>/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block2.xml</filepath>
+    </block>
 </queue>

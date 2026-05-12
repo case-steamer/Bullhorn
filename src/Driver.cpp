@@ -1,8 +1,14 @@
 #include "Driver.h"
+
 #include <thread>
 #include <chrono>
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <mutex>
+#include <queue>
+
+using WorkQueue = std::queue<Queue::BlockEntry>;
 
 Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
 {
@@ -50,22 +56,30 @@ void Driver::perform()
     xmlio.initQueue();
     xmlio.readQueue("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
     const Queue& queue = xmlio.getQueue();
-    for (Queue::BlockEntry blockEntry : queue.allBlocks)
+    std::vector<Queue::BlockEntry> sortedBlocks = queue.allBlocks;
+    std::sort(sortedBlocks.begin(), sortedBlocks.end(),
+            [](const Queue::BlockEntry& a, const Queue::BlockEntry& b)
+            {
+            return (a.block.hour * 60 + a.block.minute) < (b.block.hour * 60 + b.block.minute);
+            });
+    WorkQueue qBucket;
+    for (const Queue::BlockEntry& entry : sortedBlocks)
     {
-        xmlio.initBlock();
-        xmlio.readBlock(blockEntry.filepath);
-        const Block& block = xmlio.getBlock();
-        std::string scheduledTime = std::to_string(block.hour) + ":" + std::to_string(block.minute);
-        parser.isValid(scheduledTime);
-        if (!parser.isValidTime())
-        {
-            continue;
-        }
-        std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
-        for (const Block::Track& track : block.allTracks)
-        {
-            audioPlayer.playTrack(track.filepath);
-        }
+        qBucket.push(entry);
     }
+
+    std::mutex excluder;
+    
+    auto blockWorker = [&]()
+    {
+        while (true)
+        {
+            std::lock_guard<std::mutex> guard(excluder);
+            guard.lock(sortedBlocks);
+            const Queue::BlockEntry next = qBucket.pop();
+            guard.unlock(sortedBlocks);
+
+
+        }
 }
 

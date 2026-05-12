@@ -1,0 +1,19 @@
+<block>
+    <timecode>16:28</timecode>
+    <track>
+        <volume>1.000000</volume>
+        <filepath>/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/wine.mp3</filepath>
+    </track>
+    <track>
+        <volume>1.000000</volume>
+        <filepath>/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/wine.mp3</filepath>
+    </track>
+    <track>
+        <volume>1.000000</volume>
+        <filepath>/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/wine.mp3</filepath>
+    </track>
+    <track>
+        <volume>1.000000</volume>
+        <filepath>/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/wine.mp3</filepath>
+    </track>
+</block>
