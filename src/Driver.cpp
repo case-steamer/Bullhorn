@@ -75,11 +75,25 @@ void Driver::perform()
         while (true)
         {
             std::lock_guard<std::mutex> guard(excluder);
-            guard.lock(sortedBlocks);
-            const Queue::BlockEntry next = qBucket.pop();
-            guard.unlock(sortedBlocks);
-
-
+            const Queue::BlockEntry next = qBucket.front();
+            qBucket.pop();
+            if (qBucket.empty())
+            {
+                break
+            }
         }
+
+        std::string scheduledTime = std::to_string(next.blockhour) + ":" + std::to_string(next.block.minute);
+        parser.isValid(scheduledTime);
+        if (!parser.isValidTime())
+        {
+            continue;
+        }
+        std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
+        for (const Block::Track& track : block.allTracks)
+        {
+            audioPlayer.playTrack(track.filepath);
+        }
+    }
 }
 
