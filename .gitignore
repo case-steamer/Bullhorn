@@ -3,5 +3,6 @@ build/*
 
 test-assets/test_block.xml
 test-assets/test_block2.xml
+test-assets/test_block3.xml
 
 massif.out.*
