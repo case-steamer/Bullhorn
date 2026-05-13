@@ -12,5 +12,7 @@ class AudioPlayer
         ma_engine engine;
 
     public:
+        AudioPlayer();
         void playTrack(const fs::path& filepath);
+        ~AudioPlayer();
 };
