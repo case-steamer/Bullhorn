@@ -74,26 +74,30 @@ void Driver::perform()
     {
         while (true)
         {
-            std::lock_guard<std::mutex> guard(excluder);
-            const Queue::BlockEntry next = qBucket.front();
-            qBucket.pop();
-            if (qBucket.empty())
+            Queue::BlockEntry next;
             {
-                break
+                std::lock_guard<std::mutex> guard(excluder);
+                if (qBucket.empty()) break;
+                next = qBucket.front();
+                qBucket.pop();
+            }
+
+            std::string scheduledTime = std::to_string(next.block.hour) + ":" + std::to_string(next.block.minute);
+            parser.isValid(scheduledTime);
+            if (!parser.isValidTime())
+            {
+             continue;
+            }
+            std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
+            for (const Block::Track& track : next.block.allTracks)
+            {
+             audioPlayer.playTrack(track.filepath);
             }
         }
-
-        std::string scheduledTime = std::to_string(next.blockhour) + ":" + std::to_string(next.block.minute);
-        parser.isValid(scheduledTime);
-        if (!parser.isValidTime())
-        {
-            continue;
-        }
-        std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
-        for (const Block::Track& track : block.allTracks)
-        {
-            audioPlayer.playTrack(track.filepath);
-        }
-    }
+    };
+    std::thread worker1(blockWorker);
+    std::thread worker2(blockWorker);
+    worker1.join();
+    worker2.join();
 }
 
