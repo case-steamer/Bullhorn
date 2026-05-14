@@ -1,3 +1,4 @@
+#include "TimeParser.h"
 #include "Driver.h"
 
 #include <thread>
@@ -82,16 +83,23 @@ void Driver::perform()
                 qBucket.pop();
             }
 
+            TimeParser localParser;
+            
             std::string scheduledTime = std::to_string(next.block.hour) + ":" + std::to_string(next.block.minute);
-            parser.isValid(scheduledTime);
-            if (!parser.isValidTime())
+            localParser.isValid(scheduledTime);
+            if (!localParser.isValidTime())
             {
              continue;
             }
-            std::this_thread::sleep_for(std::chrono::seconds((int)parser.secondsUntil()));
+            std::this_thread::sleep_for(std::chrono::seconds((int)localParser.secondsUntil()));
             for (const Block::Track& track : next.block.allTracks)
             {
-             audioPlayer.playTrack(track.filepath);
+                if (next.isOverride && audioPlayer.isPlaying())
+                {
+                    audioPlayer.interrupt();
+                }
+                std::cout << " Thread " << std::this_thread::get_id() << " starting playback of " << track.filepath << std::endl;
+                audioPlayer.playTrack(track.filepath);
             }
         }
     };
