@@ -18,17 +18,17 @@ AudioPlayer::AudioPlayer()
 
 void AudioPlayer::interrupt()
 {
-    std::cout << "Thread " << std::this_thread::get_id() << " calling interrupt" << std::endl;
     stopPlayback = true;
 }
 
-void AudioPlayer::playTrack(const fs::path& filepath)
+void AudioPlayer::playTrack(const fs::path& filepath, float volume)
 {
     std::lock_guard<std::mutex> guard(audioMutex);
     stopPlayback = false;
 
     ma_sound sound;
     ma_sound_init_from_file(&engine, filepath.c_str(), 0, NULL, NULL, &sound);
+    ma_sound_set_volume(&sound, volume);
     ma_sound_start(&sound);
 
     float sTime;

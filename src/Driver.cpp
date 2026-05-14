@@ -98,8 +98,7 @@ void Driver::perform()
                 {
                     audioPlayer.interrupt();
                 }
-                std::cout << " Thread " << std::this_thread::get_id() << " starting playback of " << track.filepath << std::endl;
-                audioPlayer.playTrack(track.filepath);
+                audioPlayer.playTrack(track.filepath, track.volume);
             }
         }
     };
