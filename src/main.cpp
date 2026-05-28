@@ -51,6 +51,31 @@ int main()
 
         ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
         ImGui_ImplOpenGL3_Init("#version 130");
+
+        bool running = true;
+        while (running)
+        {
+            SDL_Event event;
+            while (SDL_PollEvent(&event))
+            {
+                ImGui_ImplSDL2_ProcessEvent(&event);
+                if (event.type == SDL_QUIT)
+                    running = false;
+            }
+
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplSDL2_NewFrame();
+            ImGui::NewFrame();
+
+            //Add UI here
+
+            ImGui::Render();
+            glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
+            glClearColor(0.973f, 0.996f, 0.996f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+            SDL_GL_SwapWindow(window);
+        }
     }
     catch (const std::runtime_error& e)
     {
