@@ -10,6 +10,7 @@ target_include_directories(Bullhorn PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 #and add to your PATH or specify SDL2_DIR in CMake.
 
 find_package(SDL2 REQUIRED)
+find_package(OpenGL REQUIRED)
 
 include(FetchContent)
 
@@ -38,3 +39,4 @@ target_include_directories(Bullhorn PRIVATE
 
 target_include_directories(Bullhorn PRIVATE ${SDL2_INCLUDE_DIRS})
 target_link_libraries(Bullhorn ${SDL2_LIBRARIES})
+target_link_libraries(Bullhorn OpenGL::GL)
