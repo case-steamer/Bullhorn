@@ -37,10 +37,12 @@ MainWindow::MainWindow(Driver& driver) : driver(driver), master(driver)
 
     SDL_GL_MakeCurrent(window, glContext);
     SDL_GL_SetSwapInterval(1);
-
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
+    ImGuiStyle& style   = ImGui::GetStyle();
+    ImGuiIO&    io      = ImGui::GetIO();
+    style.Colors[ImGuiCol_WindowBg] = ImVec4(0.973f, 0.966f, 0.966f, 1.0f);
+    style.Colors[ImGuiCol_Text]      = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
 
     ImGui_ImplSDL2_InitForOpenGL(window, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
