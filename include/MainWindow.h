@@ -7,6 +7,7 @@
 #include "imgui_impl_opengl3.h"
 
 #include "Driver.h"
+#include "MasterPanel.h"
 
 class MainWindow
 {
@@ -19,5 +20,6 @@ class MainWindow
         SDL_Window* window;
         SDL_GLContext glContext;
         Driver& driver;
+        MasterPanel master;
 };
 

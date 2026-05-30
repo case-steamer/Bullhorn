@@ -6,4 +6,5 @@ target_sources(Bullhorn PRIVATE
     AudioPlayer.cpp
     XMLIO.cpp
     MainWindow.cpp
+    MasterPanel.cpp
 )

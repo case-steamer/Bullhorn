@@ -2,7 +2,7 @@
 
 #include "MainWindow.h"
 
-MainWindow::MainWindow(Driver& driver) : driver(driver)
+MainWindow::MainWindow(Driver& driver) : driver(driver), master(driver)
 {
 }
 
@@ -61,6 +61,7 @@ MainWindow::MainWindow(Driver& driver) : driver(driver)
         ImGui::NewFrame();
 
         //Add UI Here
+        this->master.render();
         
         ImGui::Render();
         glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
