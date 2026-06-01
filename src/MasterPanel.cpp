@@ -27,7 +27,6 @@ void MasterPanel::render()
     float workAreaHeight    = available.y * 0.70f;
     float notifsHeight      = available.y * 0.15f;
     float colWidth          = available.x * 0.30f;
-    float btnColWidth       = available.x * 0.05f;
 
     ImGui::BeginChild("Toolbar", ImVec2(available.x, toolbarHeight), true);
     ImGui::Text("Toolbar");
@@ -38,30 +37,37 @@ void MasterPanel::render()
     ImGui::EndChild();
 
     ImGui::SameLine();
+    float spacing = ImGui::GetStyle().ItemSpacing.x;
 
-    ImGui::BeginChild("RightSide", ImVec2(available.x - colWidth, available.y -                 toolbarHeight), false);
-        float rightWidth  = ImGui::GetContentRegionAvail().x;
-        float rightHeight = ImGui::GetContentRegionAvail().y;
-        float workHeight  = rightHeight * 0.82f;
-        float notifHeight = rightHeight * 0.18f;
+    ImGui::BeginChild("RightSide", ImVec2(available.x - colWidth - spacing, available.y -                 toolbarHeight), false);
+        float rightWidth    = ImGui::GetContentRegionAvail().x;
+        float rightHeight   = ImGui::GetContentRegionAvail().y;
+        float innerColW     = rightWidth * (30.0f / 70.0f);
+        float workHeight    = rightHeight * 0.82f;
+        float notifHeight   = rightHeight * 0.18f;
+        float btnColWidth   = rightWidth * (5.0f / 70.0f);
+        float vOffset       = ImGui::GetFrameHeight() + 120;
+        float btnW          = ImGui::CalcTextSize(">>>").x + ImGui::GetStyle().FramePadding.x * 2;
+        float centeredX     = (btnColWidth - btnW) / 2.0f;
+        float centeredX2    = (btnColWidth + innerColW) + centeredX;
 
-        ImGui::SetCursorPos(ImVec2(0, 0));
-        ImGui::Button(">");
-        ImGui::SetCursorPos(ImVec2(0, 30.0f));
-        ImGui::Button("<");
+        ImGui::SetCursorPos(ImVec2(centeredX, vOffset));
+        ImGui::Button(">>>");
+        ImGui::SetCursorPos(ImVec2(centeredX, 30.0f + vOffset));
+        ImGui::Button("<<<");
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));
-        ImGui::BeginChild("BlockBuilder", ImVec2(colWidth, workHeight), true);
+        ImGui::BeginChild("BlockBuilder", ImVec2(innerColW, workHeight), true);
         ImGui::Text("Block Builder");
         ImGui::EndChild();
 
-        ImGui::SetCursorPos(ImVec2(btnColWidth + colWidth, 0));
-        ImGui::Button(">");
-        ImGui::SetCursorPos(ImVec2(btnColWidth + colWidth, 30.0f));
-        ImGui::Button("<");
+        ImGui::SetCursorPos(ImVec2(centeredX2, vOffset));
+        ImGui::Button(">>>");
+        ImGui::SetCursorPos(ImVec2(centeredX2, 30.0f + vOffset));
+        ImGui::Button("<<<");
 
-        ImGui::SetCursorPos(ImVec2(btnColWidth * 2 + colWidth, 0));
-        ImGui::BeginChild("QueueList", ImVec2(colWidth, workHeight), true);
+        ImGui::SetCursorPos(ImVec2(btnColWidth * 2 + innerColW, 0));
+        ImGui::BeginChild("QueueList", ImVec2(innerColW, workHeight), true);
         ImGui::Text("Queue List");
         ImGui::EndChild();
 
