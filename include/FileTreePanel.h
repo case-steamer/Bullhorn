@@ -13,12 +13,13 @@ class FileTreePanel : public IPanel
 {
     public:
         FileTreePanel(Driver& driver);
-        void render() override;
         std::vector<std::string> lookIn(const std::string& currentDirectory);
+        void render() override;
         void driverImportFile(std::string filepath);
 
     private:
         Driver&     driver;
+        std::string defaultDirectory;
         std::mutex  cdLock;
         std::thread worker;
 };

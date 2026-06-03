@@ -10,13 +10,13 @@ class Driver
 {
     public:
         Driver(XMLIO& xmlio);
+        FileSysOp   systemAgent;
         void perform();
         void edit();
 
     private:
         std::string filepath;
         TimeParser  parser;
-        FileSysOp   systemAgent;
         AudioPlayer audioPlayer;
         XMLIO&      xmlio;
 };
