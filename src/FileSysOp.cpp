@@ -23,6 +23,11 @@ bool FileSysOp::isValid(const std::string& input)
     return result;
 }
 
+bool    FileSysOp::isValid(const fs::path& input)
+{
+    return isValid(input.string());
+}
+
 fs::path FileSysOp::getMediaPath() const
 {
     return mediaPath;

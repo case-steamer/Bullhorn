@@ -10,6 +10,7 @@ class FileSysOp
 {
     public:
         bool isValid(const std::string& input);
+        bool isValid(const fs::path& input);
         fs::path getMediaPath() const;
 
     private:

@@ -4,7 +4,7 @@
 
 #include "FileTreePanel.h"
 
-using fs = std::filesystem;
+namespace fs = std::filesystem;
 
 FileTreePanel::FileTreePanel(Driver& driver) : driver(driver)
 {
@@ -15,11 +15,31 @@ FileTreePanel::FileTreePanel(Driver& driver) : driver(driver)
 #endif
 }
 
-std::vector<std::string>    FileTreePanel::lookIn(const std::string& currentDirectory)
+void                        FileTreePanel::lookIn(DirNode& node)
 {
-if (driver.systemAgent.isValid(currentDirectory))
+    try
     {
-       //iterate over the directory 
+        if (fs::is_directory(node.path))
+        {
+            for (auto pn : fs::directory_iterator(node.path))
+            {
+                if (fs::is_directory(pn.path()))
+                {
+                    DirNode nuDN;
+                    nuDN.path = pn.path();
+                    node.subdirs.push_back(nuDN);
+                }
+                else if (driver.systemAgent.isValid(pn.path()))
+                {
+                    node.audioFiles.push_back(pn.path());
+                }
+            }
+            node.childrenLoaded = true;
+        }
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 }
 
