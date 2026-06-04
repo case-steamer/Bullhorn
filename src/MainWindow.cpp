@@ -48,7 +48,7 @@ MainWindow::MainWindow(Driver& driver) : driver(driver), master(driver)
     ImFontConfig fontConfig;
     fontConfig.MergeMode = true;
     static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-    io.Fonts->AddFontFromFileTTF("../libs/fa-solid-900.ttf", 14.0f, &fontConfig, icon_ranges);
+    io.Fonts->AddFontFromFileTTF(PROJECT_ROOT "/libs/fa-solid-900.ttf", 14.0f, &fontConfig, icon_ranges);
 
     style.Colors[ImGuiCol_WindowBg] = ImVec4(0.973f, 0.966f, 0.966f, 1.0f);
     style.Colors[ImGuiCol_Text]      = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
