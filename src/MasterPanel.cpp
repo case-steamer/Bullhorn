@@ -4,7 +4,8 @@
 
 MasterPanel::MasterPanel(Driver& driver) :
     driver(driver),
-    filePanel(driver)
+    filePanel(driver),
+    blockPanel(driver)
 {
 }
 
@@ -60,9 +61,18 @@ void MasterPanel::render()
         ImGui::Button("<<<");
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));
+        ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+        ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 2.0f);
+        ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.4f, 0.4f, 0.4f, 0.4f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+
         ImGui::BeginChild("BlockBuilder", ImVec2(innerColW, workHeight), true);
-        ImGui::Text("Block Builder");
+        //ImGui::Text("Block Builder");
+        blockPanel.render();
         ImGui::EndChild();
+
+        ImGui::PopStyleVar(1);
+        ImGui::PopStyleColor(3);
 
         ImGui::SetCursorPos(ImVec2(centeredX2, vOffset));
         ImGui::Button(">>>");

@@ -1,6 +1,7 @@
 #include "IPanel.h"
 #include "Driver.h"
 #include "FileTreePanel.h"
+#include "BlockPanel.h"
 
 class MasterPanel : public IPanel
 {
@@ -11,5 +12,6 @@ class MasterPanel : public IPanel
     private:
         Driver&         driver;
         FileTreePanel   filePanel;
+        BlockPanel      blockPanel;
         //```IPanel&   subpanels``` to be added later
 };
