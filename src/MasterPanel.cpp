@@ -2,7 +2,9 @@
 
 #include "MasterPanel.h"
 
-MasterPanel::MasterPanel(Driver& driver) : driver(driver)
+MasterPanel::MasterPanel(Driver& driver) :
+    driver(driver),
+    filePanel(driver)
 {
 }
 
@@ -33,7 +35,8 @@ void MasterPanel::render()
     ImGui::EndChild();
 
     ImGui::BeginChild("File Browser", ImVec2(colWidth, available.y - toolbarHeight), true);
-    ImGui::Text("File Browser");
+    //ImGui::Text("File Browser");
+    filePanel.render();
     ImGui::EndChild();
 
     ImGui::SameLine();

@@ -1,5 +1,6 @@
 #include "IPanel.h"
 #include "Driver.h"
+#include "FileTreePanel.h"
 
 class MasterPanel : public IPanel
 {
@@ -8,6 +9,7 @@ class MasterPanel : public IPanel
         void render() override;
 
     private:
-        Driver&     driver;
+        Driver&         driver;
+        FileTreePanel   filePanel;
         //```IPanel&   subpanels``` to be added later
 };

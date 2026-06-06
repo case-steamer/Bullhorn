@@ -8,6 +8,8 @@
 #include <stdexcept>
 #include <iostream>
 
+#include "IconsFontAwesome6.h"
+
 #include "IPanel.h"
 #include "Driver.h"
 
@@ -35,5 +37,7 @@ class FileTreePanel : public IPanel
         std::mutex  cdLock;
         std::thread worker;
         DirNode     root;
+        void                        renderNode(DirNode& node);
+        bool showDotFiles = false;
 };
         
