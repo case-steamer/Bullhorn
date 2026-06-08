@@ -35,10 +35,18 @@ void MasterPanel::render()
     ImGui::Text("Toolbar");
     ImGui::EndChild();
 
+    ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+    ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 2.0f);
+    ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.4f, 0.4f, 0.4f, 0.4f));
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+
     ImGui::BeginChild("File Browser", ImVec2(colWidth, available.y - toolbarHeight), true);
     //ImGui::Text("File Browser");
     filePanel.render();
     ImGui::EndChild();
+
+    ImGui::PopStyleVar(1);
+    ImGui::PopStyleColor(3);
 
     ImGui::SameLine();
     float spacing = ImGui::GetStyle().ItemSpacing.x;
@@ -79,10 +87,18 @@ void MasterPanel::render()
         ImGui::SetCursorPos(ImVec2(centeredX2, 30.0f + vOffset));
         ImGui::Button("<<<");
 
+        ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+        ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 2.0f);
+        ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.4f, 0.4f, 0.4f, 0.4f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+
         ImGui::SetCursorPos(ImVec2(btnColWidth * 2 + innerColW, 0));
         ImGui::BeginChild("QueueList", ImVec2(innerColW, workHeight), true);
         ImGui::Text("Queue List");
         ImGui::EndChild();
+
+        ImGui::PopStyleVar(1);
+        ImGui::PopStyleColor(3);
 
         ImGui::SetCursorPos(ImVec2(0, workHeight));
         ImGui::BeginChild("Notifications", ImVec2(rightWidth, notifHeight), true);
