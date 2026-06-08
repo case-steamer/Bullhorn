@@ -9,4 +9,5 @@ target_sources(Bullhorn PRIVATE
     MasterPanel.cpp
     FileTreePanel.cpp
     BlockPanel.cpp
+    QueuePanel.cpp
 )

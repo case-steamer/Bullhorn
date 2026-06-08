@@ -3,10 +3,10 @@
 #include "IPanel.h"
 #include "Driver.h"
 
-class BlockPanel : public IPanel
+class QueuePanel : public IPanel
 {
     public:
-        BlockPanel(Driver& driver);
+        QueuePanel(Driver& driver);
 
         void                        render() override;
 

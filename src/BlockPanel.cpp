@@ -8,5 +8,6 @@ BlockPanel::BlockPanel(Driver& driver) : driver(driver)
 
 void BlockPanel::render()
 {
-    ImGui::Text("Placeholder");
+    ImGui::Text("Placeholder Block");
 }
+
