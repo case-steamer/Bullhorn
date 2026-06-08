@@ -10,4 +10,5 @@ target_sources(Bullhorn PRIVATE
     FileTreePanel.cpp
     BlockPanel.cpp
     QueuePanel.cpp
+    BrowserHelper.cpp
 )

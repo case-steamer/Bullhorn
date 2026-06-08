@@ -24,12 +24,12 @@ class BrowserHelper
         };
 
         void                        lookIn(DirNode& node);
+        void                        renderNode(DirNode& node);
         bool                        showDotFiles = false;
+        DirNode                     root;
+        std::string                 defaultDirectory;
 
     private:
-        FileSysOp&      validator;
-        std::string     defaultDirectory;
-        DirNode         root;
-        void            renderNode(DirNode& node);
+        FileSysOp&                  validator;
 };
 
