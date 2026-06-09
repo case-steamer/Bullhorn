@@ -7,6 +7,7 @@ target_sources(Bullhorn PRIVATE
     XMLIO.cpp
     MainWindow.cpp
     MasterPanel.cpp
+    Toolbar.cpp
     FileTreePanel.cpp
     BlockPanel.cpp
     QueuePanel.cpp

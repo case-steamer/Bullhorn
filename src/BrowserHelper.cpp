@@ -30,7 +30,6 @@ void                        BrowserHelper::lookIn(DirNode& node)
                     node.subdirs.push_back(nuDN);
                 }
                 else if (validator.isValid(pn.path(), validExtensions))
-                // TODO: add parameter of type vector<file extensions> to pass into isValid() at runtime so lookIn can return only files of type<valid extensions> to display in the GUI.
                 {
                     node.filesOfType.push_back(pn.path());
                 }
@@ -74,7 +73,8 @@ void                        BrowserHelper::renderNode(DirNode& node)
             else
                 fileIcon = std::string(ICON_FA_MUSIC);
             std::string fileLabel = fileIcon + " " + file.filename().string();
-            ImGui::Text("%s", fileLabel.c_str());
+            if (ImGui::Selectable(fileLabel.c_str()))
+                lastSelected = file;
         }
         ImGui::TreePop();
     }

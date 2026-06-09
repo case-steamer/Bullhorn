@@ -1,10 +1,14 @@
 #pragma once
 
+#include <filesystem>
 #include <string>
+
 #include "TimeParser.h"
 #include "FileSysOp.h"
 #include "AudioPlayer.h"
 #include "XMLIO.h"
+
+namespace fs = std::filesystem;
 
 class Driver
 {
@@ -13,6 +17,8 @@ class Driver
         FileSysOp   systemAgent;
         void perform();
         void edit();
+        fs::path activeBlockFile;
+        fs::path activeQueueFile;
 
     private:
         std::string filepath;

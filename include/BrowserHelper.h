@@ -29,6 +29,7 @@ class BrowserHelper
         bool                        showDotFiles = false;
         DirNode                     root;
         std::string                 defaultDirectory;
+        fs::path                    lastSelected;
 
     private:
         FileSysOp&                  validator;

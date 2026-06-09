@@ -4,6 +4,7 @@
 
 MasterPanel::MasterPanel(Driver& driver) :
     driver(driver),
+    toolbar(driver),
     filePanel(driver),
     blockPanel(driver)
 {
@@ -32,7 +33,7 @@ void MasterPanel::render()
     float colWidth          = available.x * 0.30f;
 
     ImGui::BeginChild("Toolbar", ImVec2(available.x, toolbarHeight), true);
-    ImGui::Text("Toolbar");
+    toolbar.render();
     ImGui::EndChild();
 
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
