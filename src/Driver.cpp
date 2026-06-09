@@ -22,7 +22,7 @@ void Driver::edit()
     {
         std::cout<< "Enter filepath: ";
         std::cin>> filepath;
-    } while (!systemAgent.isValid(filepath));
+    } while (!systemAgent.isValid(fs::path(filepath)));
 
 
     /* TODO: Nancy's graceful handler

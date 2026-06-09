@@ -29,7 +29,7 @@ void                        BrowserHelper::lookIn(DirNode& node)
                     nuDN.path = pn.path();
                     node.subdirs.push_back(nuDN);
                 }
-                else if (validator.isValid(pn.path()))
+                else if (validator.isValid(pn.path(), validExtensions))
                 // TODO: add parameter of type vector<file extensions> to pass into isValid() at runtime so lookIn can return only files of type<valid extensions> to display in the GUI.
                 {
                     node.filesOfType.push_back(pn.path());

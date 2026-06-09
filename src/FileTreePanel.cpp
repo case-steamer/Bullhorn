@@ -12,6 +12,7 @@ FileTreePanel::FileTreePanel(Driver& driver) :
     driver(driver), 
     helper(driver.systemAgent)
 {
+    helper.validExtensions = {".mp3", ".wav", ".flac", ".m4a"};
 }
 
 void    FileTreePanel::render()

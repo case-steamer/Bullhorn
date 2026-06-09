@@ -23,6 +23,7 @@ class BrowserHelper
             std::vector<fs::path>   filesOfType;
         };
 
+        std::vector<std::string>     validExtensions;
         void                        lookIn(DirNode& node);
         void                        renderNode(DirNode& node);
         bool                        showDotFiles = false;
