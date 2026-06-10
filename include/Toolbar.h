@@ -15,8 +15,12 @@ class Toolbar : public IPanel
     public:
         Toolbar(Driver& driver);
         void render() override;
+
         BrowserHelper   blockBrowser;
         bool            blockBrowserOpen = false;
+
+        BrowserHelper   queueBrowser;
+        bool            queueBrowserOpen = false;
         
     private:
         Driver& driver;
