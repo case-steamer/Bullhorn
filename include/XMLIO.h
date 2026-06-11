@@ -30,8 +30,8 @@ class XMLIO
         //^Will bring this function back in eventually^
         void        writeBlock();
         void        writeQueue();
-        const Block& getBlock();
-        const Block& getBlock(fs::path& filepath);
+        Block& getBlock();
+        Block& getBlock(const fs::path& filepath);
         const Queue& getQueue();
 };
 

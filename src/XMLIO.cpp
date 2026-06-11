@@ -141,12 +141,12 @@ void XMLIO::writeQueue()
     doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
 }
 
-const Block& XMLIO::getBlock()
+Block& XMLIO::getBlock()
 {
     return block;
 }
 
-const Block& XMLIO::getBlock(fs::path& filepath)
+Block& XMLIO::getBlock(const fs::path& filepath)
 {
     readBlock(filepath);
     return block;
