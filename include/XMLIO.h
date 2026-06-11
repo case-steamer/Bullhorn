@@ -28,7 +28,7 @@ class XMLIO
         void        addBlock(const Queue::BlockEntry& entry);
         //void        addData(const float volume);
         //^Will bring this function back in eventually^
-        void        writeBlock();
+        void        writeBlock(fs::path filepath);
         void        writeQueue();
         Block& getBlock();
         Block& getBlock(const fs::path& filepath);

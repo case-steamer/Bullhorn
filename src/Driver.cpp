@@ -43,7 +43,7 @@ void Driver::edit()
 
     xmlio.setTime(parser.getHour(), parser.getMinute());
     xmlio.addData(filepath);
-    xmlio.writeBlock();
+    xmlio.writeBlock(activeBlockFile);
 
     Queue::BlockEntry entry;
     entry.filepath = "/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml";

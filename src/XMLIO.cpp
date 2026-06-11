@@ -16,6 +16,7 @@ void XMLIO::initQueue()
 
 void XMLIO::readBlock(const fs::path& filepath)
 {
+    block.allTracks.clear();
     tinyxml2::XMLDocument doc;
     doc.LoadFile(filepath.c_str());
 
@@ -129,10 +130,10 @@ void XMLIO::addBlock(const Queue::BlockEntry& entry)
     queue.allBlocks.push_back(entry);
 }
 
-void XMLIO::writeBlock() 
+void XMLIO::writeBlock(fs::path filepath) 
 {
     auto doc_to_write = buildBlock();
-    doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml");
+    doc_to_write->SaveFile(filepath.c_str());
 }
 
 void XMLIO::writeQueue()
