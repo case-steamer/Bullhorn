@@ -146,7 +146,7 @@ const Block& XMLIO::getBlock()
     return block;
 }
 
-const Block& XMLIO::getBlock(const fs::path& filepath)
+const Block& XMLIO::getBlock(fs::path& filepath)
 {
     readBlock(filepath);
     return block;
