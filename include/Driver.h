@@ -15,6 +15,7 @@ class Driver
     public:
         Driver(XMLIO& xmlio);
         FileSysOp   systemAgent;
+        XMLIO&      xmlio;
         void perform();
         void edit();
         fs::path activeBlockFile;
@@ -24,5 +25,4 @@ class Driver
         std::string filepath;
         TimeParser  parser;
         AudioPlayer audioPlayer;
-        XMLIO&      xmlio;
 };

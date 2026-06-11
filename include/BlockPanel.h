@@ -9,6 +9,7 @@ class BlockPanel : public IPanel
         BlockPanel(Driver& driver);
 
         void                        render() override;
+        void                        displayBlock();
 
     private:
         Driver&     driver;
