@@ -100,7 +100,7 @@ void Toolbar::render()
     char queueBuffer[512];
     strncpy(queueBuffer, driver.activeQueueFile.string().c_str(), sizeof(queueBuffer));
     ImGui::InputText(
-            "Block File",
+            "Queue File",
             queueBuffer,
             sizeof(queueBuffer),
             ImGuiInputTextFlags_ReadOnly

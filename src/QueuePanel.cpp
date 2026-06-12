@@ -27,7 +27,6 @@ void QueuePanel::displayQueue()
     for (int i = 0; i < (int)queue.allBlocks.size(); i++)
     {
         Queue::BlockEntry currentBlock = queue.allBlocks[i];
-        Block blockToFind = driver.xmlio.getBlock(currentBlock.filepath);
         std::string groupLabel = "##track" + std::to_string(i);
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.973f, 0.966f, 0.966f, 1.0f));
