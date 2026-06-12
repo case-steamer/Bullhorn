@@ -5,4 +5,11 @@ target_sources(Bullhorn PRIVATE
     FileSysOp.cpp
     AudioPlayer.cpp
     XMLIO.cpp
+    MainWindow.cpp
+    MasterPanel.cpp
+    Toolbar.cpp
+    FileTreePanel.cpp
+    BlockPanel.cpp
+    QueuePanel.cpp
+    BrowserHelper.cpp
 )

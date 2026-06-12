@@ -1,26 +1,28 @@
 #include "FileSysOp.h"
 
-bool FileSysOp::isValid(const std::string& input)
+bool    FileSysOp::isValid(const fs::path& input)
 {
-    bool result         = false;
-    bool fExists        = false;
-    bool suffixValid    = false;
-    if (fs::exists(fs::path(input))) {fExists = true;}
-    if (fExists)
-    {for (const std::string& suffix : supportedTypes)
-        {if (fs::path(input).extension() == suffix)
-            {
-                suffixValid = true;
-                break;
-            }
-        }
-    }
-    if (fExists && suffixValid) 
+    return fs::exists(input);
+}
+
+bool    FileSysOp::isValid(const fs::path& input, const std::vector<std::string>& extensions)
+{
+    if (!fs::exists(input)) return false;
+    for (const std::string& suffix : extensions)
     {
-        result = true;
-        return result;
+        if (input.extension() == suffix) return true;
     }
-    return result;
+    return false;
+}
+
+bool    FileSysOp::isValid(const fs::path& input, const Queue& queue)
+{
+    if (!fs::exists(input)) return false;
+    for (Queue::BlockEntry ent : queue.allBlocks)
+    {
+        if (input == ent.filepath) return true;
+    }
+    return false;
 }
 
 fs::path FileSysOp::getMediaPath() const

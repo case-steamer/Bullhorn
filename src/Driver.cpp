@@ -22,7 +22,7 @@ void Driver::edit()
     {
         std::cout<< "Enter filepath: ";
         std::cin>> filepath;
-    } while (!systemAgent.isValid(filepath));
+    } while (!systemAgent.isValid(fs::path(filepath)));
 
 
     /* TODO: Nancy's graceful handler
@@ -43,7 +43,7 @@ void Driver::edit()
 
     xmlio.setTime(parser.getHour(), parser.getMinute());
     xmlio.addData(filepath);
-    xmlio.writeBlock();
+    xmlio.writeBlock(activeBlockFile);
 
     Queue::BlockEntry entry;
     entry.filepath = "/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml";

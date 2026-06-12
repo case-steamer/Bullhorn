@@ -1,23 +1,24 @@
+#include <SDL.h>
+#include <SDL_opengl.h>
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_opengl3.h"
 #include "XMLIO.h"
 #include "Driver.h"
+#include "MainWindow.h"
 #include <iostream>
+#include <stdexcept>
 
 int main()
 {
     try
     {
-        XMLIO xmlio;
-        Driver driver(xmlio);
-
-        int mode = 0;
-        do
-        {
-            std::cout<< "Select mode: (1) Edit or (2) Perform ";
-            std::cin >> mode;
-        } while (mode != 1 && mode !=2);
-
-        (mode == 1) ? driver.edit() : driver.perform();
+        XMLIO       xmlio;
+        Driver      driver(xmlio);
+        MainWindow  window(driver);
+        window.run();
     }
+
     catch (const std::runtime_error& e)
     {
         std::cout << "Fatal error: " << e.what() << std::endl;
@@ -25,3 +26,4 @@ int main()
     }
         return 0;
 }
+
