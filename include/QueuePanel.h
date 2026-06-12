@@ -9,6 +9,7 @@ class QueuePanel : public IPanel
         QueuePanel(Driver& driver);
 
         void                        render() override;
+        void                        displayQueue();
 
     private:
         Driver&     driver;

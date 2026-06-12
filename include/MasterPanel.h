@@ -3,6 +3,7 @@
 #include "Toolbar.h"
 #include "FileTreePanel.h"
 #include "BlockPanel.h"
+#include "QueuePanel.h"
 
 class MasterPanel : public IPanel
 {
@@ -15,5 +16,6 @@ class MasterPanel : public IPanel
         Toolbar         toolbar;
         FileTreePanel   filePanel;
         BlockPanel      blockPanel;
+        QueuePanel      queuePanel;
         //```IPanel&   subpanels``` to be added later
 };

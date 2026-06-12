@@ -6,7 +6,8 @@ MasterPanel::MasterPanel(Driver& driver) :
     driver(driver),
     toolbar(driver),
     filePanel(driver),
-    blockPanel(driver)
+    blockPanel(driver),
+    queuePanel(driver)
 {
 }
 
@@ -95,7 +96,7 @@ void MasterPanel::render()
 
         ImGui::SetCursorPos(ImVec2(btnColWidth * 2 + innerColW, 0));
         ImGui::BeginChild("QueueList", ImVec2(innerColW, workHeight), true);
-        ImGui::Text("Queue List");
+        queuePanel.render();
         ImGui::EndChild();
 
         ImGui::PopStyleVar(1);
