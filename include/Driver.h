@@ -21,6 +21,7 @@ class Driver
         fs::path activeBlockFile;
         fs::path activeQueueFile;
         void addToActiveBlock(const fs::path& trackPath);
+        void removeTrackFromBlock(int index);
 
     private:
         std::string filepath;

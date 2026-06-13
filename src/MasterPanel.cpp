@@ -73,7 +73,15 @@ void MasterPanel::render()
                 driver.addToActiveBlock(fileToPush);
         }
         ImGui::SetCursorPos(ImVec2(centeredX, 30.0f + vOffset));
-        ImGui::Button("<<<");
+        if (ImGui::Button("<<<"))
+        {
+            int trackID = blockPanel.getSelected();
+            if (trackID >= 0)
+            {
+                driver.removeTrackFromBlock(trackID);
+                blockPanel.clearSelection();
+            }
+        }
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));

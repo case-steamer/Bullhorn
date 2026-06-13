@@ -118,3 +118,12 @@ void Driver::addToActiveBlock(const fs::path& path)
     xmlio.writeBlock(activeBlockFile);
 }
 
+void Driver::removeTrackFromBlock(int index)
+{
+    Block& block = xmlio.getBlock();
+    if (index < 0 || index >= (int)block.allTracks.size())
+        return;
+    block.allTracks.erase(block.allTracks.begin() + index);
+    xmlio.writeBlock(activeBlockFile);
+}
+

@@ -38,7 +38,9 @@ void BlockPanel::displayBlock()
             ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.973f, 0.966f, 0.966f, 1.0f));
 
             ImGui::BeginChild(groupLabel.c_str(), ImVec2(0, 60), true);
-            ImGui::Text("%s", track.filepath.filename().string().c_str());
+            bool isSelected = (i == selIndex);
+            if (ImGui::Selectable(track.filepath.filename().string().c_str(), isSelected))
+                selIndex = i;
             float volumeAsPct = track.volume * 100.0f;
             std::string label = "##vol" + std::to_string(i);
             ImGui::SetNextItemWidth(80.0f);
@@ -51,5 +53,12 @@ void BlockPanel::displayBlock()
             ImGui::PopStyleColor(1);
         }
     }
+}
+
+int BlockPanel::getSelected() const {return selIndex;}
+
+void BlockPanel::clearSelection()
+{
+    selIndex = -1;
 }
 

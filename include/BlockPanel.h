@@ -10,8 +10,11 @@ class BlockPanel : public IPanel
 
         void                        render() override;
         void                        displayBlock();
+        int                         getSelected() const;
+        void                        clearSelection();
 
     private:
         Driver&     driver;
+        int         selIndex = 1;
 };
 
