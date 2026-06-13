@@ -18,6 +18,7 @@ class FileTreePanel : public IPanel
         FileTreePanel(Driver& driver);
         void            render() override;
         void            driverImportFile(std::string filepath);
+        fs::path        getLastSelected() const;
        
     private:
         Driver&         driver;

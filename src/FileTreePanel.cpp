@@ -15,7 +15,7 @@ FileTreePanel::FileTreePanel(Driver& driver) :
     helper.validExtensions = {".mp3", ".wav", ".flac", ".m4a"};
 }
 
-void    FileTreePanel::render()
+void        FileTreePanel::render()
 {
     ImGui::Checkbox("Show hidden files", &helper.showDotFiles);
     ImGui::Separator();
@@ -27,5 +27,10 @@ void    FileTreePanel::render()
     }
 
     helper.renderNode(helper.root);
+}
+
+fs::path        FileTreePanel::getLastSelected() const
+{
+    return helper.lastSelected;
 }
 

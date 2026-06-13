@@ -108,3 +108,13 @@ void Driver::perform()
     worker2.join();
 }
 
+void Driver::addToActiveBlock(const fs::path& path)
+{
+    if (activeBlockFile.empty())
+        return;
+    Block::Track track;
+    track.filepath = path;
+    xmlio.getBlock().allTracks.push_back(track);
+    xmlio.writeBlock(activeBlockFile);
+}
+

@@ -20,6 +20,7 @@ class Driver
         void edit();
         fs::path activeBlockFile;
         fs::path activeQueueFile;
+        void addToActiveBlock(const fs::path& trackPath);
 
     private:
         std::string filepath;

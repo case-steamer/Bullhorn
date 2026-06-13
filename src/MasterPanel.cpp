@@ -66,7 +66,12 @@ void MasterPanel::render()
         float centeredX2    = (btnColWidth + innerColW) + centeredX;
 
         ImGui::SetCursorPos(ImVec2(centeredX, vOffset));
-        ImGui::Button(">>>");
+        if (ImGui::Button(">>>"))
+        {
+            fs::path fileToPush = filePanel.getLastSelected();
+            if (!fileToPush.empty())
+                driver.addToActiveBlock(fileToPush);
+        }
         ImGui::SetCursorPos(ImVec2(centeredX, 30.0f + vOffset));
         ImGui::Button("<<<");
 
