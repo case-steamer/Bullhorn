@@ -10,8 +10,11 @@ class QueuePanel : public IPanel
 
         void                        render() override;
         void                        displayQueue();
+        int                         getSelected() const;
+        void                        clearSelection();
 
     private:
         Driver&     driver;
+        int         selIndex = -1;
 };
 

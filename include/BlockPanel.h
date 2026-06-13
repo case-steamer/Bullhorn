@@ -15,6 +15,6 @@ class BlockPanel : public IPanel
 
     private:
         Driver&     driver;
-        int         selIndex = 1;
+        int         selIndex = -1;
 };
 

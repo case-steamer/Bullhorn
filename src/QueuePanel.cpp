@@ -32,9 +32,18 @@ void QueuePanel::displayQueue()
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.973f, 0.966f, 0.966f, 1.0f));
 
         ImGui::BeginChild(groupLabel.c_str(), ImVec2(0, 60), true);
-        ImGui::Text("%s", currentBlock.filepath.filename().string().c_str());
+        bool isSelected = (i == selIndex);
+        if (ImGui::Selectable(currentBlock.filepath.filename().string().c_str(), isSelected))
+            selIndex = i;
         ImGui::EndChild();
         ImGui::PopStyleColor(1);
     }
+}
+
+int QueuePanel::getSelected() const {return selIndex;}
+
+void QueuePanel::clearSelection()
+{
+    selIndex = -1;
 }
 

@@ -66,14 +66,14 @@ void MasterPanel::render()
         float centeredX2    = (btnColWidth + innerColW) + centeredX;
 
         ImGui::SetCursorPos(ImVec2(centeredX, vOffset));
-        if (ImGui::Button(">>>"))
+        if (ImGui::Button(">>>##toblock"))
         {
             fs::path fileToPush = filePanel.getLastSelected();
             if (!fileToPush.empty())
                 driver.addToActiveBlock(fileToPush);
         }
         ImGui::SetCursorPos(ImVec2(centeredX, 30.0f + vOffset));
-        if (ImGui::Button("<<<"))
+        if (ImGui::Button("<<<##fromblock"))
         {
             int trackID = blockPanel.getSelected();
             if (trackID >= 0)
@@ -98,9 +98,21 @@ void MasterPanel::render()
         ImGui::PopStyleColor(3);
 
         ImGui::SetCursorPos(ImVec2(centeredX2, vOffset));
-        ImGui::Button(">>>");
+        ImGui::Button(">>>##toqueue");
         ImGui::SetCursorPos(ImVec2(centeredX2, 30.0f + vOffset));
-        ImGui::Button("<<<");
+        if (ImGui::Button("<<<##fromqueue"))
+        {
+            int blockID = queuePanel.getSelected();
+            if (blockID >= 0)
+            {
+                const Queue& queue = driver.xmlio.getQueue();
+                if (blockID < (int)queue.allBlocks.size())
+                {
+                    driver.activeBlockFile = queue.allBlocks[blockID].filepath;
+                    driver.xmlio.readBlock(driver.activeBlockFile);
+                }
+            }
+        }
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
         ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 2.0f);
