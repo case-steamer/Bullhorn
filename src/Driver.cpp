@@ -52,7 +52,7 @@ void Driver::edit()
     xmlio.writeQueue();
 }
 
-void Driver::perform()
+void Driver::startPerform()
 {
     xmlio.initQueue();
     xmlio.readQueue("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
@@ -125,5 +125,10 @@ void Driver::removeTrackFromBlock(int index)
         return;
     block.allTracks.erase(block.allTracks.begin() + index);
     xmlio.writeBlock(activeBlockFile);
+}
+
+enum Driver::getMode()
+{
+    return Mode;
 }
 
