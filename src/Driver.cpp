@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <mutex>
 #include <queue>
+#include <vector>
 
 using WorkQueue = std::queue<Queue::BlockEntry>;
 
@@ -52,7 +53,7 @@ void Driver::edit()
     xmlio.writeQueue();
 }
 
-void Driver::startPerform()
+std::thread Driver::startPerform()
 {
     xmlio.initQueue();
     xmlio.readQueue("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
@@ -102,10 +103,17 @@ void Driver::startPerform()
             }
         }
     };
-    std::thread worker1(blockWorker);
-    std::thread worker2(blockWorker);
-    worker1.join();
-    worker2.join();
+
+    auto func = [&]()
+    {
+        std::thread worker1(blockWorker);
+        std::thread worker2(blockWorker);
+        worker1.join();
+        worker2.join();
+    };
+
+    std::thread returnThread(func);
+    return      returnThread;
 }
 
 void Driver::addToActiveBlock(const fs::path& path)

@@ -20,7 +20,7 @@ class Driver
         Driver(XMLIO& xmlio);
         FileSysOp   systemAgent;
         XMLIO&      xmlio;
-        void startPerform();
+        std::thread startPerform();
         void edit();
         fs::path activeBlockFile;
         fs::path activeQueueFile;
@@ -37,5 +37,5 @@ class Driver
         std::condition_variable performance_listener;
         bool                    performance_state;
         std::thread             executor;
-        std::function<void()>   performance_wrapper;
+        std::function<void()>   onTrigger;
 };
