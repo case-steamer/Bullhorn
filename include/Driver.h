@@ -5,7 +5,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <thread>
-#include <fuctional>
+#include <functional>
 
 #include "TimeParser.h"
 #include "FileSysOp.h"

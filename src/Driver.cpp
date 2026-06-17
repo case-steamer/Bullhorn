@@ -78,7 +78,7 @@ std::thread Driver::startPerform()
         {
             Queue::BlockEntry next;
             {
-                std::lock_guard<std::mutex> guard(excluder);
+                std::lock_guard<std::mutex> qLock(excluder);
                 if (qBucket.empty()) break;
                 next = qBucket.front();
                 qBucket.pop();
@@ -92,7 +92,10 @@ std::thread Driver::startPerform()
             {
              continue;
             }
-            std::this_thread::sleep_for(std::chrono::seconds((int)localParser.secondsUntil()));
+            std::unique_lock<std::mutex> stopLock(guard);
+            auto state = performance_listener.wait_for(stopLock, std::chrono::seconds((int)localParser.secondsUntil()), [this]{return performance_state;});
+            if (state)
+                break;
             for (const Block::Track& track : next.block.allTracks)
             {
                 if (next.isOverride && audioPlayer.isPlaying())
