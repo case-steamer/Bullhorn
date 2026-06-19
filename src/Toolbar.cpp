@@ -14,6 +14,8 @@ Toolbar::Toolbar(Driver& driver) : driver(driver), blockBrowser(driver.systemAge
 
 void Toolbar::render()
 {
+    auto cursorPositioner = ImGui::GetCursorPos();
+
     if (ImGui::Button("Open Block File..."))
     {
         blockBrowserOpen = true;
@@ -60,6 +62,30 @@ void Toolbar::render()
             ImGuiInputTextFlags_ReadOnly
             );
 
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.3f, 1.0f, 0.5f, 1.0f));
+    if (driver.getMode() == 0)
+    {
+        if (ImGui::Button("GO", ImVec2(50.0f, 50.0f)))
+        {
+            driver.publicTrigger();
+        }
+    }
+    ImGui::PopStyleColor(1);
+
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+    if (driver.getMode() == 1)
+    {
+        if (ImGui::Button("STOP", ImVec2(50.0f, 50.0f)))
+        {
+            driver.publicTrigger();
+        }
+    }
+    ImGui::PopStyleColor(1);
+
+    ImVec2 newLinePos(cursorPositioner.x, cursorPositioner.y + 25);
+    ImGui::SetCursorPos(newLinePos);
+
     if (ImGui::Button("Open Queue File..."))
     {
         queueBrowserOpen = true;
@@ -70,6 +96,7 @@ void Toolbar::render()
 
     ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+
     if (ImGui::BeginPopup("QueueFileBrowser"))
     {
         if (!queueBrowser.root.childrenLoaded)

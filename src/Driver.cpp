@@ -8,9 +8,7 @@
 #include <algorithm>
 #include <mutex>
 #include <queue>
-#include <vector>
 
-using WorkQueue = std::queue<Queue::BlockEntry>;
 
 Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
 {
@@ -55,8 +53,9 @@ void Driver::edit()
 
 std::thread Driver::startPerform()
 {
+    while (!qBucket.empty())
+        qBucket.pop();
     xmlio.initQueue();
-    xmlio.readQueue("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
     const Queue& queue = xmlio.getQueue();
     std::vector<Queue::BlockEntry> sortedBlocks = queue.allBlocks;
     std::sort(sortedBlocks.begin(), sortedBlocks.end(),
@@ -64,13 +63,11 @@ std::thread Driver::startPerform()
             {
             return (a.block.hour * 60 + a.block.minute) < (b.block.hour * 60 + b.block.minute);
             });
-    WorkQueue qBucket;
     for (const Queue::BlockEntry& entry : sortedBlocks)
     {
         qBucket.push(entry);
     }
 
-    std::mutex excluder;
     
     auto blockWorker = [&]()
     {
@@ -98,6 +95,8 @@ std::thread Driver::startPerform()
                 break;
             for (const Block::Track& track : next.block.allTracks)
             {
+                if (performance_state)
+                    break;
                 if (next.isOverride && audioPlayer.isPlaying())
                 {
                     audioPlayer.interrupt();
@@ -107,7 +106,7 @@ std::thread Driver::startPerform()
         }
     };
 
-    auto func = [&]()
+    auto func = [blockWorker]()
     {
         std::thread worker1(blockWorker);
         std::thread worker2(blockWorker);
@@ -115,6 +114,9 @@ std::thread Driver::startPerform()
         worker2.join();
     };
 
+    performance_state = true;
+    onTrigger = [this](){stop();};
+    current_mode = PERFORM;
     std::thread returnThread(func);
     return      returnThread;
 }
@@ -138,8 +140,26 @@ void Driver::removeTrackFromBlock(int index)
     xmlio.writeBlock(activeBlockFile);
 }
 
-enum Driver::getMode()
+Driver::Mode Driver::getMode()
 {
-    return Mode;
+    return current_mode;
+}
+
+void Driver::stop()
+{
+    std::unique_lock<std::mutex> stopLock(guard);
+    performance_state = true;
+    stopLock.unlock();
+    performance_listener.notify_all();
+    audioPlayer.interrupt();
+    executor.join();
+    performance_state = false;
+    onTrigger = [this](){executor = startPerform();};
+    current_mode = EDIT;
+}
+
+void Driver::publicTrigger()
+{
+    onTrigger();
 }
 
