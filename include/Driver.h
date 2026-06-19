@@ -31,6 +31,7 @@ class Driver
         void removeTrackFromBlock(int index);
         enum Mode {EDIT = 0, PERFORM};
         Mode getMode();
+        std::string  message;
 
     private:
         std::string             filepath;

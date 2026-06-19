@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <mutex>
 #include <queue>
+#include <stdexcept>
 
 
 Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
@@ -55,7 +56,6 @@ std::thread Driver::startPerform()
 {
     while (!qBucket.empty())
         qBucket.pop();
-    xmlio.initQueue();
     const Queue& queue = xmlio.getQueue();
     std::vector<Queue::BlockEntry> sortedBlocks = queue.allBlocks;
     std::sort(sortedBlocks.begin(), sortedBlocks.end(),
@@ -90,12 +90,12 @@ std::thread Driver::startPerform()
              continue;
             }
             std::unique_lock<std::mutex> stopLock(guard);
-            auto state = performance_listener.wait_for(stopLock, std::chrono::seconds((int)localParser.secondsUntil()), [this]{return performance_state;});
+            auto state = performance_listener.wait_for(stopLock, std::chrono::seconds((int)localParser.secondsUntil()), [this]{return !performance_state;});
             if (state)
                 break;
             for (const Block::Track& track : next.block.allTracks)
             {
-                if (performance_state)
+                if (!performance_state)
                     break;
                 if (next.isOverride && audioPlayer.isPlaying())
                 {
@@ -160,6 +160,14 @@ void Driver::stop()
 
 void Driver::publicTrigger()
 {
-    onTrigger();
+    if (!activeQueueFile.empty() || current_mode == PERFORM)
+    {
+        onTrigger();
+    }
+    else
+    {
+        std::runtime_error e("No queue file loaded!");
+        message = e.what();
+    }
 }
 
