@@ -6,6 +6,7 @@ test-assets/test_block2.xml
 test-assets/test_block3.xml
 
 CLAUDE.md
+memory/
 
 massif.out.*
 

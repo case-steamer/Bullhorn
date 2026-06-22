@@ -147,13 +147,14 @@ Driver::Mode Driver::getMode()
 
 void Driver::stop()
 {
+    //need to implement threading so that the gui render() isn't dependent on 
+    //the return from executor.join().
     std::unique_lock<std::mutex> stopLock(guard);
-    performance_state = true;
+    performance_state = false;
     stopLock.unlock();
     performance_listener.notify_all();
     audioPlayer.interrupt();
     executor.join();
-    performance_state = false;
     onTrigger = [this](){executor = startPerform();};
     current_mode = EDIT;
 }
