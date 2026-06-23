@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <memset>
+#include <cstdio>
 
 #include "imgui.h"
 
@@ -18,8 +19,20 @@ void QueuePanel::refreshBuffers()
         timecodeBuffers.clear();
         for (int i = 0; i < (int)queue.allBlocks.size(); i++)
         {
+            auto& blockEntry = queue.allBlocks[i];
+            auto hh = blockEntry.block.hour;
+            auto mm = blockEntry.block.minute;
             std::array<char, 6> timecodeSpace;
             std::memset(timecodeSpace.data(), 0, sizeof(timecodeSpace));
+
+            std::snprintf(
+                    timecodeSpace.data(), 
+                    sizeof(timecodeSpace), 
+                    "%02d:%02d",
+                    hh,
+                    mm
+                    );
+
             timecodeBuffers.push_back(timecodeSpace);
         }
     }
