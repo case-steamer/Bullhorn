@@ -1,7 +1,11 @@
 #pragma once
 
+#include <filesystem>
+
 #include "IPanel.h"
 #include "Driver.h"
+
+namespace fs = std::filesystem;
 
 class QueuePanel : public IPanel
 {
@@ -14,7 +18,10 @@ class QueuePanel : public IPanel
         void                        clearSelection();
 
     private:
-        Driver&     driver;
-        int         selIndex = -1;
+        Driver&                     driver;
+        fs::path                    currentPath =   driver.activeQueueFile;
+        std::vector<std::array<char, 6>>            timecodeBuffers;
+        int                         selIndex = -1;
+        void                        refreshBuffers();
 };
 

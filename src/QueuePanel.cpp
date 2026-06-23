@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <memset>
 
 #include "imgui.h"
 
@@ -8,10 +9,27 @@ QueuePanel::QueuePanel(Driver& driver) : driver(driver)
 {
 }
 
+void QueuePanel::refreshBuffers()
+{
+    if (currentPath != driver.activeQueueFile)
+    {
+        Queue& queue = driver.xmlio.getQueue();
+        currentPath = driver.activeQueueFile;
+        timecodeBuffers.clear();
+        for (int i = 0; i < (int)queue.allBlocks.size(); i++)
+        {
+            std::array<char, 6> timecodeSpace;
+            std::memset(timecodeSpace.data(), 0, sizeof(timecodeSpace));
+            timecodeBuffers.push_back(timecodeSpace);
+        }
+    }
+}
+
 void QueuePanel::render()
 {
     try
     {
+        refreshBuffers();
         displayQueue();
     }
     catch (const std::runtime_error& e)
