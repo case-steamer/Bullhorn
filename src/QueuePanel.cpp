@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include <memset>
+#include <cstring>
 #include <cstdio>
 
 #include "imgui.h"
