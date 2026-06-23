@@ -149,12 +149,20 @@ void Driver::stop()
 {
     //need to implement threading so that the gui render() isn't dependent on 
     //the return from executor.join().
-    std::unique_lock<std::mutex> stopLock(guard);
-    performance_state = false;
-    stopLock.unlock();
-    performance_listener.notify_all();
     audioPlayer.interrupt();
-    executor.join();
+    auto func = [this]()
+    {
+        std::unique_lock<std::mutex> stopLock(guard);
+        performance_state = false;
+        stopLock.unlock();
+        performance_listener.notify_all();
+        executor.join();
+    };
+    if (stopper.joinable())
+    {
+        stopper.join();
+    }
+    stopper = std::thread(func);
     onTrigger = [this](){executor = startPerform();};
     current_mode = EDIT;
 }

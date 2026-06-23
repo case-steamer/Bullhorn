@@ -42,6 +42,7 @@ class Driver
         std::condition_variable performance_listener;
         bool                    performance_state;
         std::thread             executor;
+        std::thread             stopper;
         std::function<void()>   onTrigger = [this](){executor = startPerform();};
         void stop();
         WorkQueue               qBucket;
