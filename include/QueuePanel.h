@@ -21,6 +21,7 @@ class QueuePanel : public IPanel
         Driver&                     driver;
         fs::path                    currentPath =   driver.activeQueueFile;
         std::vector<std::array<char, 6>>            timecodeBuffers;
+        std::vector<bool>                           timecodeFlags;
         int                         selIndex = -1;
         void                        refreshBuffers();
 };

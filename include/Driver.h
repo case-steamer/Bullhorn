@@ -22,6 +22,7 @@ class Driver
         Driver(XMLIO& xmlio);
         FileSysOp   systemAgent;
         XMLIO&      xmlio;
+        TimeParser  parser;
         void        publicTrigger();
         std::thread startPerform();
         void edit();
@@ -35,7 +36,6 @@ class Driver
 
     private:
         std::string             filepath;
-        TimeParser              parser;
         AudioPlayer             audioPlayer;
         Mode                    current_mode = Mode::EDIT;
         std::mutex              guard;

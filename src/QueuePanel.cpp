@@ -17,12 +17,14 @@ void QueuePanel::refreshBuffers()
         Queue& queue = driver.xmlio.getQueue();
         currentPath = driver.activeQueueFile;
         timecodeBuffers.clear();
+        timecodeFlags.clear();
         for (int i = 0; i < (int)queue.allBlocks.size(); i++)
         {
             auto& blockEntry = queue.allBlocks[i];
             auto hh = blockEntry.block.hour;
             auto mm = blockEntry.block.minute;
             std::array<char, 6> timecodeSpace;
+            bool flag = false;
             std::memset(timecodeSpace.data(), 0, sizeof(timecodeSpace));
 
             std::snprintf(
@@ -34,6 +36,7 @@ void QueuePanel::refreshBuffers()
                     );
 
             timecodeBuffers.push_back(timecodeSpace);
+            timecodeFlags.push_back(flag);
         }
     }
 }
@@ -57,7 +60,7 @@ void QueuePanel::displayQueue()
 
     for (int i = 0; i < (int)queue.allBlocks.size(); i++)
     {
-        Queue::BlockEntry currentBlock = queue.allBlocks[i];
+        Queue::BlockEntry& currentBlock = queue.allBlocks[i];
         std::string groupLabel = "##track" + std::to_string(i);
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.973f, 0.966f, 0.966f, 1.0f));
@@ -65,16 +68,29 @@ void QueuePanel::displayQueue()
         ImGui::BeginChild(groupLabel.c_str(), ImVec2(0, 80), true);
 
         ImVec2 fieldSize = ImGui::CalcTextSize("HH:MM0");
-        std::string timecodeLabel = " ";
+        std::string timecodeLabel = "##timecode" + std::to_string(i);
 
         ImGui::SetNextItemWidth(fieldSize.x);
-        ImGui::InputText(
+        bool isEntered = ImGui::InputText(
                 timecodeLabel.c_str(),
                 timecodeBuffers[i].data(),
                 timecodeBuffers[i].size(),
-                ImGuiInputTextFlags_ReadOnly
+                ImGuiInputTextFlags_EnterReturnsTrue
                 );
         bool isSelected = (i == selIndex);
+        if (isEntered)
+        { 
+            if (driver.parser.isValid(timecodeBuffers[i].data()) && driver.parser.isValidTime())
+            {
+                timecodeFlags[i] = isEntered;
+                currentBlock.block.minute = driver.parser.getMinute();
+                currentBlock.block.hour = driver.parser.getHour();
+                driver.activeBlockFile = currentBlock.filepath;
+                driver.xmlio.readBlock(driver.activeBlockFile);
+                driver.xmlio.setTime(driver.parser.getHour(), driver.parser.getMinute());
+                driver.xmlio.writeBlock(driver.activeBlockFile);
+            }
+        }
         if (ImGui::Selectable(currentBlock.filepath.filename().string().c_str(), isSelected))
             selIndex = i;
         ImGui::EndChild();
