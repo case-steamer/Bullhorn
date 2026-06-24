@@ -62,7 +62,18 @@ void QueuePanel::displayQueue()
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.973f, 0.966f, 0.966f, 1.0f));
 
-        ImGui::BeginChild(groupLabel.c_str(), ImVec2(0, 60), true);
+        ImGui::BeginChild(groupLabel.c_str(), ImVec2(0, 80), true);
+
+        ImVec2 fieldSize = ImGui::CalcTextSize("HH:MM0");
+        std::string timecodeLabel = " ";
+
+        ImGui::SetNextItemWidth(fieldSize.x);
+        ImGui::InputText(
+                timecodeLabel.c_str(),
+                timecodeBuffers[i].data(),
+                timecodeBuffers[i].size(),
+                ImGuiInputTextFlags_ReadOnly
+                );
         bool isSelected = (i == selIndex);
         if (ImGui::Selectable(currentBlock.filepath.filename().string().c_str(), isSelected))
             selIndex = i;
