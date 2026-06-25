@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <cstring>
 #include <cstdio>
+#include <algorithm>
 
 #include "imgui.h"
 
@@ -12,9 +13,21 @@ QueuePanel::QueuePanel(Driver& driver) : driver(driver)
 
 void QueuePanel::refreshBuffers()
 {
+    Queue& queue = driver.xmlio.getQueue();
+    auto& blockList = queue.allBlocks;
+    std::sort(blockList.begin(), blockList.end(),
+            [](const auto &f, const auto &s)
+            { 
+            if (f.block.hour != s.block.hour)
+                {
+                    return f.block.hour < s.block.hour;
+                }
+                return f.block.minute < s.block.minute;
+            }
+        );
+
     if (currentPath != driver.activeQueueFile)
     {
-        Queue& queue = driver.xmlio.getQueue();
         currentPath = driver.activeQueueFile;
         timecodeBuffers.clear();
         timecodeFlags.clear();
