@@ -11,7 +11,8 @@ QueuePanel::QueuePanel(Driver& driver) : driver(driver)
 {
 }
 
-void QueuePanel::refreshBuffers()
+void QueuePanel::sortBlocks()
+    //private method
 {
     Queue& queue = driver.xmlio.getQueue();
     auto& blockList = queue.allBlocks;
@@ -25,40 +26,54 @@ void QueuePanel::refreshBuffers()
                 return f.block.minute < s.block.minute;
             }
         );
+    refreshBuffers();
+}
 
-    if (currentPath != driver.activeQueueFile)
+void QueuePanel::refreshBuffers()
+    //private method
+{
+    Queue& queue = driver.xmlio.getQueue();
+    currentPath = driver.activeQueueFile;
+    timecodeBuffers.clear();
+    timecodeFlags.clear();
+
+    for (int i = 0; i < (int)queue.allBlocks.size(); i++)
     {
-        currentPath = driver.activeQueueFile;
-        timecodeBuffers.clear();
-        timecodeFlags.clear();
-        for (int i = 0; i < (int)queue.allBlocks.size(); i++)
-        {
-            auto& blockEntry = queue.allBlocks[i];
-            auto hh = blockEntry.block.hour;
-            auto mm = blockEntry.block.minute;
-            std::array<char, 6> timecodeSpace;
-            bool flag = false;
-            std::memset(timecodeSpace.data(), 0, sizeof(timecodeSpace));
+        auto& blockEntry = queue.allBlocks[i];
+        auto hh = blockEntry.block.hour;
+        auto mm = blockEntry.block.minute;
+        std::array<char, 6> timecodeSpace;
+        bool flag = false;
+        std::memset(timecodeSpace.data(), 0, sizeof(timecodeSpace));
 
-            std::snprintf(
-                    timecodeSpace.data(), 
-                    sizeof(timecodeSpace), 
-                    "%02d:%02d",
-                    hh,
-                    mm
-                    );
-
-            timecodeBuffers.push_back(timecodeSpace);
-            timecodeFlags.push_back(flag);
-        }
+        std::snprintf(
+                timecodeSpace.data(), 
+                sizeof(timecodeSpace), 
+                "%02d:%02d",
+                hh,
+                mm
+                );
+        timecodeBuffers.push_back(timecodeSpace);
+        timecodeFlags.push_back(flag);
     }
 }
 
 void QueuePanel::render()
+    //public method
 {
     try
     {
-        refreshBuffers();
+        if (pendingSort)
+        {
+            sortBlocks();
+            driver.xmlio.writeQueue(driver.activeQueueFile);
+            pendingSort = false;
+            clearSelection();
+        }
+        if (currentPath != driver.activeQueueFile)
+        {
+            refreshBuffers();
+        }
         displayQueue();
     }
     catch (const std::runtime_error& e)
@@ -68,6 +83,7 @@ void QueuePanel::render()
 }
 
 void QueuePanel::displayQueue()
+    //public method
 {
     Queue& queue = driver.xmlio.getQueue();
 
@@ -93,7 +109,7 @@ void QueuePanel::displayQueue()
         bool isSelected = (i == selIndex);
         if (isEntered)
         { 
-            if (driver.parser.isValid(timecodeBuffers[i].data()) && driver.parser.isValidTime())
+            if (driver.parser.isValid(timecodeBuffers[i].data()))
             {
                 timecodeFlags[i] = isEntered;
                 currentBlock.block.minute = driver.parser.getMinute();
@@ -102,6 +118,7 @@ void QueuePanel::displayQueue()
                 driver.xmlio.readBlock(driver.activeBlockFile);
                 driver.xmlio.setTime(driver.parser.getHour(), driver.parser.getMinute());
                 driver.xmlio.writeBlock(driver.activeBlockFile);
+                pendingSort = true;
             }
         }
         if (ImGui::Selectable(currentBlock.filepath.filename().string().c_str(), isSelected))
@@ -111,9 +128,11 @@ void QueuePanel::displayQueue()
     }
 }
 
+//public method \/
 int QueuePanel::getSelected() const {return selIndex;}
 
 void QueuePanel::clearSelection()
+    //public method
 {
     selIndex = -1;
 }

@@ -23,6 +23,8 @@ class QueuePanel : public IPanel
         std::vector<std::array<char, 6>>            timecodeBuffers;
         std::vector<bool>                           timecodeFlags;
         int                         selIndex = -1;
+        bool                        pendingSort = false;
         void                        refreshBuffers();
+        void                        sortBlocks();
 };
 

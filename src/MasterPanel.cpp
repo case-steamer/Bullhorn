@@ -65,6 +65,11 @@ void MasterPanel::render()
         float centeredX     = (btnColWidth - btnW) / 2.0f;
         float centeredX2    = (btnColWidth + innerColW) + centeredX;
 
+        if (driver.getMode() == Driver::PERFORM)
+        {
+            ImGui::BeginDisabled();
+        }
+
         ImGui::SetCursorPos(ImVec2(centeredX, vOffset));
         if (ImGui::Button(">>>##toblock"))
         {
@@ -126,6 +131,11 @@ void MasterPanel::render()
 
         ImGui::PopStyleVar(1);
         ImGui::PopStyleColor(3);
+
+        if (driver.getMode() == Driver::PERFORM)
+        {
+            ImGui::EndDisabled();
+        }
 
         ImGui::SetCursorPos(ImVec2(0, workHeight));
         ImGui::BeginChild("Notifications", ImVec2(rightWidth, notifHeight), true);

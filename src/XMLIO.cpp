@@ -142,6 +142,12 @@ void XMLIO::writeQueue()
     doc_to_write->SaveFile("/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_queue.xml");
 }
 
+void XMLIO::writeQueue(fs::path filepath)
+{
+    auto doc_to_write = buildQueue();
+    doc_to_write->SaveFile(filepath.c_str());
+}
+
 Block& XMLIO::getBlock()
 {
     return block;
