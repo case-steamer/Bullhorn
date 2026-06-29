@@ -16,57 +16,13 @@ void Toolbar::render()
 {
     auto cursorPositioner = ImGui::GetCursorPos();
 
-    if (ImGui::Button("Open Block File..."))
-    {
-        blockBrowserOpen = true;
+    ImVec2 buttonPositioner(ImGui::GetContentRegionAvail().x - 130, ImGui::GetContentRegionAvail().y - 130);    
 
-        if (blockBrowserOpen)
-            ImGui::OpenPopup("BlockFileBrowser");
-    }
-
-    ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-    if (ImGui::BeginPopup("BlockFileBrowser"))
-    {
-        if (!blockBrowser.root.childrenLoaded)
-            blockBrowser.lookIn(blockBrowser.root);
-
-        for (auto& child : blockBrowser.root.subdirs)
-            blockBrowser.renderNode(child);
-        for (const auto& file : blockBrowser.root.filesOfType)
-        {
-            std::string fileLabel = file.filename().string();
-            if (ImGui::Selectable(fileLabel.c_str()))
-                blockBrowser.lastSelected = file;
-        }
-
-        if (!blockBrowser.lastSelected.empty())
-        {
-            driver.activeBlockFile = blockBrowser.lastSelected;
-            driver.xmlio.readBlock(driver.activeBlockFile);
-            blockBrowser.lastSelected.clear();
-            ImGui::CloseCurrentPopup();
-            blockBrowserOpen = false;
-        }
-        ImGui::EndPopup();
-    }
-    ImGui::PopStyleColor(2);
-
-    ImGui::SameLine();
-    char blockBuffer[512];
-    strncpy(blockBuffer, driver.activeBlockFile.string().c_str(), sizeof(blockBuffer));
-    ImGui::InputText(
-            "Block File",
-            blockBuffer,
-            sizeof(blockBuffer),
-            ImGuiInputTextFlags_ReadOnly
-            );
-
-    ImGui::SameLine();
+    ImGui::SetCursorPos(buttonPositioner);
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.3f, 1.0f, 0.5f, 1.0f));
     if (driver.getMode() == 0)
     {
-        if (ImGui::Button("GO", ImVec2(50.0f, 50.0f)))
+        if (ImGui::Button("GO", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y)))
         {
             driver.publicTrigger();
         }
@@ -76,7 +32,7 @@ void Toolbar::render()
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
     if (driver.getMode() == 1)
     {
-        if (ImGui::Button("STOP", ImVec2(50.0f, 50.0f)))
+        if (ImGui::Button("STOP", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y)))
         {
             driver.publicTrigger();
         }
@@ -127,7 +83,7 @@ void Toolbar::render()
     char queueBuffer[512];
     strncpy(queueBuffer, driver.activeQueueFile.string().c_str(), sizeof(queueBuffer));
     ImGui::InputText(
-            "Queue File",
+            "##Queue File",
             queueBuffer,
             sizeof(queueBuffer),
             ImGuiInputTextFlags_ReadOnly
