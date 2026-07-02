@@ -14,11 +14,81 @@ Toolbar::Toolbar(Driver& driver) : driver(driver), blockBrowser(driver.systemAge
 
 void Toolbar::render()
 {
-    auto cursorPositioner = ImGui::GetCursorPos();
+    auto rule       = ImGui::GetContentRegionAvail();
+    auto ruleHeight = rule.y;
 
-    ImVec2 buttonPositioner(ImGui::GetContentRegionAvail().x - 130, ImGui::GetContentRegionAvail().y - 130);    
+    if (!(ImGui::BeginTable("##Toolbar", 2, 0, rule)))
+    {
+        return;
+    }
 
-    ImGui::SetCursorPos(buttonPositioner);
+    ImGui::TableSetupColumn("##HeadColumn1", ImGuiTableColumnFlags_WidthStretch, 0, 0);
+    ImGui::TableSetupColumn("##HeadColumn2", ImGuiTableColumnFlags_WidthFixed, ruleHeight, 0);
+
+    ImGui::TableNextRow(0, ruleHeight);
+
+    ImGui::TableNextColumn();
+    // Nested table with file browser & etc lives here.
+        if(ImGui::BeginTable("##Tools", 2))
+        {
+            ImGui::TableSetupColumn("##Column1", ImGuiTableColumnFlags_WidthFixed, 0, 0);
+            ImGui::TableSetupColumn("##Column2", ImGuiTableColumnFlags_WidthStretch, 0, 0);
+            ImGui::TableNextRow(0, 32);
+            ImGui::TableNextColumn();
+            ImGui::TableNextColumn();
+            ImGui::TableNextRow();
+            ImGui::TableNextColumn();
+            if (ImGui::Button("Open Queue File..."))
+            {
+                queueBrowserOpen = true;
+     
+                if (queueBrowserOpen)
+                    ImGui::OpenPopup("QueueFileBrowser");
+            }
+     
+            ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+     
+            if (ImGui::BeginPopup("QueueFileBrowser"))
+            {
+                if (!queueBrowser.root.childrenLoaded)
+                    queueBrowser.lookIn(queueBrowser.root);
+     
+                for (auto& child : queueBrowser.root.subdirs)
+                    queueBrowser.renderNode(child);
+                for (const auto& file : queueBrowser.root.filesOfType)
+                {
+                    std::string fileLabel = file.filename().string();
+                    if (ImGui::Selectable(fileLabel.c_str()))
+                        queueBrowser.lastSelected = file;
+                }
+     
+                if (!queueBrowser.lastSelected.empty())
+                {
+                    driver.activeQueueFile = queueBrowser.lastSelected;
+                    driver.xmlio.readQueue(driver.activeQueueFile);
+                    queueBrowser.lastSelected.clear();
+                    ImGui::CloseCurrentPopup();
+                    queueBrowserOpen = false;
+                }
+                ImGui::EndPopup();
+            }
+            ImGui::PopStyleColor(2);
+    
+            ImGui::TableNextColumn();
+    
+            char queueBuffer[512];
+            strncpy(queueBuffer, driver.activeQueueFile.string().c_str(), sizeof(queueBuffer));
+            ImGui::InputText(
+                    "##Queue File",
+                    queueBuffer,
+                    sizeof(queueBuffer),
+                    ImGuiInputTextFlags_ReadOnly
+                    );
+            ImGui::EndTable();
+            }
+    
+    ImGui::TableNextColumn();
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.3f, 1.0f, 0.5f, 1.0f));
     if (driver.getMode() == 0)
     {
@@ -39,54 +109,6 @@ void Toolbar::render()
     }
     ImGui::PopStyleColor(1);
 
-    ImVec2 newLinePos(cursorPositioner.x, cursorPositioner.y + 25);
-    ImGui::SetCursorPos(newLinePos);
-
-    if (ImGui::Button("Open Queue File..."))
-    {
-        queueBrowserOpen = true;
-
-        if (queueBrowserOpen)
-            ImGui::OpenPopup("QueueFileBrowser");
-    }
-
-    ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
-    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-
-    if (ImGui::BeginPopup("QueueFileBrowser"))
-    {
-        if (!queueBrowser.root.childrenLoaded)
-            queueBrowser.lookIn(queueBrowser.root);
-
-        for (auto& child : queueBrowser.root.subdirs)
-            queueBrowser.renderNode(child);
-        for (const auto& file : queueBrowser.root.filesOfType)
-        {
-            std::string fileLabel = file.filename().string();
-            if (ImGui::Selectable(fileLabel.c_str()))
-                queueBrowser.lastSelected = file;
-        }
-
-        if (!queueBrowser.lastSelected.empty())
-        {
-            driver.activeQueueFile = queueBrowser.lastSelected;
-            driver.xmlio.readQueue(driver.activeQueueFile);
-            queueBrowser.lastSelected.clear();
-            ImGui::CloseCurrentPopup();
-            queueBrowserOpen = false;
-        }
-        ImGui::EndPopup();
-    }
-    ImGui::PopStyleColor(2);
-
-    ImGui::SameLine();
-    char queueBuffer[512];
-    strncpy(queueBuffer, driver.activeQueueFile.string().c_str(), sizeof(queueBuffer));
-    ImGui::InputText(
-            "##Queue File",
-            queueBuffer,
-            sizeof(queueBuffer),
-            ImGuiInputTextFlags_ReadOnly
-            );
+    ImGui::EndTable();
 }
 
