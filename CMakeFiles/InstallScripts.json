@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/cmake_install.cmake",
+		"/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/src/cmake_install.cmake",
+		"/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/libs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

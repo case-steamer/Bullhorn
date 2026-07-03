@@ -1,9 +1,8 @@
 build/*
 !build/.gitkeep
 
-test-assets/test_block.xml
-test-assets/test_block2.xml
-test-assets/test_block3.xml
+test-assets/
+_deps/
 
 CLAUDE.md
 memory/
