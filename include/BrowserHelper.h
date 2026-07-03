@@ -1,20 +1,19 @@
 #pragma once
 
 #include <filesystem>
+#include <functional>
 #include <vector>
 #include <stdexcept>
 #include <iostream>
 
 #include "IconsFontAwesome6.h"
 
-#include "FileSysOp.h"
-
 namespace fs = std::filesystem;
 
 class BrowserHelper
 {
     public:
-        BrowserHelper(FileSysOp& validator);
+        BrowserHelper();
         struct                      DirNode
         {
             fs::path                path;
@@ -23,7 +22,7 @@ class BrowserHelper
             std::vector<fs::path>   filesOfType;
         };
 
-        std::vector<std::string>     validExtensions;
+        std::function<bool(const fs::path&)> algoRule;
         void                        lookIn(DirNode& node);
         void                        renderNode(DirNode& node);
         bool                        showDotFiles = false;
@@ -32,6 +31,5 @@ class BrowserHelper
         fs::path                    lastSelected;
 
     private:
-        FileSysOp&                  validator;
 };
 

@@ -4,7 +4,7 @@
 
 #include "BrowserHelper.h"
 
-BrowserHelper::BrowserHelper(FileSysOp& validator) : validator(validator)
+BrowserHelper::BrowserHelper()
 {
 #ifdef _WIN32
     //TODO Add an iterator to scan for drives for use in Windows.
@@ -29,7 +29,7 @@ void                        BrowserHelper::lookIn(DirNode& node)
                     nuDN.path = pn.path();
                     node.subdirs.push_back(nuDN);
                 }
-                else if (validator.isValid(pn.path(), validExtensions))
+                else if (this->algoRule(pn.path()))
                 {
                     node.filesOfType.push_back(pn.path());
                 }
