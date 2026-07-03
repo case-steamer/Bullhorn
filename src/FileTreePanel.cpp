@@ -10,9 +10,12 @@ namespace fs = std::filesystem;
 
 FileTreePanel::FileTreePanel(Driver& driver) : 
     driver(driver), 
-    helper(driver.systemAgent)
+    helper()
 {
-    helper.validExtensions = {".mp3", ".wav", ".flac", ".m4a"};
+    helper.algoRule = [this](const fs::path& path)
+    {
+        return this->driver.systemAgent.isValid(path, this->validExtensions);
+    };
 }
 
 void        FileTreePanel::render()

@@ -21,8 +21,9 @@ class FileTreePanel : public IPanel
         fs::path        getLastSelected() const;
        
     private:
-        Driver&         driver;
-        BrowserHelper   helper;
-        bool            showDotFiles = false;
+        Driver&                     driver;
+        BrowserHelper               helper;
+        bool                        showDotFiles = false;
+        std::vector<std::string>    validExtensions = {".mp3", ".wav", ".flac", ".m4a"};
 };
         

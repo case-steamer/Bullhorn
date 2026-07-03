@@ -1,14 +1,44 @@
 #include <stdexcept>
+#include <cctype>
 
 #include "imgui.h"
 
 #include "Toolbar.h"
 
-Toolbar::Toolbar(Driver& driver) : driver(driver), blockBrowser(driver.systemAgent), queueBrowser(driver.systemAgent)
+Toolbar::Toolbar(Driver& driver) : driver(driver), blockBrowser(), queueBrowser()
 {
-    blockBrowser.validExtensions = {".xml"};
+    blockBrowser.algoRule = [this](const fs::path& path)
+    {
+        if (this->driver.systemAgent.isValid(path, this->validExtensions))
+        {
+            auto exStemSion = path.stem().string();
+            if (exStemSion.size() != 5)
+                return false;
+            if (exStemSion.at(0) != 'b')
+                return false;
+            for (int i = 1; i < 5; i++)
+            {
+                if (!std::isdigit(exStemSion.at(i)))
+                    return false;
+            }
+            return true;
+        }
+        return false;
+    };
+
+    queueBrowser.algoRule = [this](const fs::path& path)
+    {
+        if (this->driver.systemAgent.isValid(path, this->validExtensions))
+        {
+            if (path.filename() == "QUEUE.xml")
+                return true;
+            else
+                return false;
+        }
+        return false;
+    };
+
     blockBrowser.root.path = blockBrowser.defaultDirectory;
-    queueBrowser.validExtensions = {".xml"};
     queueBrowser.root.path = queueBrowser.defaultDirectory;
 }
 
