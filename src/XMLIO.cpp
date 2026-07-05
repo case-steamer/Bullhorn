@@ -136,6 +136,7 @@ void XMLIO::writeBlock(fs::path filepath)
     doc_to_write->SaveFile(filepath.c_str());
 }
 
+//REMOVE THIS FUNCTION!!! IT IS DEAD!!!
 void XMLIO::writeQueue()
 {
     auto doc_to_write = buildQueue();

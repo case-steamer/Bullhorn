@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <cstring>
 #include <cstdio>
+#include <iostream>
 #include <algorithm>
 
 #include "imgui.h"
@@ -108,8 +109,34 @@ void QueuePanel::displayQueue()
                 );
         bool isSelected = (i == selIndex);
         if (isEntered)
-        { 
-            if (driver.parser.isValid(timecodeBuffers[i].data()))
+        {
+            bool passed = true;
+            for (Queue::BlockEntry be : queue.allBlocks)
+            {
+                if (passed)
+                {
+                    auto hh = be.block.hour;
+                    auto mm = be.block.minute;
+                    std::array<char, 6> entryTimecode;
+                    std::memset(entryTimecode.data(), 0, sizeof(entryTimecode));
+
+                    std::snprintf(
+                            entryTimecode.data(),
+                            sizeof(entryTimecode),
+                            "%02d:%02d",
+                            hh,
+                            mm
+                            );
+
+                    if ((std::strcmp(entryTimecode.data(), timecodeBuffers[i].data()) == 0) && currentBlock.filepath != be.filepath)
+                    {
+                        std::cout << '\a' << std::endl;
+                        driver.message = "Invalid Timecode.";
+                        passed = false;
+                    }
+                }
+            }
+            if (driver.parser.isValid(timecodeBuffers[i].data()) && passed)
             {
                 timecodeFlags[i] = isEntered;
                 currentBlock.block.minute = driver.parser.getMinute();
@@ -118,6 +145,10 @@ void QueuePanel::displayQueue()
                 driver.xmlio.readBlock(driver.activeBlockFile);
                 driver.xmlio.setTime(driver.parser.getHour(), driver.parser.getMinute());
                 driver.xmlio.writeBlock(driver.activeBlockFile);
+                pendingSort = true;
+            }
+            else if (!passed)
+            {
                 pendingSort = true;
             }
         }
