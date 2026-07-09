@@ -44,7 +44,7 @@ void AudioPlayer::playTrack(const fs::path& filepath, float volume)
             elapsed += interval;
         }
 
-        ma_sound_uninit(&sound);
+    ma_sound_uninit(&sound);
 }
 
 void AudioPlayer::playBeep()
@@ -58,9 +58,26 @@ void AudioPlayer::playBeep()
             800
         );
     ma_waveform waveform;
-    ma_result result = ma_waveform_init(&config, &waveform);
+    ma_result beepResult = ma_waveform_init(&config, &waveform);
+
+    ma_sound sound;
+    ma_sound_init_from_data_source(&engine, &waveform, 0, NULL, &sound);
+    ma_sound_set_volume(&sound, 1.0f);
+    ma_sound_start(&sound);
 
 
+    auto duration   =   std::chrono::milliseconds((int)(75));
+    auto elapsed    =   std::chrono::milliseconds(0);
+    auto interval   =   std::chrono::milliseconds(100);
+
+    while (elapsed < duration && !stopPlayback)
+        {
+            std::this_thread::sleep_for(interval);
+            elapsed += interval;
+        }
+
+    ma_sound_uninit(&sound);
+    ma_waveform_uninit(&waveform);
 }
 
 bool AudioPlayer::isPlaying()

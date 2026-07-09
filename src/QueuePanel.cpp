@@ -130,7 +130,7 @@ void QueuePanel::displayQueue()
 
                     if ((std::strcmp(entryTimecode.data(), timecodeBuffers[i].data()) == 0) && currentBlock.filepath != be.filepath)
                     {
-                        std::cout << '\a' << std::endl;
+                        driver.audioPlayer.playBeep();
                         driver.message = "Invalid Timecode.";
                         passed = false;
                     }
