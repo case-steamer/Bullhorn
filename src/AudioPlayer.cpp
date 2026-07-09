@@ -47,6 +47,22 @@ void AudioPlayer::playTrack(const fs::path& filepath, float volume)
         ma_sound_uninit(&sound);
 }
 
+void AudioPlayer::playBeep()
+{
+    ma_waveform_config config = ma_waveform_config_init(
+            ma_format_f32,
+            ma_engine_get_channels(&engine),
+            ma_engine_get_sample_rate(&engine),
+            ma_waveform_type_square,
+            0.5,
+            800
+        );
+    ma_waveform waveform;
+    ma_result result = ma_waveform_init(&config, &waveform);
+
+
+}
+
 bool AudioPlayer::isPlaying()
 {
     if (audioMutex.try_lock())

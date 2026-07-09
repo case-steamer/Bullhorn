@@ -19,6 +19,7 @@ class AudioPlayer
         AudioPlayer();
         void interrupt();
         void playTrack(const fs::path& filepath, float volume);
+        void playBeep();
         bool isPlaying();
         ~AudioPlayer();
 };
