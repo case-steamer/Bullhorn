@@ -131,7 +131,7 @@ void QueuePanel::displayQueue()
                     if ((std::strcmp(entryTimecode.data(), timecodeBuffers[i].data()) == 0) && currentBlock.filepath != be.filepath)
                     {
                         driver.audioPlayer.playBeep();
-                        driver.message = "Invalid Timecode.";
+                        driver.pushMessage("Invalid Timecode.");
                         passed = false;
                     }
                 }

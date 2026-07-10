@@ -176,7 +176,17 @@ void Driver::publicTrigger()
     else
     {
         std::runtime_error e("No queue file loaded!");
-        message = e.what();
+        pushMessage(e.what());
     }
+}
+
+void Driver::pushMessage(std::string message)
+{
+    msgData data;
+
+    data.message    = message;
+    data.timestamp  = std::chrono::steady_clock::now();
+
+    messageDeck.push_back(data);
 }
 

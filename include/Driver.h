@@ -13,6 +13,7 @@
 #include "FileSysOp.h"
 #include "AudioPlayer.h"
 #include "XMLIO.h"
+#include "SpecialStructs.h"
 
 namespace fs = std::filesystem;
 using WorkQueue = std::queue<Queue::BlockEntry>;
@@ -34,7 +35,7 @@ class Driver
         void removeTrackFromBlock(int index);
         enum Mode {EDIT = 0, PERFORM};
         Mode getMode();
-        std::deque<struct> messageDeck;
+        std::deque<msgData> messageDeck;
         void pushMessage(std::string message);
 
     private:
