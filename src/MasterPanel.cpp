@@ -7,7 +7,8 @@ MasterPanel::MasterPanel(Driver& driver) :
     toolbar(driver),
     filePanel(driver),
     blockPanel(driver),
-    queuePanel(driver)
+    queuePanel(driver),
+    notifBar(driver)
 {
 }
 
@@ -139,7 +140,7 @@ void MasterPanel::render()
 
         ImGui::SetCursorPos(ImVec2(0, workHeight));
         ImGui::BeginChild("Notifications", ImVec2(rightWidth, notifHeight), true);
-        ImGui::Text("Notifications");
+        notifBar.render();
         ImGui::EndChild();
     
     ImGui::EndChild();
