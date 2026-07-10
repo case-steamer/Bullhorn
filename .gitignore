@@ -11,3 +11,8 @@ massif.out.*
 
 imgui.ini
 checklist.txt
+
+CMakeFiles/
+CMakeCache.txt
+Makefile
+compile_commands.json
