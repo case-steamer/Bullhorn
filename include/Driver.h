@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include <deque>
 #include <filesystem>
 #include <string>
 #include <mutex>
@@ -33,7 +34,8 @@ class Driver
         void removeTrackFromBlock(int index);
         enum Mode {EDIT = 0, PERFORM};
         Mode getMode();
-        std::string  message;
+        std::deque<struct> messageDeck;
+        void pushMessage(std::string message);
 
     private:
         std::string             filepath;

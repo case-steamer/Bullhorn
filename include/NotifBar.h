@@ -9,6 +9,7 @@ class NotifBar : public IPanel
         NotifBar(Driver& driver);
 
         void render() override;
+        void scanMessages();
 
     private:
         Driver& driver;
