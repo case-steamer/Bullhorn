@@ -20,7 +20,7 @@ void NotifBar::scanMessages()
 {
     if (!driver.messageDeck.empty())
     {
-        for (msgData md : driver.messageDeck)
+        for (msgData& md : driver.messageDeck)
         {
             ImGui::TextUnformatted(md.message.c_str());
         }

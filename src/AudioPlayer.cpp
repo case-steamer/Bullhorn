@@ -62,7 +62,7 @@ void AudioPlayer::playBeep()
 
     ma_sound sound;
     ma_sound_init_from_data_source(&engine, &waveform, 0, NULL, &sound);
-    ma_sound_set_volume(&sound, 1.0f);
+    ma_sound_set_volume(&sound, 0.5f);
     ma_sound_start(&sound);
 
 

@@ -28,7 +28,7 @@ class Driver
         TimeParser  parser;
         void        publicTrigger();
         std::thread startPerform();
-        void edit();
+        void        refreshQueue();
         fs::path activeBlockFile;
         fs::path activeQueueFile;
         void addToActiveBlock(const fs::path& trackPath);

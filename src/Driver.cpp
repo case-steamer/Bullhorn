@@ -15,41 +15,29 @@ Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
 {
 }
 
-void Driver::edit()
+void Driver::refreshQueue()
 {
-    xmlio.initBlock();
-    do
+    while(!activeBlockFile.empty())
     {
-        std::cout<< "Enter filepath: ";
-        std::cin>> filepath;
-    } while (!systemAgent.isValid(fs::path(filepath)));
+        if (activeQueueFile.empty())
+        {
+            xmlio.initBlock();
+            activeBlockFile.clear();
+        }
 
+        if (systemAgent.isValid(activeBlockFile, xmlio.getQueue()))
+        {
+            xmlio.initBlock();
+            activeBlockFile.clear();
+        }
 
-    /* TODO: Nancy's graceful handler
-     * When running from a pre-built queue XML, missed cues should be skipped silently
-     * and the program should roll forward to the next valid upcoming cue automatically.
-     * This is in contrast to the current behavior (terminal/build mode) where the user
-     * is warned and re-prompted. The queue manager will need to distinguish between
-     * these two modes when that feature is implemented.*/
+        Queue::BlockEntry entry;
+        entry.filepath      = activeBlockFile;
+        entry.block         = xmlio.getBlock();
+        entry.isOverride    = false;
 
-    std::string scheduledTime;
-    do
-    {
-        std::cout<< "Enter scheduled time (HH:MM): ";
-        std::cin>> scheduledTime;
-        if (!parser.isValid(scheduledTime))
-            std::cout<< "Invalid format. Please use HH:MM"<<std::endl;
-    } while (!parser.isValid(scheduledTime) || !parser.isValidTime());
-
-    xmlio.setTime(parser.getHour(), parser.getMinute());
-    xmlio.addData(filepath);
-    xmlio.writeBlock(activeBlockFile);
-
-    Queue::BlockEntry entry;
-    entry.filepath = "/home/case_steamer/CPP_Projects/LearnDependencies/Bullhorn/test-assets/test_block.xml";
-    entry.isOverride = false;
-    xmlio.addBlock(entry);
-    xmlio.writeQueue();
+        xmlio.writeQueue(activeQueueFile);
+    }
 }
 
 std::thread Driver::startPerform()
