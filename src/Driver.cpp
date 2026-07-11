@@ -21,14 +21,16 @@ void Driver::refreshQueue()
     {
         if (activeQueueFile.empty())
         {
-            xmlio.initBlock();
-            activeBlockFile.clear();
+            pushMessage("no queue file loaded!");
+            audioPlayer.playBeep();
+            return;
         }
 
         if (systemAgent.isValid(activeBlockFile, xmlio.getQueue()))
         {
             xmlio.initBlock();
             activeBlockFile.clear();
+            return;
         }
 
         Queue::BlockEntry entry;
@@ -36,7 +38,11 @@ void Driver::refreshQueue()
         entry.block         = xmlio.getBlock();
         entry.isOverride    = false;
 
+        xmlio.addBlock(entry);
         xmlio.writeQueue(activeQueueFile);
+
+        xmlio.initBlock();
+        activeBlockFile.clear();
     }
 }
 

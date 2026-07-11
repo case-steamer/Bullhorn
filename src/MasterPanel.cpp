@@ -1,6 +1,13 @@
+#include <vector>
+#include <algorithm>
+#include <filesystem>
+#include <cstdio>
+
 #include "imgui.h"
 
 #include "MasterPanel.h"
+
+namespace fs = std::filesystem;
 
 MasterPanel::MasterPanel(Driver& driver) :
     driver(driver),
@@ -88,6 +95,37 @@ void MasterPanel::render()
                 blockPanel.clearSelection();
             }
         }
+        ImGui::SetCursorPos(ImVec2(centeredX - 18.0f, 60.0f + vOffset));
+        if (ImGui::Button("New Block"))
+        {
+            driver.xmlio.initBlock();
+            char blockTag = 'b';
+            std::vector<int> blockStems;
+            int newID;
+
+            for (Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeQueueFile).allBlocks)
+            {
+                std::string beStem = be.filepath.stem().string().erase(blockTag);
+                int stemNum = std::stoul(beStem);
+                blockStems.push_back(stemNum);
+            }
+
+            for (int i = 0; i < 1441; i++)
+            {
+                if (std::find(blockStems.begin(), blockStems.end(), i) != blockStems.end())
+                {
+                    newID = i;
+                    break;
+                }
+            }
+            fs::path placeIn = driver.activeQueueFile.parent_path();
+            char buffer[6];
+            std::snprintf(buffer, 6, "%c%04d", blockTag, newID);
+            std::string idString = std::string(buffer);
+            placeIn.append(idString + ".xml");
+            driver.xmlio.writeBlock(placeIn);
+            driver.activeBlockFile = placeIn;
+        }
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -104,7 +142,10 @@ void MasterPanel::render()
         ImGui::PopStyleColor(3);
 
         ImGui::SetCursorPos(ImVec2(centeredX2, vOffset));
-        ImGui::Button(">>>##toqueue");
+        if (ImGui::Button(">>>##toqueue"))
+        {
+            driver.refreshQueue();
+        }
         ImGui::SetCursorPos(ImVec2(centeredX2, 30.0f + vOffset));
         if (ImGui::Button("<<<##fromqueue"))
         {
