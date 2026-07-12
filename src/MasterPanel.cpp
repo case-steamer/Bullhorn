@@ -105,7 +105,7 @@ void MasterPanel::render()
 
             for (Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeQueueFile).allBlocks)
             {
-                std::string beStem = be.filepath.stem().string().erase(blockTag);
+                std::string beStem = be.filepath.stem().string().erase(0, 1);
                 int stemNum = std::stoul(beStem);
                 blockStems.push_back(stemNum);
             }

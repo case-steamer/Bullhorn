@@ -45,6 +45,8 @@ void XMLIO::readQueue(const fs::path& filepath)
     auto*   queue_element   = doc.FirstChildElement("queue");
     auto*   block_entry     = queue_element->FirstChildElement("block");
 
+    initQueue();
+
     while   (block_entry  != nullptr)
     {
         initBlock();
