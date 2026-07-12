@@ -112,7 +112,7 @@ void MasterPanel::render()
 
             for (int i = 0; i < 1441; i++)
             {
-                if (std::find(blockStems.begin(), blockStems.end(), i) != blockStems.end())
+                if (std::find(blockStems.begin(), blockStems.end(), i) == blockStems.end())
                 {
                     newID = i;
                     break;
