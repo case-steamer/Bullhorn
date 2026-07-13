@@ -98,7 +98,6 @@ void MasterPanel::render()
         ImGui::SetCursorPos(ImVec2(centeredX - 18.0f, 60.0f + vOffset));
         if (ImGui::Button("New Block"))
         {
-            driver.xmlio.initBlock();
             char blockTag = 'b';
             std::vector<int> blockStems;
             int newID;
@@ -109,6 +108,8 @@ void MasterPanel::render()
                 int stemNum = std::stoul(beStem);
                 blockStems.push_back(stemNum);
             }
+
+            driver.xmlio.initBlock();
 
             for (int i = 0; i < 1441; i++)
             {
