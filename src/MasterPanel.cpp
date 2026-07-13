@@ -125,6 +125,13 @@ void MasterPanel::render()
             placeIn.append(idString + ".xml");
             driver.xmlio.writeBlock(placeIn);
             driver.activeBlockFile = placeIn;
+
+            Queue::BlockEntry entry;
+            entry.filepath = driver.activeBlockFile;
+            entry.block = driver.xmlio.getBlock();
+            entry.isOverride = false;
+            driver.xmlio.addBlock(entry);
+            queuePanel.refreshBuffers();
         }
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));

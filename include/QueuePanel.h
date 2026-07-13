@@ -15,6 +15,7 @@ class QueuePanel : public IPanel
         void                        render() override;
         void                        displayQueue();
         int                         getSelected() const;
+        void                        refreshBuffers();
         void                        clearSelection();
 
     private:
@@ -24,7 +25,6 @@ class QueuePanel : public IPanel
         std::vector<bool>                           timecodeFlags;
         int                         selIndex = -1;
         bool                        pendingSort = false;
-        void                        refreshBuffers();
         void                        sortBlocks();
 };
 
