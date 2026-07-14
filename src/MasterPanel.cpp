@@ -133,6 +133,7 @@ void MasterPanel::render()
             entry.isOverride = false;
             driver.xmlio.addBlock(entry);
             queuePanel.refreshBuffers();
+            driver.xmlio.writeQueue(driver.activeQueueFile);
         }
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));
@@ -167,6 +168,10 @@ void MasterPanel::render()
                     driver.xmlio.readBlock(driver.activeBlockFile);
                 }
             }
+        }
+        ImGui::SetCursorPos(ImVec2(centeredX2 - 30.0f, 60.0f + vOffset));
+        if (ImGui::Button("discard block"))
+        {
         }
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
