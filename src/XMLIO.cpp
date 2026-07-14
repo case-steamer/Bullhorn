@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <algorithm>
 
 void XMLIO::initBlock()
 {
@@ -130,6 +131,13 @@ void XMLIO::addData(const fs::path& filepath)
 void XMLIO::addBlock(const Queue::BlockEntry& entry)
 {
     queue.allBlocks.push_back(entry);
+}
+
+void XMLIO::subtractBlock(const Queue::BlockEntry& entry)
+{
+    const auto it = std::find_if(queue.allBlocks.begin(), queue.allBlocks.end(), [&](Queue::BlockEntry& i){return i.filepath == entry.filepath;});
+    if (it != queue.allBlocks.end())
+        queue.allBlocks.erase(it);
 }
 
 void XMLIO::writeBlock(fs::path filepath) 
