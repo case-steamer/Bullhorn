@@ -133,9 +133,9 @@ void XMLIO::addBlock(const Queue::BlockEntry& entry)
     queue.allBlocks.push_back(entry);
 }
 
-void XMLIO::subtractBlock(const Queue::BlockEntry& entry)
+void XMLIO::subtractBlock(const fs::path filepath)
 {
-    const auto it = std::find_if(queue.allBlocks.begin(), queue.allBlocks.end(), [&](Queue::BlockEntry& i){return i.filepath == entry.filepath;});
+    const auto it = std::find_if(queue.allBlocks.begin(), queue.allBlocks.end(), [&](Queue::BlockEntry& i){return i.filepath == filepath;});
     if (it != queue.allBlocks.end())
         queue.allBlocks.erase(it);
 }

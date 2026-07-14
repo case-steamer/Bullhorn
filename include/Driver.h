@@ -33,6 +33,7 @@ class Driver
         fs::path activeQueueFile;
         void addToActiveBlock(const fs::path& trackPath);
         void removeTrackFromBlock(int index);
+        void removeBlockFromQueue();
         enum Mode {EDIT = 0, PERFORM};
         Mode getMode();
         std::deque<msgData> messageDeck;

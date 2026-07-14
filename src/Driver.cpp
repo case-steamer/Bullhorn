@@ -134,6 +134,11 @@ void Driver::removeTrackFromBlock(int index)
     xmlio.writeBlock(activeBlockFile);
 }
 
+void Driver::removeBlockFromQueue()
+{
+    xmlio.subtractBlock(activeBlockFile);
+}
+
 Driver::Mode Driver::getMode()
 {
     return current_mode;

@@ -25,6 +25,11 @@ bool    FileSysOp::isValid(const fs::path& input, const Queue& queue)
     return false;
 }
 
+void    FileSysOp::deleteFile(fs::path& input)
+{
+    fs::remove(input);
+}
+
 fs::path FileSysOp::getMediaPath() const
 {
     return mediaPath;

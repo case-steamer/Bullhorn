@@ -173,6 +173,19 @@ void MasterPanel::render()
         ImGui::SetCursorPos(ImVec2(centeredX2 + 5.0f, 60.0f + vOffset));
         if (ImGui::Button(ICON_FA_TRASH "##discardBlock"))
         {
+            int blockID = queuePanel.getSelected();
+            if (blockID >= 0)
+            {
+                const Queue& queue = driver.xmlio.getQueue();
+                if (blockID < (int)queue.allBlocks.size())
+                {
+                    driver.activeBlockFile = queue.allBlocks[blockID].filepath;
+                    driver.xmlio.subtractBlock(driver.activeBlockFile);
+                    queuePanel.refreshBuffers();
+                    queuePanel.clearSelection();
+                    driver.systemAgent.deleteFile(driver.activeBlockFile);
+                }
+            }
         }
         if (ImGui::IsItemHovered())
         {
