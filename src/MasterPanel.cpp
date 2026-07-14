@@ -4,6 +4,7 @@
 #include <cstdio>
 
 #include "imgui.h"
+#include "IconsFontAwesome6.h"
 
 #include "MasterPanel.h"
 
@@ -169,9 +170,13 @@ void MasterPanel::render()
                 }
             }
         }
-        ImGui::SetCursorPos(ImVec2(centeredX2 - 30.0f, 60.0f + vOffset));
-        if (ImGui::Button("discard block"))
+        ImGui::SetCursorPos(ImVec2(centeredX2 + 5.0f, 60.0f + vOffset));
+        if (ImGui::Button(ICON_FA_TRASH "##discardBlock"))
         {
+        }
+        if (ImGui::IsItemHovered())
+        {
+            ImGui::SetTooltip("discard selected block");
         }
 
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
