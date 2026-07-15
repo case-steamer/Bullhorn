@@ -68,19 +68,21 @@ void Toolbar::render()
             if (ImGui::BeginMenu("File"))
             {
                 ImGui::MenuItem("New Project");
-                ImGui::MenuItem("Open Project");
+                if (ImGui::MenuItem("Open Project"))
+                {
+                    queueBrowserOpen = true;
+                }
                 ImGui::EndMenu();
+            }
+     
+            if (queueBrowserOpen)
+            {
+                ImGui::OpenPopup("QueueFileBrowser");
+                queueBrowserOpen = false;
             }
             ImGui::TableNextColumn();
             ImGui::TableNextRow();
             ImGui::TableNextColumn();
-            if (ImGui::Button("Open Queue File..."))
-            {
-                queueBrowserOpen = true;
-     
-                if (queueBrowserOpen)
-                    ImGui::OpenPopup("QueueFileBrowser");
-            }
      
             ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
