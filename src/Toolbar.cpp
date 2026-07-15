@@ -65,6 +65,12 @@ void Toolbar::render()
             ImGui::TableSetupColumn("##Column2", ImGuiTableColumnFlags_WidthStretch, 0, 0);
             ImGui::TableNextRow(0, 32);
             ImGui::TableNextColumn();
+            if (ImGui::BeginMenu("File"))
+            {
+                ImGui::MenuItem("New Project");
+                ImGui::MenuItem("Open Project");
+                ImGui::EndMenu();
+            }
             ImGui::TableNextColumn();
             ImGui::TableNextRow();
             ImGui::TableNextColumn();
