@@ -152,6 +152,15 @@ void QueuePanel::displayQueue()
                 pendingSort = true;
             }
         }
+
+        ImGui::SameLine();
+        std::string overrideBehavior = "Override##" + std::to_string(i);
+
+        if (ImGui::Checkbox(overrideBehavior.c_str(), &currentBlock.isOverride))
+        {
+            driver.xmlio.writeQueue(driver.activeQueueFile);
+        }
+
         if (ImGui::Selectable(currentBlock.filepath.filename().string().c_str(), isSelected))
             selIndex = i;
         ImGui::EndChild();
