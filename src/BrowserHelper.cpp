@@ -80,4 +80,25 @@ void                        BrowserHelper::renderNode(DirNode& node)
     }
 }
             
+void BrowserHelper::canGenerate(DirNode& node)
+{
+    std::string label = std::string(ICON_FA_FOLDER) + " " + node.path.filename().string();
+    bool isExpanded = ImGui::TreeNodeEx(label.c_str(), ImGuiTreeNodeFlags_OpenOnArrow);
+    if (ImGui::IsItemClicked())
+    {
+        lastSelected = node.path;
+    }
+    if (isExpanded)
+    {
+        if (!node.childrenLoaded)
+        lookIn(node);
+        for (DirNode& child : node.subdirs)
+        {
+            if (!showDotFiles && child.path.filename().string()[0] == '.')
+                continue;
+            canGenerate(child);
+        }
+    ImGui::TreePop();
+    }
+}
 

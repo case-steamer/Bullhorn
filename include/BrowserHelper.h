@@ -25,6 +25,7 @@ class BrowserHelper
         std::function<bool(const fs::path&)> algoRule;
         void                        lookIn(DirNode& node);
         void                        renderNode(DirNode& node);
+        void                        canGenerate(DirNode& node);
         bool                        showDotFiles = false;
         DirNode                     root;
         std::string                 defaultDirectory;
