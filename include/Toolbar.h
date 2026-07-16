@@ -16,8 +16,8 @@ class Toolbar : public IPanel
         Toolbar(Driver& driver);
         void render() override;
 
-        BrowserHelper   blockBrowser;
-        bool            blockBrowserOpen = false;
+        BrowserHelper   nuProjectBrowser;
+        bool            nuProjectBrowserOpen = false;
 
         BrowserHelper   queueBrowser;
         bool            queueBrowserOpen = false;

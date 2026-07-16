@@ -5,24 +5,10 @@
 
 #include "Toolbar.h"
 
-Toolbar::Toolbar(Driver& driver) : driver(driver), blockBrowser(), queueBrowser()
+Toolbar::Toolbar(Driver& driver) : driver(driver), nuProjectBrowser(), queueBrowser()
 {
-    blockBrowser.algoRule = [this](const fs::path& path)
+    nuProjectBrowser.algoRule = [this](const fs::path& path)
     {
-        if (this->driver.systemAgent.isValid(path, this->validExtensions))
-        {
-            auto exStemSion = path.stem().string();
-            if (exStemSion.size() != 5)
-                return false;
-            if (exStemSion.at(0) != 'b')
-                return false;
-            for (int i = 1; i < 5; i++)
-            {
-                if (!std::isdigit(exStemSion.at(i)))
-                    return false;
-            }
-            return true;
-        }
         return false;
     };
 
@@ -38,7 +24,7 @@ Toolbar::Toolbar(Driver& driver) : driver(driver), blockBrowser(), queueBrowser(
         return false;
     };
 
-    blockBrowser.root.path = blockBrowser.defaultDirectory;
+    nuProjectBrowser.root.path = nuProjectBrowser.defaultDirectory;
     queueBrowser.root.path = queueBrowser.defaultDirectory;
 }
 
@@ -67,7 +53,10 @@ void Toolbar::render()
             ImGui::TableNextColumn();
             if (ImGui::BeginMenu("File"))
             {
-                ImGui::MenuItem("New Project");
+                if (ImGui::MenuItem("New Project"))
+                {
+                    nuProjectBrowserOpen = true;
+                }
                 if (ImGui::MenuItem("Open Project"))
                 {
                     queueBrowserOpen = true;
@@ -79,6 +68,11 @@ void Toolbar::render()
             {
                 ImGui::OpenPopup("QueueFileBrowser");
                 queueBrowserOpen = false;
+            }
+            if (nuProjectBrowserOpen)
+            {
+                ImGui::OpenPopup("newProjectBrowser");
+                nuProjectBrowserOpen = false;
             }
             ImGui::TableNextColumn();
             ImGui::TableNextRow();
@@ -109,6 +103,17 @@ void Toolbar::render()
                     ImGui::CloseCurrentPopup();
                     queueBrowserOpen = false;
                 }
+                ImGui::EndPopup();
+            }
+    
+            if (ImGui::BeginPopup("newProjectBrowser"))
+            {
+                if (!nuProjectBrowser.root.childrenLoaded)
+                    nuProjectBrowser.canGenerate(nuProjectBrowser.root);
+     
+                for (auto& child : nuProjectBrowser.root.subdirs)
+                    nuProjectBrowser.canGenerate(child);
+     
                 ImGui::EndPopup();
             }
             ImGui::PopStyleColor(2);
