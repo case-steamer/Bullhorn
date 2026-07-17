@@ -114,6 +114,24 @@ void Toolbar::render()
                 for (auto& child : nuProjectBrowser.root.subdirs)
                     nuProjectBrowser.canGenerate(child);
      
+                
+                char projectBuffer[512];
+                strncpy(projectBuffer, nuProjectBrowser.lastSelected.string().c_str(), sizeof(projectBuffer));
+                if (ImGui::InputText(
+                        "##Project File",
+                        projectBuffer,
+                        sizeof(projectBuffer)
+                        ))
+                {
+                    std::string strP(projectBuffer);
+                    nuProjectContents = strP;
+                }
+                if (ImGui::Button("Generate New"))
+                {
+                    driver.activeProjectFile = nuProjectContents;
+                    driver.systemAgent.createNewProject();
+                }
+
                 ImGui::EndPopup();
             }
             ImGui::PopStyleColor(2);

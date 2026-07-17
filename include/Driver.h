@@ -31,6 +31,7 @@ class Driver
         void        refreshQueue();
         fs::path activeBlockFile;
         fs::path activeQueueFile;
+        fs::path activeProjectFile;
         void addToActiveBlock(const fs::path& trackPath);
         void removeTrackFromBlock(int index);
         void removeBlockFromQueue();

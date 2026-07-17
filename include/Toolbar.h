@@ -25,4 +25,5 @@ class Toolbar : public IPanel
     private:
         Driver& driver;
         std::vector<std::string>    validExtensions = {".xml"};
+        std::string                 nuProjectContents;
 };

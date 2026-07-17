@@ -11,7 +11,7 @@
 #include <stdexcept>
 
 
-Driver::Driver(XMLIO& xmlio) : xmlio(xmlio)
+Driver::Driver(XMLIO& xmlio) : xmlio(xmlio), systemAgent(*this)
 {
 }
 
