@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "imgui.h"
+
 #include "IPanel.h"
 #include "Driver.h"
 #include "BrowserHelper.h"
@@ -26,4 +28,5 @@ class Toolbar : public IPanel
         Driver& driver;
         std::vector<std::string>    validExtensions = {".xml"};
         std::string nuProjectContents = "NewProject";
+        ImVec2 mousePos;
 };

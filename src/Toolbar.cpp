@@ -32,6 +32,8 @@ void Toolbar::render()
 {
     auto rule       = ImGui::GetContentRegionAvail();
     auto ruleHeight = rule.y;
+    auto viewport   = ImGui::GetMainViewport();
+    auto vHeight    = viewport->WorkSize.y;
 
     if (!(ImGui::BeginTable("##Toolbar", 2, 0, rule)))
     {
@@ -71,6 +73,7 @@ void Toolbar::render()
             }
             if (nuProjectBrowserOpen)
             {
+                mousePos = ImGui::GetMousePos();
                 ImGui::OpenPopup("newProjectBrowser");
                 nuProjectBrowser.lastSelected.clear();
                 nuProjectBrowserOpen = false;
@@ -106,14 +109,18 @@ void Toolbar::render()
                 }
                 ImGui::EndPopup();
             }
-    
+   
+            ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(FLT_MAX, vHeight));
             if (ImGui::BeginPopup("newProjectBrowser"))
             {
-                if (!nuProjectBrowser.root.childrenLoaded)
-                    nuProjectBrowser.canGenerate(nuProjectBrowser.root);
-     
-                for (auto& child : nuProjectBrowser.root.subdirs)
-                    nuProjectBrowser.canGenerate(child);
+                const auto browserConstraints = ImVec2(0, (vHeight - mousePos.y) - (ImGui::GetFrameHeightWithSpacing() * 2));
+                ImGui::BeginChild("innerBrowser", browserConstraints);
+                    if (!nuProjectBrowser.root.childrenLoaded)
+                        nuProjectBrowser.canGenerate(nuProjectBrowser.root);
+         
+                    for (auto& child : nuProjectBrowser.root.subdirs)
+                        nuProjectBrowser.canGenerate(child);
+                ImGui::EndChild();
      
                 
                 char projectBuffer[40];
@@ -126,7 +133,7 @@ void Toolbar::render()
                         ))
                 {
                     std::string strP(projectBuffer);
-                    nuProjectContents = strP;
+                    nuProjectContents   = strP;
                 }
                 if (ImGui::Button("Generate New"))
                 {
@@ -144,7 +151,6 @@ void Toolbar::render()
                         ImGui::CloseCurrentPopup();
                     }
                 }
-
                 ImGui::EndPopup();
             }
             ImGui::PopStyleColor(2);
