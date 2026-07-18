@@ -52,7 +52,7 @@ void    FileSysOp::createNewProject() const
             if (!fs::create_directory(p))
             {
                 driver.pushMessage("Project Generation Failed");
-                return;
+                return false;
             }
             else
             {
@@ -69,7 +69,7 @@ void    FileSysOp::createNewProject() const
         else
         {
             driver.pushMessage("Failed. Could not create Project.");
-            return;
+            return false;
         }
         driver.pushMessage("Creation Success!");
     }
@@ -77,6 +77,7 @@ void    FileSysOp::createNewProject() const
     {
         driver.pushMessage("Project Generation Failed with exception:\n" + std::string(e.what()));
     }
+    return true;
 }
 
 fs::path FileSysOp::getMediaPath() const
