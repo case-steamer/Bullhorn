@@ -30,10 +30,10 @@ Toolbar::Toolbar(Driver& driver) : driver(driver), nuProjectBrowser(), queueBrow
 
 void Toolbar::render()
 {
-    auto rule       = ImGui::GetContentRegionAvail();
-    auto ruleHeight = rule.y;
-    auto viewport   = ImGui::GetMainViewport();
-    auto vHeight    = viewport->WorkSize.y;
+    const auto rule       = ImGui::GetContentRegionAvail();
+    const auto ruleHeight = rule.y;
+    const auto viewport   = ImGui::GetMainViewport();
+    const auto vHeight    = viewport->WorkSize.y;
 
     if (!(ImGui::BeginTable("##Toolbar", 2, 0, rule)))
     {
@@ -132,7 +132,7 @@ void Toolbar::render()
                         sizeof(projectBuffer)
                         ))
                 {
-                    std::string strP(projectBuffer);
+                    const std::string strP(projectBuffer);
                     nuProjectContents   = strP;
                 }
                 if (ImGui::Button("Generate New"))
