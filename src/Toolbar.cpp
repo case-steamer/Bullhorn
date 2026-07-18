@@ -113,7 +113,7 @@ void Toolbar::render()
             ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(FLT_MAX, vHeight));
             if (ImGui::BeginPopup("newProjectBrowser"))
             {
-                const auto browserConstraints = ImVec2(0, (vHeight - mousePos.y) - (ImGui::GetFrameHeightWithSpacing() * 2));
+                const auto browserConstraints = ImVec2(0, ((vHeight / 1.5) - mousePos.y) - (ImGui::GetFrameHeightWithSpacing() * 2));
                 ImGui::BeginChild("innerBrowser", browserConstraints);
                     if (!nuProjectBrowser.root.childrenLoaded)
                         nuProjectBrowser.canGenerate(nuProjectBrowser.root);
