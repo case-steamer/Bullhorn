@@ -134,12 +134,14 @@ void Toolbar::render()
                     {
                         driver.audioPlayer.playBeep();
                         driver.pushMessage("SELECT A DIRECTORY FOR YOUR PROJECT");
+                        ImGui::CloseCurrentPopup();
                     }
                     else
                     {
                         driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
                         if (driver.systemAgent.createNewProject())
                             nuProjectContents = "NewProject";
+                        ImGui::CloseCurrentPopup();
                     }
                 }
 

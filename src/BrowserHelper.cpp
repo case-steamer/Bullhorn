@@ -83,7 +83,12 @@ void                        BrowserHelper::renderNode(DirNode& node)
 void BrowserHelper::canGenerate(DirNode& node)
 {
     std::string label = std::string(ICON_FA_FOLDER) + " " + node.path.filename().string();
-    bool isExpanded = ImGui::TreeNodeEx(label.c_str(), ImGuiTreeNodeFlags_OpenOnArrow);
+    int flags = ImGuiTreeNodeFlags_OpenOnArrow;
+    if (lastSelected == node.path)
+    {
+        flags |= ImGuiTreeNodeFlags_Selected;
+    }
+    bool isExpanded = ImGui::TreeNodeEx(label.c_str(), flags);
     if (ImGui::IsItemClicked())
     {
         lastSelected = node.path;
