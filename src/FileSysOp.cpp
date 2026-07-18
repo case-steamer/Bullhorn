@@ -37,45 +37,40 @@ void    FileSysOp::deleteFile(fs::path& input)
     fs::remove(input);
 }
 
-void    FileSysOp::createNewProject()
+void    FileSysOp::createNewProject() const
 {
-    if (fs::create_directory(driver.activeProjectFile))
+
+    std::array<fs::path, 3> creationDirs = {
+        driver.activeProjectFile,
+        driver.activeProjectFile/std::string("media"),
+        driver.activeProjectFile/std::string("blocks")
+    };
+
+    for (const fs::path &p : creationDirs)
     {
-        driver.pushMessage("Creating Project...");
-        std::string media = driver.activeProjectFile/std::string("media");
-        fs::path mediaPath = media;
-        if (fs::create_directory(mediaPath))
+        if (!fs::create_directory(p))
         {
-            driver.pushMessage("Creating Project...");
+            driver.pushMessage("Project Generation Failed");
+            return;
         }
         else
         {
-            driver.pushMessage("Project Generation failed");
-            return;
-        }
-        std::string blocks = driver.activeProjectFile/std::string("blocks");
-        fs::path blocksPath = blocks;
-        if (fs::create_directory(blocksPath))
-        {
             driver.pushMessage("Creating Project...");
         }
-        else
-        {
-            driver.pushMessage("Project Generation failed");
-            return;
-        }
-        std::string nuQueue = driver.activeProjectFile/std::string("QUEUE.xml");
-        std::ofstream outFile(nuQueue);
-        if (outFile.is_open())
-        {
-            outFile.close();
-        }
-        driver.pushMessage("Creation Success!");
+    }
+
+    std::string nuQueue = driver.activeProjectFile/std::string("QUEUE.xml");
+    std::ofstream outFile(nuQueue);
+    if (outFile.is_open())
+    {
+        outFile.close();
     }
     else
     {
         driver.pushMessage("Failed. Could not create Project.");
+        return;
     }
+    driver.pushMessage("Creation Success!");
 }
 
 fs::path FileSysOp::getMediaPath() const
