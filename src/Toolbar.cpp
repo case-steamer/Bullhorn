@@ -72,6 +72,7 @@ void Toolbar::render()
             if (nuProjectBrowserOpen)
             {
                 ImGui::OpenPopup("newProjectBrowser");
+                nuProjectBrowser.lastSelected.clear();
                 nuProjectBrowserOpen = false;
             }
             ImGui::TableNextColumn();
@@ -129,8 +130,17 @@ void Toolbar::render()
                 }
                 if (ImGui::Button("Generate New"))
                 {
-                    driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
-                    driver.systemAgent.createNewProject();
+                    if (nuProjectBrowser.lastSelected.empty())
+                    {
+                        driver.audioPlayer.playBeep();
+                        driver.pushMessage("SELECT A DIRECTORY FOR YOUR PROJECT");
+                    }
+                    else
+                    {
+                        driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
+                        if (driver.systemAgent.createNewProject())
+                            nuProjectContents = "NewProject";
+                    }
                 }
 
                 ImGui::EndPopup();

@@ -63,7 +63,7 @@ void                        BrowserHelper::renderNode(DirNode& node)
             renderNode(child);
         }
 
-        for (const fs::path& file : node.filesOfType)
+        for (fs::path& file : node.filesOfType)
         {
             if (!showDotFiles && file.filename().string()[0] == '.')
                 continue;

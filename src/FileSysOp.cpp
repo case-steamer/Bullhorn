@@ -38,7 +38,7 @@ void    FileSysOp::deleteFile(fs::path& input)
     fs::remove(input);
 }
 
-void    FileSysOp::createNewProject() const
+bool    FileSysOp::createNewProject() const
 {
     try{
         std::array<fs::path, 3> creationDirs = {
@@ -76,6 +76,7 @@ void    FileSysOp::createNewProject() const
     catch (const std::exception& e)
     {
         driver.pushMessage("Project Generation Failed with exception:\n" + std::string(e.what()));
+        return false;
     }
     return true;
 }
