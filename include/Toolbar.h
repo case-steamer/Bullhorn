@@ -21,9 +21,9 @@ class Toolbar : public IPanel
 
         BrowserHelper   queueBrowser;
         bool            queueBrowserOpen = false;
-        
+
     private:
         Driver& driver;
         std::vector<std::string>    validExtensions = {".xml"};
-        std::string                 nuProjectContents;
+        std::string nuProjectContents = "NewProject";
 };

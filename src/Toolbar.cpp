@@ -115,8 +115,9 @@ void Toolbar::render()
                     nuProjectBrowser.canGenerate(child);
      
                 
-                char projectBuffer[512];
-                strncpy(projectBuffer, nuProjectBrowser.lastSelected.string().c_str(), sizeof(projectBuffer));
+                char projectBuffer[40];
+                strncpy(projectBuffer, nuProjectContents.c_str(), sizeof(projectBuffer));
+                projectBuffer[sizeof(projectBuffer) - 1] = 0;
                 if (ImGui::InputText(
                         "##Project File",
                         projectBuffer,
@@ -128,7 +129,7 @@ void Toolbar::render()
                 }
                 if (ImGui::Button("Generate New"))
                 {
-                    driver.activeProjectFile = nuProjectContents;
+                    driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
                     driver.systemAgent.createNewProject();
                 }
 
@@ -140,6 +141,7 @@ void Toolbar::render()
     
             char queueBuffer[512];
             strncpy(queueBuffer, driver.activeQueueFile.string().c_str(), sizeof(queueBuffer));
+            queueBuffer[sizeof(queueBuffer) - 1] = 0;
             ImGui::InputText(
                     "##Queue File",
                     queueBuffer,

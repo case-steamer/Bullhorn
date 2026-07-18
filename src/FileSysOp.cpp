@@ -1,4 +1,5 @@
 #include <fstream>
+#include <stdexcept>
 
 #include "Driver.h"
 #include "FileSysOp.h"
@@ -39,38 +40,43 @@ void    FileSysOp::deleteFile(fs::path& input)
 
 void    FileSysOp::createNewProject() const
 {
-
-    std::array<fs::path, 3> creationDirs = {
-        driver.activeProjectFile,
-        driver.activeProjectFile/std::string("media"),
-        driver.activeProjectFile/std::string("blocks")
-    };
-
-    for (const fs::path &p : creationDirs)
-    {
-        if (!fs::create_directory(p))
+    try{
+        std::array<fs::path, 3> creationDirs = {
+            driver.activeProjectFile,
+            driver.activeProjectFile/std::string("media"),
+            driver.activeProjectFile/std::string("blocks")
+        };
+    
+        for (const fs::path &p : creationDirs)
         {
-            driver.pushMessage("Project Generation Failed");
-            return;
+            if (!fs::create_directory(p))
+            {
+                driver.pushMessage("Project Generation Failed");
+                return;
+            }
+            else
+            {
+                driver.pushMessage("Creating Project...");
+            }
+        }
+    
+        std::string nuQueue = driver.activeProjectFile/std::string("QUEUE.xml");
+        std::ofstream outFile(nuQueue);
+        if (outFile.is_open())
+        {
+            outFile.close();
         }
         else
         {
-            driver.pushMessage("Creating Project...");
+            driver.pushMessage("Failed. Could not create Project.");
+            return;
         }
+        driver.pushMessage("Creation Success!");
     }
-
-    std::string nuQueue = driver.activeProjectFile/std::string("QUEUE.xml");
-    std::ofstream outFile(nuQueue);
-    if (outFile.is_open())
+    catch (const std::exception& e)
     {
-        outFile.close();
+        driver.pushMessage("Project Generation Failed with exception:\n" + std::string(e.what()));
     }
-    else
-    {
-        driver.pushMessage("Failed. Could not create Project.");
-        return;
-    }
-    driver.pushMessage("Creation Success!");
 }
 
 fs::path FileSysOp::getMediaPath() const
