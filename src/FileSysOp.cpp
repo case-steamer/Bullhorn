@@ -35,7 +35,8 @@ bool    FileSysOp::isValid(const fs::path& input, const Queue& queue)
 
 void    FileSysOp::deleteFile(fs::path& input)
 {
-    fs::remove(input);
+    if (fs::exists(input))
+        fs::remove(input);
 }
 
 bool    FileSysOp::createNewProject() const

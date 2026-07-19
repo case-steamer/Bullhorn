@@ -148,6 +148,12 @@ void Toolbar::render()
                         driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
                         if (driver.systemAgent.createNewProject())
                             nuProjectContents = "NewProject";
+                        else
+                        {
+                            driver.systemAgent.deleteFile(driver.activeProjectFile);
+                            driver.pushMessage("Could not create project. Deleting artifacts.");
+                            driver.pushMessage("Done!");
+                        }
                         ImGui::CloseCurrentPopup();
                     }
                 }
