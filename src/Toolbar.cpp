@@ -12,6 +12,11 @@ Toolbar::Toolbar(Driver& driver) : driver(driver), nuProjectBrowser(), queueBrow
         return false;
     };
 
+    nuProjectBrowser.onError = [this](const std::string& msg)
+    {
+        this->driver.pushMessage(msg);
+    };
+
     queueBrowser.algoRule = [this](const fs::path& path)
     {
         if (this->driver.systemAgent.isValid(path, this->validExtensions))
@@ -22,6 +27,11 @@ Toolbar::Toolbar(Driver& driver) : driver(driver), nuProjectBrowser(), queueBrow
                 return false;
         }
         return false;
+    };
+
+    queueBrowser.onError = [this](const std::string& msg)
+    {
+        this->driver.pushMessage(msg);
     };
 
     nuProjectBrowser.root.path = nuProjectBrowser.defaultDirectory;

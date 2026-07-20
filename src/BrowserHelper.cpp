@@ -44,7 +44,8 @@ void                        BrowserHelper::lookIn(DirNode& node)
     }
     catch (const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        this->onError(e.what());
+        //std::cerr << e.what() << std::endl;
     }
 }
 

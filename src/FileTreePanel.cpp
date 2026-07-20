@@ -16,6 +16,11 @@ FileTreePanel::FileTreePanel(Driver& driver) :
     {
         return this->driver.systemAgent.isValid(path, this->validExtensions);
     };
+
+    helper.onError = [this](const std::string& msg)
+    {
+        this->driver.pushMessage(msg);
+    };
 }
 
 void        FileTreePanel::render()

@@ -23,6 +23,7 @@ class BrowserHelper
         };
 
         std::function<bool(const fs::path&)> algoRule;
+        std::function<void(const std::string&)> onError;
         void                        lookIn(DirNode& node);
         void                        renderNode(DirNode& node);
         void                        canGenerate(DirNode& node);
