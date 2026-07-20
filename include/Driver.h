@@ -29,16 +29,16 @@ class Driver
         void        publicTrigger();
         std::thread startPerform();
         void        refreshQueue();
-        fs::path activeBlockFile;
-        fs::path activeQueueFile;
-        fs::path activeProjectFile;
-        void addToActiveBlock(const fs::path& trackPath);
-        void removeTrackFromBlock(int index);
-        void removeBlockFromQueue();
-        enum Mode {EDIT = 0, PERFORM};
-        Mode getMode();
+        fs::path    activeBlockFile;
+        fs::path    activeQueueFile;
+        fs::path    activeProjectFile;
+        void        addToActiveBlock(const fs::path& trackPath);
+        void        removeTrackFromBlock(int index);
+        void        removeBlockFromQueue();
+        enum        Mode {EDIT = 0, PERFORM};
+        Mode        getMode();
         std::deque<msgData> messageDeck;
-        void pushMessage(std::string message);
+        void        pushMessage(std::string message);
 
     private:
         std::string             filepath;
