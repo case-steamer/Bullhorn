@@ -67,6 +67,8 @@ void QueuePanel::render()
     {
         if (std::filesystem::exists(driver.activeQueueFile) && driver.xmlio.getQueue().allBlocks.empty())
             ImGui::TextWrapped("Press 'New Block' to get started with your project!");
+        if (!std::filesystem::exists(driver.activeQueueFile))
+            ImGui::TextWrapped("Load a project or create a new one to get started!");
 
         if (pendingSort)
         {
