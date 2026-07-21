@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <stdexcept>
 #include <cstring>
 #include <cstdio>
@@ -64,6 +65,9 @@ void QueuePanel::render()
 {
     try
     {
+        if (std::filesystem::exists(driver.activeQueueFile) && driver.xmlio.getQueue().allBlocks.empty())
+            ImGui::TextWrapped("Press 'New Block' to get started with your project!");
+
         if (pendingSort)
         {
             sortBlocks();
