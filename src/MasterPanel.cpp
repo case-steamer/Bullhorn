@@ -120,21 +120,29 @@ void MasterPanel::render()
                     break;
                 }
             }
-            fs::path placeIn = driver.activeQueueFile.parent_path();
-            char buffer[6];
-            std::snprintf(buffer, 6, "%c%04d", blockTag, newID);
-            std::string idString = std::string(buffer);
-            placeIn.append(idString + ".xml");
-            driver.xmlio.writeBlock(placeIn);
-            driver.activeBlockFile = placeIn;
-
-            Queue::BlockEntry entry;
-            entry.filepath = driver.activeBlockFile;
-            entry.block = driver.xmlio.getBlock();
-            entry.isOverride = false;
-            driver.xmlio.addBlock(entry);
-            queuePanel.refreshBuffers();
-            driver.xmlio.writeQueue(driver.activeQueueFile);
+            if (!driver.activeProjectFile.empty())
+            {
+                fs::path placeIn = driver.activeProjectFile/"blocks";
+                char buffer[6];
+                std::snprintf(buffer, 6, "%c%04d", blockTag, newID);
+                std::string idString = std::string(buffer);
+                placeIn.append(idString + ".xml");
+                driver.xmlio.writeBlock(placeIn);
+                driver.activeBlockFile = placeIn;
+    
+                Queue::BlockEntry entry;
+                entry.filepath = driver.activeBlockFile;
+                entry.block = driver.xmlio.getBlock();
+                entry.isOverride = false;
+                driver.xmlio.addBlock(entry);
+                queuePanel.refreshBuffers();
+                driver.xmlio.writeQueue(driver.activeQueueFile);
+            }
+            else
+            {
+                driver.audioPlayer.playBeep();
+                driver.pushMessage("This is not an active project. Open a valid project before continuing.");
+            }
         }
 
         ImGui::SetCursorPos(ImVec2(btnColWidth, 0));

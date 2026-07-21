@@ -124,7 +124,10 @@ void Toolbar::render()
      
                 if (!queueBrowser.lastSelected.empty())
                 {
+                    //TODO: set browser to look for valid projects instead of QUEUE.xml files.
                     driver.activeQueueFile = queueBrowser.lastSelected;
+                    //WARNING: line 130 as is will soon become VERY unsafe!!!!!
+                    driver.activeProjectFile = driver.activeQueueFile.parent_path();
                     driver.xmlio.readQueue(driver.activeQueueFile);
                     queueBrowser.lastSelected.clear();
                     ImGui::CloseCurrentPopup();
