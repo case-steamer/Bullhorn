@@ -157,7 +157,13 @@ void Toolbar::render()
                     {
                         driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
                         if (driver.systemAgent.createNewProject())
+                        {
                             nuProjectContents = "NewProject";
+                            driver.activeQueueFile = driver.activeProjectFile/"QUEUE.xml";
+                            driver.xmlio.initQueue();
+                            driver.xmlio.writeQueue(driver.activeQueueFile);
+                            driver.xmlio.readQueue(driver.activeQueueFile);
+                        }
                         else
                         {
                             driver.systemAgent.deleteFile(driver.activeProjectFile);

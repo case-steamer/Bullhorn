@@ -71,10 +71,9 @@ void QueuePanel::render()
             pendingSort = false;
             clearSelection();
         }
+        
         if (currentPath != driver.activeQueueFile)
-        {
             refreshBuffers();
-        }
         displayQueue();
     }
     catch (const std::runtime_error& e)
