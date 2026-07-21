@@ -63,19 +63,32 @@ void Toolbar::render()
             ImGui::TableSetupColumn("##Column2", ImGuiTableColumnFlags_WidthStretch, 0, 0);
             ImGui::TableNextRow(0, 32);
             ImGui::TableNextColumn();
-            if (ImGui::BeginMenu("File"))
+            if (ImGui::Button("File"))
+            {
+                fileMenuOpen = true;
+            }
+            if (fileMenuOpen)
+            {
+                ImGui::OpenPopup("File");
+            }
+     
+            if (ImGui::BeginPopup("File"))
             {
                 if (ImGui::MenuItem("New Project"))
                 {
                     nuProjectBrowserOpen = true;
+                    fileMenuOpen = false;
                 }
                 if (ImGui::MenuItem("Open Project"))
                 {
                     queueBrowserOpen = true;
+                    fileMenuOpen = false;
                 }
-                ImGui::EndMenu();
+                fileMenuOpen = false;
+                ImGui::EndPopup();
             }
-     
+
+
             if (queueBrowserOpen)
             {
                 ImGui::OpenPopup("QueueFileBrowser");

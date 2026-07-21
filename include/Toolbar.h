@@ -19,13 +19,13 @@ class Toolbar : public IPanel
         void render() override;
 
         BrowserHelper   nuProjectBrowser;
-        bool            nuProjectBrowserOpen = false;
-
         BrowserHelper   queueBrowser;
-        bool            queueBrowserOpen = false;
 
     private:
         Driver& driver;
+        bool            fileMenuOpen = false;
+        bool            nuProjectBrowserOpen = false;
+        bool            queueBrowserOpen = false;
         std::vector<std::string>    validExtensions = {".xml"};
         std::string nuProjectContents = "NewProject";
         ImVec2 mousePos;
