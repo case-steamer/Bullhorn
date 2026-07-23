@@ -82,6 +82,28 @@ bool    FileSysOp::createNewProject() const
     return true;
 }
 
+std::optional<Project> FileSysOp::loadProject(const fs::path& root) const
+{
+    bool members[3] = {false, false, false};
+
+    Project base = Project(root);
+
+    if (fs::exists(base.blocks))
+        members[0] = true;
+    if (fs::exists(base.media))
+        members[1] = true;
+    if (fs::exists(base.queue))
+        members[2] = true;
+
+    for (bool m : members)
+    {
+        if (!m)
+            return std::nullopt;
+    }
+
+    return base;
+}
+
 fs::path FileSysOp::getMediaPath() const
 {
     return mediaPath;
