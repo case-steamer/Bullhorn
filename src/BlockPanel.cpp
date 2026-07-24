@@ -23,7 +23,7 @@ void BlockPanel::render()
 void BlockPanel::displayBlock()
 {
     const Queue& queue = driver.xmlio.getQueue();
-    if (!driver.activeQueueFile.empty())
+    if (driver.activeProject)
     {
         if (!driver.systemAgent.isValid(driver.activeBlockFile, queue))
             throw std::runtime_error("Active block does not belong to the current queue.");

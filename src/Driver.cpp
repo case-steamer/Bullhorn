@@ -19,7 +19,7 @@ void Driver::refreshQueue()
 {
     while(!activeBlockFile.empty())
     {
-        if (activeQueueFile.empty())
+        if (!activeProject)
         {
             pushMessage("no queue file loaded!");
             audioPlayer.playBeep();
@@ -39,7 +39,7 @@ void Driver::refreshQueue()
         entry.isOverride    = false;
 
         xmlio.addBlock(entry);
-        xmlio.writeQueue(activeQueueFile);
+        xmlio.writeQueue(activeProject->queue);
 
         xmlio.initBlock();
         activeBlockFile.clear();
@@ -168,7 +168,7 @@ void Driver::stop()
 
 void Driver::publicTrigger()
 {
-    if (!activeQueueFile.empty() || current_mode == PERFORM)
+    if (activeProject || current_mode == PERFORM)
     {
         onTrigger();
     }

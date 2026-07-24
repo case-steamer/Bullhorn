@@ -125,10 +125,9 @@ void Toolbar::render()
                 if (!queueBrowser.lastSelected.empty())
                 {
                     //TODO: set browser to look for valid projects instead of QUEUE.xml files.
-                    driver.activeQueueFile = queueBrowser.lastSelected;
+                    driver.activeProject.emplace(queueBrowser.lastSelected.parent_path());
                     //WARNING: line 130 as is will soon become VERY unsafe!!!!!
-                    driver.activeProjectFile = driver.activeQueueFile.parent_path();
-                    driver.xmlio.readQueue(driver.activeQueueFile);
+                    driver.xmlio.readQueue(driver.activeProject->queue);
                     queueBrowser.lastSelected.clear();
                     ImGui::CloseCurrentPopup();
                     queueBrowserOpen = false;
@@ -171,20 +170,17 @@ void Toolbar::render()
                     }
                     else
                     {
-                        driver.activeProjectFile = nuProjectBrowser.lastSelected/nuProjectContents;
-                        if (driver.systemAgent.createNewProject())
+                        if (driver.systemAgent.createNewProject(nuProjectBrowser.lastSelected/nuProjectContents))
                         {
-                            nuProjectContents = "NewProject";
-                            driver.activeQueueFile = driver.activeProjectFile/"QUEUE.xml";
+                            driver.activeProject.emplace(nuProjectBrowser.lastSelected/nuProjectContents);
                             driver.xmlio.initQueue();
-                            driver.xmlio.writeQueue(driver.activeQueueFile);
-                            driver.xmlio.readQueue(driver.activeQueueFile);
+                            driver.xmlio.writeQueue(driver.activeProject->queue);
+                            driver.xmlio.readQueue(driver.activeProject->queue);
+                            nuProjectContents = "NewProject";
                         }
                         else
                         {
-                            driver.systemAgent.deleteFile(driver.activeProjectFile);
-                            driver.pushMessage("Could not create project. Deleting artifacts.");
-                            driver.pushMessage("Done!");
+                            driver.audioPlayer.playBeep();
                         }
                         ImGui::CloseCurrentPopup();
                     }
@@ -196,7 +192,10 @@ void Toolbar::render()
             ImGui::TableNextColumn();
     
             char queueBuffer[512];
-            strncpy(queueBuffer, driver.activeQueueFile.string().c_str(), sizeof(queueBuffer));
+            if (driver.activeProject)
+                strncpy(queueBuffer, driver.activeProject->queue.string().c_str(), sizeof(queueBuffer));
+            else
+                queueBuffer[0] = '\0';
             queueBuffer[sizeof(queueBuffer) - 1] = 0;
             ImGui::InputText(
                     "##Queue File",

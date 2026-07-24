@@ -8,12 +8,14 @@
 #include <condition_variable>
 #include <thread>
 #include <functional>
+#include <optional>
 
 #include "TimeParser.h"
 #include "FileSysOp.h"
 #include "AudioPlayer.h"
 #include "XMLIO.h"
 #include "SpecialStructs.h"
+#include "Project.h"
 
 namespace fs = std::filesystem;
 using WorkQueue = std::queue<Queue::BlockEntry>;
@@ -30,8 +32,7 @@ class Driver
         std::thread startPerform();
         void        refreshQueue();
         fs::path    activeBlockFile;
-        fs::path    activeQueueFile;
-        fs::path    activeProjectFile;
+        std::optional<Project>    activeProject;
         void        addToActiveBlock(const fs::path& trackPath);
         void        removeTrackFromBlock(int index);
         void        removeBlockFromQueue();

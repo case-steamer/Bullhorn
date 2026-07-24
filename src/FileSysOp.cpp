@@ -39,47 +39,52 @@ void    FileSysOp::deleteFile(fs::path& input)
         fs::remove(input);
 }
 
-bool    FileSysOp::createNewProject() const
+std::optional<Project>    FileSysOp::createNewProject(const fs::path& root) const
 {
-    try{
-        std::array<fs::path, 3> creationDirs = {
-            driver.activeProjectFile,
-            driver.activeProjectFile/std::string("media"),
-            driver.activeProjectFile/std::string("blocks")
-        };
-    
-        for (const fs::path &p : creationDirs)
+    Project candidate(root);
+    try
+    {
+        if (fs::create_directory(candidate.homeDir))
         {
-            if (!fs::create_directory(p))
-            {
-                driver.pushMessage("Project Generation Failed");
-                return false;
-            }
+            fs::create_directory(candidate.media);
+            fs::create_directory(candidate.blocks);
+            auto fStream = std::ofstream(candidate.queue);
+
+            if (fStream.is_open())
+                fStream.close();
             else
             {
-                driver.pushMessage("Creating Project...");
+                driver.pushMessage("Generation Failed.");
+                driver.pushMessage("Deleting Artifacts");
+     
+                fs::remove_all(candidate.homeDir);
+     
+                driver.pushMessage("Done!");
+                return std::nullopt;
             }
-        }
-    
-        std::string nuQueue = driver.activeProjectFile/std::string("QUEUE.xml");
-        std::ofstream outFile(nuQueue);
-        if (outFile.is_open())
-        {
-            outFile.close();
         }
         else
         {
-            driver.pushMessage("Failed. Could not create Project.");
-            return false;
+            driver.pushMessage("Generation Failed.");
+            driver.pushMessage("Deleting Artifacts");
+    
+            fs::remove_all(candidate.homeDir);
+    
+            driver.pushMessage("Done!");
+            return std::nullopt;
         }
-        driver.pushMessage("Creation Success!");
     }
     catch (const std::exception& e)
     {
         driver.pushMessage("Project Generation Failed with exception:\n" + std::string(e.what()));
-        return false;
+        driver.pushMessage("Deleting Artifacts");
+
+        fs::remove_all(candidate.homeDir);
+
+        driver.pushMessage("Done!");
+        return std::nullopt;
     }
-    return true;
+    return candidate;
 }
 
 std::optional<Project> FileSysOp::loadProject(const fs::path& root) const

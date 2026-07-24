@@ -20,7 +20,7 @@ class QueuePanel : public IPanel
 
     private:
         Driver&                     driver;
-        fs::path                    currentPath =   driver.activeQueueFile;
+        fs::path                    currentPath;
         std::vector<std::array<char, 6>>            timecodeBuffers;
         std::vector<bool>                           timecodeFlags;
         int                         selIndex = -1;

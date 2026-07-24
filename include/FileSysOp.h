@@ -19,7 +19,7 @@ class FileSysOp
         bool isValid(const fs::path& input, const std::vector<std::string>& extensions);
         bool isValid(const fs::path& input, const Queue& queue);
         void deleteFile(fs::path& input);
-        bool createNewProject() const;
+        std::optional<Project> createNewProject(const fs::path& root) const;
         std::optional<Project> loadProject(const fs::path& root) const;
         fs::path getMediaPath() const;
 

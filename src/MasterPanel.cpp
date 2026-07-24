@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <filesystem>
 #include <cstdio>
+#include <optional>
 
 #include "imgui.h"
 #include "IconsFontAwesome6.h"
@@ -103,7 +104,7 @@ void MasterPanel::render()
             std::vector<int> blockStems;
             int newID;
 
-            for (Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeQueueFile).allBlocks)
+            for (Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeProject->queue).allBlocks)
             {
                 std::string beStem = be.filepath.stem().string().erase(0, 1);
                 int stemNum = std::stoul(beStem);
@@ -120,9 +121,9 @@ void MasterPanel::render()
                     break;
                 }
             }
-            if (!driver.activeProjectFile.empty())
+            if (driver.activeProject)
             {
-                fs::path placeIn = driver.activeProjectFile/"blocks";
+                fs::path placeIn = driver.activeProject->blocks;
                 char buffer[6];
                 std::snprintf(buffer, 6, "%c%04d", blockTag, newID);
                 std::string idString = std::string(buffer);
@@ -136,7 +137,7 @@ void MasterPanel::render()
                 entry.isOverride = false;
                 driver.xmlio.addBlock(entry);
                 queuePanel.refreshBuffers();
-                driver.xmlio.writeQueue(driver.activeQueueFile);
+                driver.xmlio.writeQueue(driver.activeProject->queue);
             }
             else
             {

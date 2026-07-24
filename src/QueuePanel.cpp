@@ -11,6 +11,10 @@
 
 QueuePanel::QueuePanel(Driver& driver) : driver(driver)
 {
+    if (driver.activeProject)
+    {
+        this->currentPath = driver.activeProject->queue;
+    }
 }
 
 void QueuePanel::sortBlocks()
@@ -35,7 +39,8 @@ void QueuePanel::refreshBuffers()
     //private method
 {
     Queue& queue = driver.xmlio.getQueue();
-    currentPath = driver.activeQueueFile;
+    if (driver.activeProject)
+        currentPath = driver.activeProject->queue;
     timecodeBuffers.clear();
     timecodeFlags.clear();
 
@@ -65,28 +70,34 @@ void QueuePanel::render()
 {
     try
     {
-        if (std::filesystem::exists(driver.activeQueueFile) && driver.xmlio.getQueue().allBlocks.empty())
-            ImGui::TextWrapped("Press 'New Block' to get started with your project!");
-        if (!std::filesystem::exists(driver.activeQueueFile))
-            ImGui::TextWrapped("Load a project or create a new one to get started.");
-
-        if (pendingSort)
+        if (!driver.activeProject)
         {
-            sortBlocks();
-            driver.xmlio.writeQueue(driver.activeQueueFile);
-            pendingSort = false;
-            clearSelection();
+            ImGui::TextWrapped("Load a project or create a new one to get started.");
         }
+        else
+        {
+            if (std::filesystem::exists(driver.activeProject->queue) && driver.xmlio.getQueue().allBlocks.empty())
+            ImGui::TextWrapped("Press 'New Block' to get started with your project!");
+
+            if (pendingSort)
+            {
+                sortBlocks();
+                driver.xmlio.writeQueue(driver.activeProject->queue);
+                pendingSort = false;
+                clearSelection();
+            }
         
-        if (currentPath != driver.activeQueueFile)
-            refreshBuffers();
-        displayQueue();
+            if (currentPath != driver.activeProject->queue)
+                refreshBuffers();
+            displayQueue();
+        }
     }
     catch (const std::runtime_error& e)
     {
         ImGui::Text("%s", e.what());
     }
 }
+
 
 void QueuePanel::displayQueue()
     //public method
@@ -163,7 +174,7 @@ void QueuePanel::displayQueue()
 
         if (ImGui::Checkbox(overrideBehavior.c_str(), &currentBlock.isOverride))
         {
-            driver.xmlio.writeQueue(driver.activeQueueFile);
+            driver.xmlio.writeQueue(driver.activeProject->queue);
         }
 
         if (ImGui::Selectable(currentBlock.filepath.filename().string().c_str(), isSelected))
