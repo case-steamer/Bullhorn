@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <stdexcept>
 #include <cctype>
@@ -34,7 +35,7 @@ bool    FileSysOp::isValid(const fs::path& input, const Queue& queue) const
     return false;
 }
 
-bool    FileSysOp::isValidBlockName(const fs::path& input, const char identifier) const
+bool    FileSysOp::isValidBlockName(const fs::path& input, char identifier) const
 {
     bool valid = true;
     std::string name = input.stem().string();
@@ -52,6 +53,31 @@ bool    FileSysOp::isValidBlockName(const fs::path& input, const char identifier
         }
     }
     return valid;
+}
+
+std::optional<int>     FileSysOp::nextBlockID(const Queue& queue, char identifier) const
+{
+    std::vector<int> blockStems;
+    std::optional<int> newID;
+    //The following auto& be will be a Queue::BlockEntry
+    for (const auto& be : queue.allBlocks)
+    {
+        if (isValidBlockName(be.filepath, identifier))
+        {
+            std::string beStem = be.filepath.stem().string().erase(0, 1);
+            int stemNum = std::stoi(beStem);
+            blockStems.push_back(stemNum);
+        }
+    } 
+    for (int i = 0; i < 1440; i++)
+    {
+        if (std::find(blockStems.begin(), blockStems.end(), i) == blockStems.end())
+        {
+            newID = i;
+            break;
+        }
+    }
+    return newID;
 }
 
 void    FileSysOp::deleteFile(const fs::path& input)

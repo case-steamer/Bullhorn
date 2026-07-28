@@ -101,32 +101,10 @@ void MasterPanel::render()
         if (ImGui::Button("New Block"))
         {
             char blockTag = 'b';
-            std::vector<int> blockStems;
-            std::optional<int> newID;
 
             if (driver.activeProject)
             {
-                //The following auto& be will be a Queue::BlockEntry
-                for (const auto& be : driver.xmlio.getQueue(driver.activeProject->queue).allBlocks)
-                {
-                    if (driver.systemAgent.isValidBlockName(be.filepath, blockTag))
-                    {
-                        std::string beStem = be.filepath.stem().string().erase(0, 1);
-                        int stemNum = std::stoul(beStem);
-                        blockStems.push_back(stemNum);
-                    }
-                }
-    
-                driver.xmlio.initBlock();
-    
-                for (int i = 0; i < 1440; i++)
-                {
-                    if (std::find(blockStems.begin(), blockStems.end(), i) == blockStems.end())
-                    {
-                        newID = i;
-                        break;
-                    }
-                }
+                auto newID = driver.systemAgent.nextBlockID(driver.xmlio.getQueue(driver.activeProject->queue), blockTag);
                 if (newID)
                 {
                     fs::path placeIn = driver.activeProject->blocks;
@@ -134,6 +112,7 @@ void MasterPanel::render()
                     std::snprintf(buffer, 6, "%c%04d", blockTag, *newID);
                     std::string idString = std::string(buffer);
                     placeIn.append(idString + ".xml");
+                    driver.xmlio.initBlock(); 
                     driver.xmlio.writeBlock(placeIn);
                     driver.activeBlockFile = placeIn;
      
