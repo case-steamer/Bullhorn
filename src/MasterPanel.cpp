@@ -106,11 +106,15 @@ void MasterPanel::render()
 
             if (driver.activeProject)
             {
-                for (const auto& Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeProject->queue).allBlocks)
+                //The following auto& be will be a Queue::BlockEntry
+                for (const auto& be : driver.xmlio.getQueue(driver.activeProject->queue).allBlocks)
                 {
-                    std::string beStem = be.filepath.stem().string().erase(0, 1);
-                    int stemNum = std::stoul(beStem);
-                    blockStems.push_back(stemNum);
+                    if (driver.systemAgent.isValidBlockName(be.filepath, blockTag))
+                    {
+                        std::string beStem = be.filepath.stem().string().erase(0, 1);
+                        int stemNum = std::stoul(beStem);
+                        blockStems.push_back(stemNum);
+                    }
                 }
     
                 driver.xmlio.initBlock();

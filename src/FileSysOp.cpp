@@ -34,13 +34,13 @@ bool    FileSysOp::isValid(const fs::path& input, const Queue& queue) const
     return false;
 }
 
-bool    FileSysOp::isValidBlockName(const fs::path& input) const
+bool    FileSysOp::isValidBlockName(const fs::path& input, const char identifier) const
 {
     bool valid = true;
     std::string name = input.stem().string();
     if (name.size() != 5)
         return false;
-    if (name[0] != 'b')
+    if (name[0] != identifier)
         return false;
 
     name.erase(0, 1);
