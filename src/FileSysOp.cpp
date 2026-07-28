@@ -9,12 +9,12 @@ FileSysOp::FileSysOp(Driver& driver) : driver(driver)
 {
 }
 
-bool    FileSysOp::isValid(const fs::path& input)
+bool    FileSysOp::isValid(const fs::path& input) const
 {
     return fs::exists(input);
 }
 
-bool    FileSysOp::isValid(const fs::path& input, const std::vector<std::string>& extensions)
+bool    FileSysOp::isValid(const fs::path& input, const std::vector<std::string>& extensions) const
 {
     if (!fs::exists(input)) return false;
     for (const std::string& suffix : extensions)
@@ -24,7 +24,7 @@ bool    FileSysOp::isValid(const fs::path& input, const std::vector<std::string>
     return false;
 }
 
-bool    FileSysOp::isValid(const fs::path& input, const Queue& queue)
+bool    FileSysOp::isValid(const fs::path& input, const Queue& queue) const
 {
     if (!fs::exists(input)) return false;
     for (Queue::BlockEntry ent : queue.allBlocks)
@@ -54,7 +54,7 @@ bool    FileSysOp::isValidBlockName(const fs::path& input) const
     return valid;
 }
 
-void    FileSysOp::deleteFile(fs::path& input)
+void    FileSysOp::deleteFile(const fs::path& input)
 {
     if (fs::exists(input))
         fs::remove(input);
