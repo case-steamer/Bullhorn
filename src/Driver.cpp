@@ -174,8 +174,7 @@ void Driver::publicTrigger()
     }
     else
     {
-        std::runtime_error e("No queue file loaded!");
-        pushMessage(e.what());
+        pushMessage("No queue file loaded!");
     }
 }
 
