@@ -102,42 +102,45 @@ void MasterPanel::render()
         {
             char blockTag = 'b';
             std::vector<int> blockStems;
-            int newID;
+            std::optional<int> newID;
 
-            for (Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeProject->queue).allBlocks)
-            {
-                std::string beStem = be.filepath.stem().string().erase(0, 1);
-                int stemNum = std::stoul(beStem);
-                blockStems.push_back(stemNum);
-            }
-
-            driver.xmlio.initBlock();
-
-            for (int i = 0; i < 1441; i++)
-            {
-                if (std::find(blockStems.begin(), blockStems.end(), i) == blockStems.end())
-                {
-                    newID = i;
-                    break;
-                }
-            }
             if (driver.activeProject)
             {
-                fs::path placeIn = driver.activeProject->blocks;
-                char buffer[6];
-                std::snprintf(buffer, 6, "%c%04d", blockTag, newID);
-                std::string idString = std::string(buffer);
-                placeIn.append(idString + ".xml");
-                driver.xmlio.writeBlock(placeIn);
-                driver.activeBlockFile = placeIn;
+                for (const auto& Queue::BlockEntry be : driver.xmlio.getQueue(driver.activeProject->queue).allBlocks)
+                {
+                    std::string beStem = be.filepath.stem().string().erase(0, 1);
+                    int stemNum = std::stoul(beStem);
+                    blockStems.push_back(stemNum);
+                }
     
-                Queue::BlockEntry entry;
-                entry.filepath = driver.activeBlockFile;
-                entry.block = driver.xmlio.getBlock();
-                entry.isOverride = false;
-                driver.xmlio.addBlock(entry);
-                queuePanel.refreshBuffers();
-                driver.xmlio.writeQueue(driver.activeProject->queue);
+                driver.xmlio.initBlock();
+    
+                for (int i = 0; i < 1440; i++)
+                {
+                    if (std::find(blockStems.begin(), blockStems.end(), i) == blockStems.end())
+                    {
+                        newID = i;
+                        break;
+                    }
+                }
+                if (newID)
+                {
+                    fs::path placeIn = driver.activeProject->blocks;
+                    char buffer[6];
+                    std::snprintf(buffer, 6, "%c%04d", blockTag, *newID);
+                    std::string idString = std::string(buffer);
+                    placeIn.append(idString + ".xml");
+                    driver.xmlio.writeBlock(placeIn);
+                    driver.activeBlockFile = placeIn;
+     
+                    Queue::BlockEntry entry;
+                    entry.filepath = driver.activeBlockFile;
+                    entry.block = driver.xmlio.getBlock();
+                    entry.isOverride = false;
+                    driver.xmlio.addBlock(entry);
+                    queuePanel.refreshBuffers();
+                    driver.xmlio.writeQueue(driver.activeProject->queue);
+                }
             }
             else
             {

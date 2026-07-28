@@ -1,5 +1,6 @@
 #include <fstream>
 #include <stdexcept>
+#include <cctype>
 
 #include "Driver.h"
 #include "FileSysOp.h"
@@ -31,6 +32,26 @@ bool    FileSysOp::isValid(const fs::path& input, const Queue& queue)
         if (input == ent.filepath) return true;
     }
     return false;
+}
+
+bool    FileSysOp::isValidBlockName(const fs::path& input) const
+{
+    bool valid = true;
+    std::string name = input.stem().string();
+    if (name.size() != 5)
+        return false;
+    if (name[0] != 'b')
+        return false;
+
+    name.erase(0, 1);
+    for (int i = 0; i < 4; i++)
+    {
+        if (!std::isdigit(static_cast<unsigned char>name[i]))
+        {
+            valid = false;
+        }
+    }
+    return valid;
 }
 
 void    FileSysOp::deleteFile(fs::path& input)
