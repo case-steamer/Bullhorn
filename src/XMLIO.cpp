@@ -157,12 +157,6 @@ Block& XMLIO::getBlock()
     return block;
 }
 
-Block& XMLIO::getBlock(const fs::path& filepath)
-{
-    readBlock(filepath);
-    return block;
-}
-
 Queue& XMLIO::getQueue()
 {
     return queue;
