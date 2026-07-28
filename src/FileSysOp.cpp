@@ -46,7 +46,7 @@ bool    FileSysOp::isValidBlockName(const fs::path& input) const
     name.erase(0, 1);
     for (int i = 0; i < 4; i++)
     {
-        if (!std::isdigit(static_cast<unsigned char>name[i]))
+        if (!std::isdigit(static_cast<unsigned char>(name[i])))
         {
             valid = false;
         }
