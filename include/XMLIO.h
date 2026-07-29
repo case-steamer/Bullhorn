@@ -32,7 +32,6 @@ class XMLIO
         void        writeBlock(fs::path filepath);
         void        writeQueue(fs::path filepath);
         Block& getBlock();
-        Block& getBlock(const fs::path& filepath);
         Queue& getQueue();
         Queue& getQueue(const fs::path& filepath);
 };
