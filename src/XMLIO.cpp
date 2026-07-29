@@ -4,6 +4,18 @@
 #include <iomanip>
 #include <sstream>
 #include <algorithm>
+#include <stdexcept>
+
+namespace
+{
+    tinyxml2::XMLElement* checkForElement(tinyxml2::XMLNode* n, const char* element)
+    {
+        tinyxml2::XMLElement* object = n->FirstChildElement(element);
+        if (object == nullptr)
+            throw std::runtime_error(std::string(element) + " Element not found!");
+        return object;
+    }
+}
 
 void XMLIO::initBlock()
 {
@@ -15,30 +27,39 @@ void XMLIO::initQueue()
     queue = Queue{};
 }
 
-void XMLIO::readBlock(const fs::path& filepath)
+bool XMLIO::readBlock(const fs::path& filepath)
 {
-    block.allTracks.clear();
-    tinyxml2::XMLDocument doc;
-    doc.LoadFile(filepath.c_str());
-
-    auto*   block_element   = doc.FirstChildElement("block");
-    auto*   time_element    = block_element->FirstChildElement("timecode");
-    std::string timecode    = time_element->GetText();
-    block.hour              = std::stoi(timecode.substr(0,2));
-    block.minute            = std::stoi(timecode.substr(3,2));
-
-    auto* track_element     = block_element->FirstChildElement("track");
-    while (track_element    != nullptr)
+    bool flag = false;
+    try
     {
-        Block::Track track;
-        track.filepath      = track_element->FirstChildElement("filepath")->GetText();
-        track.volume        = std::stof(track_element->FirstChildElement("volume")->GetText());
-        block.allTracks.push_back(track);
-        track_element = track_element->NextSiblingElement("track");
+        block.allTracks.clear();
+        tinyxml2::XMLDocument doc;
+        doc.LoadFile(filepath.c_str());
+    
+        auto*   block_element   = checkForElement(&doc, "block");
+        auto*   time_element    = checkForElement(block_element, "timecode");
+        std::string timecode    = time_element->GetText();
+        block.hour              = std::stoi(timecode.substr(0,2));
+        block.minute            = std::stoi(timecode.substr(3,2));
+    
+        auto* track_element     = block_element->FirstChildElement("track");
+        while (track_element    != nullptr)
+        {
+            Block::Track track;
+            track.filepath      = track_element->FirstChildElement("filepath")->GetText();
+            track.volume        = std::stof(track_element->FirstChildElement("volume")->GetText());
+            block.allTracks.push_back(track);
+            track_element = track_element->NextSiblingElement("track");
+        }
+        flag = true;
     }
+    catch (std::runtime_error e)
+    {
+    }
+    return flag;
 }
 
-void XMLIO::readQueue(const fs::path& filepath)
+bool XMLIO::readQueue(const fs::path& filepath)
 {
     tinyxml2::XMLDocument doc;
     doc.LoadFile(filepath.c_str());
@@ -62,6 +83,7 @@ void XMLIO::readQueue(const fs::path& filepath)
         queue.allBlocks.push_back(entry);
         block_entry             = block_entry->NextSiblingElement("block");
     }
+    return true;
 }
 
 std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()

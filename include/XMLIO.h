@@ -19,8 +19,8 @@ class XMLIO
     public:
         void        initBlock();
         void        initQueue();
-        void        readBlock(const fs::path& filepath);
-        void        readQueue(const fs::path& filepath);
+        bool        readBlock(const fs::path& filepath);
+        bool        readQueue(const fs::path& filepath);
         std::unique_ptr<tinyxml2::XMLDocument> buildBlock();
         std::unique_ptr<tinyxml2::XMLDocument> buildQueue();
         void        setTime(int hour, int minute);
