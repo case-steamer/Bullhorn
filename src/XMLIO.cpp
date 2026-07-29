@@ -15,6 +15,15 @@ namespace
             throw std::runtime_error(std::string(element) + " Element not found!");
         return object;
     }
+
+    const char* textGetter(tinyxml2::XMLElement* el)
+    {
+        auto text = el->GetText();
+        if (text == nullptr)
+            throw std::runtime_error(std::string(el->Name()) + " text not found!");
+
+        return text;
+    }
 }
 
 void XMLIO::initBlock()
@@ -38,7 +47,7 @@ bool XMLIO::readBlock(const fs::path& filepath)
     
         auto*   block_element   = checkForElement(&doc, "block");
         auto*   time_element    = checkForElement(block_element, "timecode");
-        std::string timecode    = time_element->GetText();
+        std::string timecode    = textGetter(time_element);
         block.hour              = std::stoi(timecode.substr(0,2));
         block.minute            = std::stoi(timecode.substr(3,2));
     
@@ -46,15 +55,16 @@ bool XMLIO::readBlock(const fs::path& filepath)
         while (track_element    != nullptr)
         {
             Block::Track track;
-            track.filepath      = track_element->FirstChildElement("filepath")->GetText();
-            track.volume        = std::stof(track_element->FirstChildElement("volume")->GetText());
+            track.filepath      = textGetter(checkForElement(track_element, "filepath"));
+            track.volume        = std::stof(textGetter(checkForElement(track_element, "volume")));
             block.allTracks.push_back(track);
             track_element = track_element->NextSiblingElement("track");
         }
         flag = true;
     }
-    catch (std::runtime_error e)
+    catch (const std::exception& e)
     {
+        std::cout << e.what();
     }
     return flag;
 }
@@ -83,7 +93,6 @@ bool XMLIO::readQueue(const fs::path& filepath)
         queue.allBlocks.push_back(entry);
         block_entry             = block_entry->NextSiblingElement("block");
     }
-    return true;
 }
 
 std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
