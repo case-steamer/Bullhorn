@@ -43,7 +43,11 @@ bool XMLIO::readBlock(const fs::path& filepath)
     {
         block.allTracks.clear();
         tinyxml2::XMLDocument doc;
-        doc.LoadFile(filepath.c_str());
+        if (doc.LoadFile(filepath.c_str()) != tinyxml2::XML_SUCCESS)
+        {
+            auto fault = doc.ErrorStr();
+            throw std::runtime_error(fault);
+        }
     
         auto*   block_element   = checkForElement(&doc, "block");
         auto*   time_element    = checkForElement(block_element, "timecode");
@@ -64,35 +68,51 @@ bool XMLIO::readBlock(const fs::path& filepath)
     }
     catch (const std::exception& e)
     {
-        std::cout << e.what();
+        std::cout << e.what() << "\n";
     }
     return flag;
 }
 
 bool XMLIO::readQueue(const fs::path& filepath)
 {
-    tinyxml2::XMLDocument doc;
-    doc.LoadFile(filepath.c_str());
-
-    auto*   queue_element   = doc.FirstChildElement("queue");
-    auto*   block_entry     = queue_element->FirstChildElement("block");
-
-    initQueue();
-
-    while   (block_entry  != nullptr)
+    bool flag = false;
+    try
     {
-        initBlock();
-        auto*   path_element    = block_entry->FirstChildElement("filepath");
-        readBlock(fs::path(path_element->GetText()));
-        const char* behavior = block_entry->Attribute("behavior");
-
-        Queue::BlockEntry entry;
-        entry.filepath  = path_element->GetText();
-        entry.block     = block;
-        entry.isOverride  = (std::string(behavior) == "override");
-        queue.allBlocks.push_back(entry);
-        block_entry             = block_entry->NextSiblingElement("block");
+        tinyxml2::XMLDocument doc;
+        if (doc.LoadFile(filepath.c_str()) != tinyxml2::XML_SUCCESS)
+        {
+            auto fault = doc.ErrorStr();
+            throw std::runtime_error(fault);
+        }
+    
+        auto*   queue_element   = checkForElement(&doc, "queue");
+        auto*   block_entry     = queue_element->FirstChildElement("block");
+    
+        initQueue();
+    
+        while   (block_entry  != nullptr)
+        {
+            initBlock();
+            auto*   path_element    = checkForElement(block_entry, "filepath");
+            const char* behavior = block_entry->Attribute("behavior");
+    
+            Queue::BlockEntry entry;
+            entry.filepath = textGetter(path_element);
+            if (readBlock(entry.filepath))
+            {
+                entry.block         = block;
+                entry.isOverride    = (behavior != nullptr && std::string(behavior) == "override");
+                queue.allBlocks.push_back(entry);
+            }
+            block_entry = block_entry->NextSiblingElement("block");
+        }
+        flag = true;
     }
+    catch (const std::exception& e)
+    {
+        std::cout << e.what() << "\n";
+    }
+    return flag;
 }
 
 std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
