@@ -17,10 +17,14 @@ class XMLIO
         Block       block;
         Queue       queue;
     public:
+        enum Statii {GOOD, PARTIAL, FAILED};
+        std::vector<fs::path> failures;
+        std::vector<std::string> blockFailures;
+        std::vector<std::string> failCodes;
         void        initBlock();
         void        initQueue();
         bool        readBlock(const fs::path& filepath);
-        bool        readQueue(const fs::path& filepath);
+        Statii        readQueue(const fs::path& filepath);
         std::unique_ptr<tinyxml2::XMLDocument> buildBlock();
         std::unique_ptr<tinyxml2::XMLDocument> buildQueue();
         void        setTime(int hour, int minute);

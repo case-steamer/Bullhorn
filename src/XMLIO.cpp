@@ -38,10 +38,11 @@ void XMLIO::initQueue()
 
 bool XMLIO::readBlock(const fs::path& filepath)
 {
+    blockFailures.clear();
     bool flag = false;
     try
     {
-        block.allTracks.clear();
+        Block localBlock;
         tinyxml2::XMLDocument doc;
         if (doc.LoadFile(filepath.c_str()) != tinyxml2::XML_SUCCESS)
         {
@@ -52,8 +53,8 @@ bool XMLIO::readBlock(const fs::path& filepath)
         auto*   block_element   = checkForElement(&doc, "block");
         auto*   time_element    = checkForElement(block_element, "timecode");
         std::string timecode    = textGetter(time_element);
-        block.hour              = std::stoi(timecode.substr(0,2));
-        block.minute            = std::stoi(timecode.substr(3,2));
+        localBlock.hour              = std::stoi(timecode.substr(0,2));
+        localBlock.minute            = std::stoi(timecode.substr(3,2));
     
         auto* track_element     = block_element->FirstChildElement("track");
         while (track_element    != nullptr)
@@ -61,21 +62,30 @@ bool XMLIO::readBlock(const fs::path& filepath)
             Block::Track track;
             track.filepath      = textGetter(checkForElement(track_element, "filepath"));
             track.volume        = std::stof(textGetter(checkForElement(track_element, "volume")));
-            block.allTracks.push_back(track);
+            localBlock.allTracks.push_back(track);
             track_element = track_element->NextSiblingElement("track");
         }
+        block = localBlock;
         flag = true;
     }
     catch (const std::exception& e)
     {
-        std::cerr << e.what() << "\n";
+        blockFailures.push_back(e.what());
     }
     return flag;
 }
 
-bool XMLIO::readQueue(const fs::path& filepath)
+XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
 {
-    bool flag = false;
+    /*
+     * If this function delivers anything except a GOOD evaluation,
+     * the caller needs to grab every message from this->failures and this->failCodes,
+     * and driver.pushMessage each constructed message.
+     */
+    failures.clear();
+    failCodes.clear();
+    Statii flag = FAILED;
+    Queue localQueue;
     try
     {
         tinyxml2::XMLDocument doc;
@@ -88,11 +98,9 @@ bool XMLIO::readQueue(const fs::path& filepath)
         auto*   queue_element   = checkForElement(&doc, "queue");
         auto*   block_entry     = queue_element->FirstChildElement("block");
     
-        initQueue();
     
         while   (block_entry  != nullptr)
         {
-            initBlock();
             auto*   path_element    = checkForElement(block_entry, "filepath");
             const char* behavior = block_entry->Attribute("behavior");
     
@@ -102,15 +110,35 @@ bool XMLIO::readQueue(const fs::path& filepath)
             {
                 entry.block         = block;
                 entry.isOverride    = (behavior != nullptr && std::string(behavior) == "override");
-                queue.allBlocks.push_back(entry);
+                localQueue.allBlocks.push_back(entry);
+            }
+            else
+            {
+                for (const auto& f : blockFailures)
+                {
+                    failCodes.push_back(f);
+                }
+                failures.push_back(entry.filepath);
             }
             block_entry = block_entry->NextSiblingElement("block");
         }
-        flag = true;
+        if (failures.size() == 0)
+        {
+            flag = GOOD;
+            initQueue();
+            queue = localQueue;
+        }
+        else if (!localQueue.allBlocks.empty())
+        {
+            flag = PARTIAL;
+            initQueue();
+            queue = localQueue;
+        }
     }
     catch (const std::exception& e)
     {
-        std::cerr << e.what() << "\n";
+        std::string failureStatus = e.what();
+        failCodes.push_back(failureStatus);
     }
     return flag;
 }

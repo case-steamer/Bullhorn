@@ -124,11 +124,15 @@ void Toolbar::render()
      
                 if (!queueBrowser.lastSelected.empty())
                 {
-                    auto p = driver.systemAgent.loadProject(queueBrowser.lastSelected.parent_path());
+                    const auto p = driver.systemAgent.loadProject(queueBrowser.lastSelected.parent_path());
                     if (p)
                     {
                         driver.activeProject.emplace(*p);
-                        driver.xmlio.readQueue(driver.activeProject->queue);
+                        if (!driver.xmlio.readQueue(driver.activeProject->queue))
+                        {
+                            driver.pushMessage("Could not read Queue! File Corrupted!");
+                            driver.activeProject.reset();
+                        }
                     }
                     else
                     {
