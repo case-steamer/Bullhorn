@@ -68,7 +68,7 @@ bool XMLIO::readBlock(const fs::path& filepath)
     }
     catch (const std::exception& e)
     {
-        std::cout << e.what() << "\n";
+        std::cerr << e.what() << "\n";
     }
     return flag;
 }
@@ -110,7 +110,7 @@ bool XMLIO::readQueue(const fs::path& filepath)
     }
     catch (const std::exception& e)
     {
-        std::cout << e.what() << "\n";
+        std::cerr << e.what() << "\n";
     }
     return flag;
 }
