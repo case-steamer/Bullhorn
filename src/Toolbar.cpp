@@ -1,5 +1,7 @@
 #include <stdexcept>
 #include <cctype>
+#include <algorithm>
+#include <optional>
 
 #include "imgui.h"
 
@@ -128,11 +130,25 @@ void Toolbar::render()
                     if (p)
                     {
                         driver.activeProject.emplace(*p);
-                        if (!driver.xmlio.readQueue(driver.activeProject->queue))
+                        if (driver.xmlio.readQueue(driver.activeProject->queue) == XMLIO::Statii::FAILED)
                         {
                             driver.pushMessage("Could not read Queue! File Corrupted!");
                             driver.activeProject.reset();
                         }
+                        /*else if (driver.xmlio.readQueue(driver.activeProject->queue) == XMLIO::Statii::PARTIAL)
+                        {
+                            for (int f = 1; f < driver.xmlio.failures.size(); f++)
+                            {
+                                std::string finalMessage;
+                                std::string failureMessage = driver.xmlio.failures[f];
+                                std::optional<std::string> path = driver.xmlio.failCodes[f];
+                                if (path)
+                                    finalMessage = "Failure " + failureMessage + " on " + path.value();
+                                else
+                                    finalMessage = failureMessage;
+                                driver.pushMessage(finalMessage);
+                            }
+                        }*/
                     }
                     else
                     {

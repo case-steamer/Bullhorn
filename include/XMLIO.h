@@ -3,7 +3,10 @@
 #include <filesystem>
 #include <vector>
 #include <memory>
+#include <optional>
+
 #include "tinyxml2.h"
+
 #include "Block.h"
 #include "Queue.h"
 
@@ -18,9 +21,8 @@ class XMLIO
         Queue       queue;
     public:
         enum Statii {GOOD, PARTIAL, FAILED};
-        std::vector<fs::path> failures;
-        std::vector<std::string> blockFailures;
-        std::vector<std::string> failCodes;
+        struct failureCode {std::string message; std::optional<fs::path> failurePath;};
+        std::vector<XMLIO::failureCode> failureCodes;
         void        initBlock();
         void        initQueue();
         bool        readBlock(const fs::path& filepath);

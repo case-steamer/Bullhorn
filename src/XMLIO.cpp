@@ -38,7 +38,7 @@ void XMLIO::initQueue()
 
 bool XMLIO::readBlock(const fs::path& filepath)
 {
-    blockFailures.clear();
+    failureCodes.clear();
     bool flag = false;
     try
     {
@@ -70,7 +70,10 @@ bool XMLIO::readBlock(const fs::path& filepath)
     }
     catch (const std::exception& e)
     {
-        blockFailures.push_back(e.what());
+        failureCode fc;
+        fc.message = e.what();
+        fc.path = filepath;
+        failureCodes.push_back(fc);
     }
     return flag;
 }
@@ -82,8 +85,7 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
      * the caller needs to grab every message from this->failures and this->failCodes,
      * and driver.pushMessage each constructed message.
      */
-    failures.clear();
-    failCodes.clear();
+    failureCodes.clear();
     Statii flag = FAILED;
     Queue localQueue;
     try
@@ -114,11 +116,13 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
             }
             else
             {
+                failureCode fc;
                 for (const auto& f : blockFailures)
                 {
-                    failCodes.push_back(f);
+                    fc.message = f;
                 }
-                failures.push_back(entry.filepath);
+                fc.failurePath = entry.filepath;
+                failureCodes.push_back(fc);
             }
             block_entry = block_entry->NextSiblingElement("block");
         }
@@ -137,8 +141,9 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
     }
     catch (const std::exception& e)
     {
-        std::string failureStatus = e.what();
-        failCodes.push_back(failureStatus);
+        failureCode fc;
+        fc.message = e.what();
+        failureCodes.push_back(fc);
     }
     return flag;
 }

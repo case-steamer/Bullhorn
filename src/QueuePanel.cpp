@@ -167,7 +167,7 @@ void QueuePanel::displayQueue()
             {
                 driver.audioPlayer.playBeep();
                 driver.pushMessage("Not a valid timecode!");
-                pendingSort = true;
+                refreshBuffers();
             }
             else if (!passed)
             {
