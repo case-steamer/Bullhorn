@@ -163,6 +163,12 @@ void QueuePanel::displayQueue()
                 driver.xmlio.writeBlock(driver.activeBlockFile);
                 pendingSort = true;
             }
+            else if (!driver.parser.isValid(timecodeBuffers[i].data()) && passed)
+            {
+                driver.audioPlayer.playBeep();
+                driver.pushMessage("Not a valid timecode!");
+                pendingSort = true;
+            }
             else if (!passed)
             {
                 pendingSort = true;
