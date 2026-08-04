@@ -163,8 +163,11 @@ std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
         auto* volume_element =  doc->NewElement("volume");
         //auto* output_element =    doc->NewElement("output_filepath");
         
-        filepath_element->SetText(track.filepath.c_str());
-        volume_element->SetText(std::to_string(track.volume).c_str());
+        auto track_label    = track.filepath.c_str();
+        auto volume_label   = std::to_string(track.volume).c_str();
+
+        filepath_element->SetText(track_label);
+        volume_element->SetText(volume_label);
         //output_element    = this logic will be created later.
 
         track_element->InsertEndChild(volume_element);
