@@ -86,7 +86,7 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
      * and driver.pushMessage each constructed message.
      */
     failureCodes.clear();
-    Statii flag = FAILED;
+    Statii flag = FAILED; //FAILED is the default; must be switched for program to advance.
     Queue localQueue;
     try
     {
@@ -103,37 +103,42 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
     
         while   (block_entry  != nullptr)
         {
-            auto*   path_element    = checkForElement(block_entry, "filepath");
-            const char* behavior = block_entry->Attribute("behavior");
-    
-            Queue::BlockEntry entry;
-            entry.filepath = textGetter(path_element);
-            if (readBlock(entry.filepath))
+            try
             {
-                entry.block         = block;
-                entry.isOverride    = (behavior != nullptr && std::string(behavior) == "override");
-                localQueue.allBlocks.push_back(entry);
-            }
-            else
-            {
-                for (const auto& code : blockFailures)
+                auto*   path_element    = checkForElement(block_entry, "filepath");
+                const char* behavior = block_entry->Attribute("behavior");
+     
+                Queue::BlockEntry entry;
+                entry.filepath = textGetter(path_element);
+                if (readBlock(entry.filepath))
                 {
-                    failureCodes.push_back(code);
+                    entry.block         = block;
+                    entry.isOverride    = (behavior != nullptr && std::string(behavior) == "override");
+                    localQueue.allBlocks.push_back(entry);
                 }
+                else
+                {
+                    for (const auto& code : blockFailures)
+                    {
+                        failureCodes.push_back(code);
+                    }
+                }
+            }
+            catch (const std::exception& e)
+            {
+                failureCode fc;
+                fc.message = e.what();
+                failureCodes.push_back(fc);
             }
             block_entry = block_entry->NextSiblingElement("block");
         }
         if (failureCodes.empty())
         {
             flag = GOOD;
-            initQueue();
-            queue = localQueue;
         }
         else if (!localQueue.allBlocks.empty())
         {
             flag = PARTIAL;
-            initQueue();
-            queue = localQueue;
         }
     }
     catch (const std::exception& e)
@@ -142,6 +147,7 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
         fc.message = e.what();
         failureCodes.push_back(fc);
     }
+    queue = localQueue;
     return flag;
 }
 
@@ -217,20 +223,20 @@ void XMLIO::addBlock(const Queue::BlockEntry& entry)
     queue.allBlocks.push_back(entry);
 }
 
-void XMLIO::subtractBlock(const fs::path filepath)
+void XMLIO::subtractBlock(const fs::path& filepath)
 {
-    const auto it = std::find_if(queue.allBlocks.begin(), queue.allBlocks.end(), [&](Queue::BlockEntry& i){return i.filepath == filepath;});
+    const auto it = std::find_if(queue.allBlocks.begin(), queue.allBlocks.end(), [&](const Queue::BlockEntry& i){return i.filepath == filepath;});
     if (it != queue.allBlocks.end())
         queue.allBlocks.erase(it);
 }
 
-void XMLIO::writeBlock(fs::path filepath) 
+void XMLIO::writeBlock(const fs::path& filepath) 
 {
     auto doc_to_write = buildBlock();
     doc_to_write->SaveFile(filepath.c_str());
 }
 
-void XMLIO::writeQueue(fs::path filepath)
+void XMLIO::writeQueue(const fs::path& filepath)
 {
     auto doc_to_write = buildQueue();
     doc_to_write->SaveFile(filepath.c_str());

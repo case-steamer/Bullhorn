@@ -34,11 +34,11 @@ class XMLIO
         void        setTime(int hour, int minute);
         void        addData(const fs::path& filepath);
         void        addBlock(const Queue::BlockEntry& entry);
-        void        subtractBlock(const fs::path filepath);
+        void        subtractBlock(const fs::path& filepath);
         //void        addData(const float volume);
         //^Will bring this function back in eventually^
-        void        writeBlock(fs::path filepath);
-        void        writeQueue(fs::path filepath);
+        void        writeBlock(const fs::path& filepath);
+        void        writeQueue(const fs::path& filepath);
         Block& getBlock();
         Queue& getQueue();
         Queue& getQueue(const fs::path& filepath);
