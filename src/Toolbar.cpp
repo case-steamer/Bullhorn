@@ -130,25 +130,29 @@ void Toolbar::render()
                     if (p)
                     {
                         driver.activeProject.emplace(*p);
-                        if (driver.xmlio.readQueue(driver.activeProject->queue) == XMLIO::Statii::FAILED)
+                        const auto readValue = driver.xmlio.readQueue(driver.activeProject->queue);
+                        if (readValue == XMLIO::Statii::FAILED)
                         {
                             driver.pushMessage("Could not read Queue! File Corrupted!");
                             driver.activeProject.reset();
                         }
-                        /*else if (driver.xmlio.readQueue(driver.activeProject->queue) == XMLIO::Statii::PARTIAL)
+                        else if (readValue == XMLIO::Statii::PARTIAL)
                         {
-                            for (int f = 1; f < driver.xmlio.failures.size(); f++)
+                            for (const auto f : driver.xmlio.failureCodes)
                             {
-                                std::string finalMessage;
-                                std::string failureMessage = driver.xmlio.failures[f];
-                                std::optional<std::string> path = driver.xmlio.failCodes[f];
-                                if (path)
-                                    finalMessage = "Failure " + failureMessage + " on " + path.value();
+                                std::string msg;
+                                if (f.failurePath)
+                                {
+                                    const auto fPath = std::string(f.failurePath.value());
+                                    msg = f.message + " failed at " + fPath + ".";
+                                }
                                 else
-                                    finalMessage = failureMessage;
-                                driver.pushMessage(finalMessage);
+                                {
+                                    msg = f.message + " failure.";
+                                }
+                                this->driver.pushMessage(msg);
                             }
-                        }*/
+                        }
                     }
                     else
                     {
