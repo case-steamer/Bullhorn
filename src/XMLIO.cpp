@@ -38,7 +38,7 @@ void XMLIO::initQueue()
 
 bool XMLIO::readBlock(const fs::path& filepath)
 {
-    failureCodes.clear();
+    blockFailures.clear();
     bool flag = false;
     try
     {
@@ -72,8 +72,8 @@ bool XMLIO::readBlock(const fs::path& filepath)
     {
         failureCode fc;
         fc.message = e.what();
-        fc.path = filepath;
-        failureCodes.push_back(fc);
+        fc.failurePath = filepath;
+        blockFailures.push_back(fc);
     }
     return flag;
 }
@@ -82,7 +82,7 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
 {
     /*
      * If this function delivers anything except a GOOD evaluation,
-     * the caller needs to grab every message from this->failures and this->failCodes,
+     * the caller needs to grab every message from failureCodes,
      * and driver.pushMessage each constructed message.
      */
     failureCodes.clear();
@@ -116,17 +116,14 @@ XMLIO::Statii XMLIO::readQueue(const fs::path& filepath)
             }
             else
             {
-                failureCode fc;
-                for (const auto& f : blockFailures)
+                for (const auto& code : blockFailures)
                 {
-                    fc.message = f;
+                    failureCodes.push_back(code);
                 }
-                fc.failurePath = entry.filepath;
-                failureCodes.push_back(fc);
             }
             block_entry = block_entry->NextSiblingElement("block");
         }
-        if (failures.size() == 0)
+        if (failureCodes.empty())
         {
             flag = GOOD;
             initQueue();

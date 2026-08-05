@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <optional>
+#include <string>
 
 #include "tinyxml2.h"
 
@@ -22,7 +23,8 @@ class XMLIO
     public:
         enum Statii {GOOD, PARTIAL, FAILED};
         struct failureCode {std::string message; std::optional<fs::path> failurePath;};
-        std::vector<XMLIO::failureCode> failureCodes;
+        std::vector<failureCode> blockFailures;
+        std::vector<failureCode> failureCodes;
         void        initBlock();
         void        initQueue();
         bool        readBlock(const fs::path& filepath);
