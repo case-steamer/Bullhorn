@@ -138,7 +138,7 @@ void Toolbar::render()
                         }
                         else if (readValue == XMLIO::Statii::PARTIAL)
                         {
-                            for (const auto f : driver.xmlio.failureCodes)
+                            for (const auto& f : driver.xmlio.failureCodes)
                             {
                                 std::string msg;
                                 if (f.failurePath)
