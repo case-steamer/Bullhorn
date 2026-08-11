@@ -61,6 +61,11 @@ bool XMLIO::readBlock(const fs::path& filepath)
             localBlock.hour              = std::stoi(timecode.substr(0,2));
             localBlock.minute            = std::stoi(timecode.substr(3,2));
         }
+        else
+        {
+            std::string fault = "Timecode is not valid!";
+            throw std::runtime_error(fault);
+        }
     
         auto* track_element     = block_element->FirstChildElement("track");
         while (track_element    != nullptr)
