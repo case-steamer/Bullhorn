@@ -1,4 +1,5 @@
 #include "XMLIO.h"
+#include "TimeParser.h"
 
 #include <iostream>
 #include <iomanip>
@@ -52,9 +53,14 @@ bool XMLIO::readBlock(const fs::path& filepath)
     
         auto*   block_element   = checkForElement(&doc, "block");
         auto*   time_element    = checkForElement(block_element, "timecode");
+
         std::string timecode    = textGetter(time_element);
-        localBlock.hour              = std::stoi(timecode.substr(0,2));
-        localBlock.minute            = std::stoi(timecode.substr(3,2));
+        TimeParser tp;
+        if (tp.isValid(timecode))
+        {
+            localBlock.hour              = std::stoi(timecode.substr(0,2));
+            localBlock.minute            = std::stoi(timecode.substr(3,2));
+        }
     
         auto* track_element     = block_element->FirstChildElement("track");
         while (track_element    != nullptr)
