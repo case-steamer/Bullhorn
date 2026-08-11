@@ -160,8 +160,8 @@ std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
     std::ostringstream oss;
     oss << std::setw(2) << std::setfill('0') << block.hour << ":"
         << std::setw(2) << std::setfill('0') << block.minute;
-    std::string timecode = oss.str();
-    time_element->SetText(timecode.c_str());
+    auto timecode = oss.str().c_str();
+    time_element->SetText(timecode);
     block_element->InsertEndChild(time_element);
 
     for (const Block::Track& track : block.allTracks)
