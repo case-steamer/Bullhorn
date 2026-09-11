@@ -9,6 +9,8 @@
 #include <mutex>
 #include <queue>
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
 
 
 Driver::Driver(XMLIO& xmlio) : xmlio(xmlio), systemAgent(*this)
@@ -77,8 +79,13 @@ std::thread Driver::startPerform()
 
             TimeParser localParser;
             
-            std::string scheduledTime = std::to_string(next.block.hour) + ":" + std::to_string(next.block.minute);
-            localParser.isValid(scheduledTime);
+            std::ostringstream oss;
+            oss << std::setw(2) << std::setfill('0') << next.block.hour << 
+            ":" << 
+            std::setw(2) << std::setfill('0') << next.block.minute;
+            std::string scheduledTime = oss.str();
+            if (!localParser.isValid(scheduledTime))
+                continue;
             if (!localParser.isValidTime())
             {
              continue;

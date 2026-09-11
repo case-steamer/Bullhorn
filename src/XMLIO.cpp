@@ -54,18 +54,16 @@ bool XMLIO::readBlock(const fs::path& filepath)
         auto*   block_element   = checkForElement(&doc, "block");
         auto*   time_element    = checkForElement(block_element, "timecode");
 
-        std::string timecode    = textGetter(time_element);
+        const std::string timecode    = textGetter(time_element);
         TimeParser tp;
-        if (tp.isValid(timecode))
+        if (!tp.isValid(timecode))
         {
-            localBlock.hour              = std::stoi(timecode.substr(0,2));
-            localBlock.minute            = std::stoi(timecode.substr(3,2));
-        }
-        else
-        {
-            std::string fault = "Timecode is not valid!";
+            std::string fault = "Timecode " + timecode + " is not valid!";
             throw std::runtime_error(fault);
         }
+
+        localBlock.hour              = tp.getHour();
+        localBlock.minute            = tp.getMinute();
     
         auto* track_element     = block_element->FirstChildElement("track");
         while (track_element    != nullptr)
@@ -171,8 +169,8 @@ std::unique_ptr<tinyxml2::XMLDocument> XMLIO::buildBlock()
     std::ostringstream oss;
     oss << std::setw(2) << std::setfill('0') << block.hour << ":"
         << std::setw(2) << std::setfill('0') << block.minute;
-    auto timecode = oss.str().c_str();
-    time_element->SetText(timecode);
+    auto timecode = oss.str();
+    time_element->SetText(timecode.c_str());
     block_element->InsertEndChild(time_element);
 
     for (const Block::Track& track : block.allTracks)

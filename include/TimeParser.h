@@ -12,7 +12,7 @@ class TimeParser
         double secondsUntil() const;
 
     private:
-        int hour;
-        int minute;
-        double secondsToGo;
+        int hour = 0;
+        int minute = 0;
+        double secondsToGo = 0;
 };
