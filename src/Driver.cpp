@@ -50,6 +50,7 @@ void Driver::refreshQueue()
 
 std::thread Driver::startPerform()
 {
+    refreshQueue();
     while (!qBucket.empty())
         qBucket.pop();
     const Queue& queue = xmlio.getQueue();
