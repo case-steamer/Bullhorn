@@ -17,6 +17,7 @@ class AudioPlayer
 
     public:
         AudioPlayer();
+        void engage();
         void interrupt();
         void playTrack(const fs::path& filepath, float volume);
         void playBeep();

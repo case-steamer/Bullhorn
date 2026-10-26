@@ -21,10 +21,14 @@ void AudioPlayer::interrupt()
     stopPlayback = true;
 }
 
+void AudioPlayer::engage()
+{
+    stopPlayback = false;
+}
+
 void AudioPlayer::playTrack(const fs::path& filepath, float volume)
 {
     std::lock_guard<std::mutex> guard(audioMutex);
-    stopPlayback = false;
 
     ma_sound sound;
     ma_sound_init_from_file(&engine, filepath.c_str(), 0, NULL, NULL, &sound);
