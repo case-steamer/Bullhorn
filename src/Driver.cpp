@@ -197,3 +197,30 @@ void Driver::pushMessage(std::string message)
     messageDeck.push_back(data);
 }
 
+int Driver::destroy()
+{
+    try
+    {
+        audioPlayer.interrupt();
+        if (current_mode == PERFORM)
+        {
+            stop();
+        }
+        if (executor.joinable())
+        {
+            executor.join();
+        }
+    
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+Driver::~Driver()
+{
+    destroy();
+}
+

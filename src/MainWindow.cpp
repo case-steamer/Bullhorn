@@ -57,7 +57,6 @@ MainWindow::MainWindow(Driver& driver) : driver(driver), master(driver)
     ImGui_ImplSDL2_InitForOpenGL(window, glContext);
     ImGui_ImplOpenGL3_Init("#version 130");
 
-    bool running = true;
     while (running)
     {
         SDL_Event event;
@@ -86,11 +85,15 @@ MainWindow::MainWindow(Driver& driver) : driver(driver), master(driver)
 
 MainWindow::~MainWindow()
 {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
-    SDL_GL_DeleteContext(glContext);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    if (driver.destroy() == 0)
+    {
+        running = false;
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplSDL2_Shutdown();
+        ImGui::DestroyContext();
+        SDL_GL_DeleteContext(glContext);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+    }
 }
 

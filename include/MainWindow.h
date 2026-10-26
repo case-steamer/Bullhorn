@@ -17,6 +17,7 @@ class MainWindow
         ~MainWindow();
     
     private:
+        bool running = true;
         SDL_Window* window;
         SDL_GLContext glContext;
         Driver& driver;
