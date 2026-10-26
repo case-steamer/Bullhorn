@@ -51,6 +51,7 @@ void Driver::refreshQueue()
 std::thread Driver::startPerform()
 {
     refreshQueue();
+    audioPlayer.engage();
     while (!qBucket.empty())
         qBucket.pop();
     const Queue& queue = xmlio.getQueue();
