@@ -18,8 +18,8 @@ class MainWindow
     
     private:
         bool running = true;
-        SDL_Window* window;
-        SDL_GLContext glContext;
+        SDL_Window* window = nullptr;
+        SDL_GLContext glContext = nullptr;
         Driver& driver;
         MasterPanel master;
 };

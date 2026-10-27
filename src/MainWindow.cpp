@@ -85,15 +85,13 @@ MainWindow::MainWindow(Driver& driver) : driver(driver), master(driver)
 
 MainWindow::~MainWindow()
 {
-    if (driver.destroy() == 0)
-    {
-        running = false;
-        ImGui_ImplOpenGL3_Shutdown();
-        ImGui_ImplSDL2_Shutdown();
-        ImGui::DestroyContext();
-        SDL_GL_DeleteContext(glContext);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-    }
+   
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+    SDL_GL_DeleteContext(glContext);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    driver.destroy();
 }
 

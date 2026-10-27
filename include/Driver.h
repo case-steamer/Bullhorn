@@ -37,9 +37,9 @@ class Driver
         void        removeTrackFromBlock(int index);
         void        removeBlockFromQueue();
         enum        Mode {EDIT = 0, PERFORM};
-        Mode        getMode();
+        Mode        getMode() const;
         std::deque<msgData> messageDeck;
-        void        pushMessage(std::string message);
+        void        pushMessage(const std::string& message);
         int         destroy();
         ~Driver();
 
@@ -48,7 +48,7 @@ class Driver
         Mode                    current_mode = Mode::EDIT;
         std::mutex              guard;
         std::condition_variable performance_listener;
-        bool                    performance_state;
+        bool                    performance_state = false;
         std::thread             executor;
         std::thread             stopper;
         std::function<void()>   onTrigger = [this](){executor = startPerform();};

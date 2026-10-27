@@ -148,7 +148,7 @@ void Driver::removeBlockFromQueue()
     xmlio.subtractBlock(activeBlockFile);
 }
 
-Driver::Mode Driver::getMode()
+Driver::Mode Driver::getMode() const
 {
     return current_mode;
 }
@@ -187,7 +187,7 @@ void Driver::publicTrigger()
     }
 }
 
-void Driver::pushMessage(std::string message)
+void Driver::pushMessage(const std::string& message)
 {
     msgData data;
 
@@ -199,7 +199,7 @@ void Driver::pushMessage(std::string message)
 
 int Driver::destroy()
 {
-    int no_exception = 0
+    int no_exception = 0;
     audioPlayer.interrupt();
     try {
         if (current_mode == PERFORM)
@@ -215,13 +215,10 @@ int Driver::destroy()
             executor.join();
         }
     }
-    catch (const std::exception e)
+    catch (const std::exception& e)
     {
+        std::cerr << e.what();
         no_exception = 1;
-    }
-    if (no_exception = 0)
-    {
-        performance_listener.notify_all();
     }
     
     return no_exception;

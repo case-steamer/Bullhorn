@@ -10,7 +10,6 @@
 #include "MasterPanel.h"
 
 namespace fs = std::filesystem;
-master
 MasterPanel::MasterPanel(Driver& driver) :
     driver(driver),
     toolbar(driver),
