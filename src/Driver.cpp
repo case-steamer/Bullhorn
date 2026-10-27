@@ -199,24 +199,32 @@ void Driver::pushMessage(std::string message)
 
 int Driver::destroy()
 {
-    try
-    {
-        audioPlayer.interrupt();
+    int no_exception = 0
+    audioPlayer.interrupt();
+    try {
         if (current_mode == PERFORM)
         {
             stop();
+        }
+        if (stopper.joinable())
+        {
+            stopper.join();
         }
         if (executor.joinable())
         {
             executor.join();
         }
-    
-        return 0;
     }
-    else
+    catch (const std::exception e)
     {
-        return 1;
+        no_exception = 1;
     }
+    if (no_exception = 0)
+    {
+        performance_listener.notify_all();
+    }
+    
+    return no_exception;
 }
 
 Driver::~Driver()
