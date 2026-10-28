@@ -40,7 +40,7 @@ class Driver
         Mode        getMode() const;
         std::deque<msgData> messageDeck;
         void        pushMessage(const std::string& message);
-        int         destroy();
+        void         destroy();
         ~Driver();
 
     private:

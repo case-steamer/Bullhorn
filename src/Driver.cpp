@@ -197,9 +197,8 @@ void Driver::pushMessage(const std::string& message)
     messageDeck.push_back(data);
 }
 
-int Driver::destroy()
+void Driver::destroy()
 {
-    int no_exception = 0;
     audioPlayer.interrupt();
     try {
         if (current_mode == PERFORM)
@@ -218,10 +217,7 @@ int Driver::destroy()
     catch (const std::exception& e)
     {
         std::cerr << e.what();
-        no_exception = 1;
     }
-    
-    return no_exception;
 }
 
 Driver::~Driver()
