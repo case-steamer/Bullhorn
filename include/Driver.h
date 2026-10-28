@@ -24,8 +24,8 @@ class Driver
 {
     public:
         Driver(XMLIO& xmlio);
-        FileSysOp   systemAgent;
         XMLIO&      xmlio;
+        FileSysOp   systemAgent;
         AudioPlayer audioPlayer;
         TimeParser  parser;
         void        publicTrigger();

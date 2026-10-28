@@ -7,7 +7,7 @@
 
 #include "Toolbar.h"
 
-Toolbar::Toolbar(Driver& driver) : driver(driver), nuProjectBrowser(), queueBrowser()
+Toolbar::Toolbar(Driver& driver) : driver(driver)
 {
     nuProjectBrowser.algoRule = [this](const fs::path& path)
     {
