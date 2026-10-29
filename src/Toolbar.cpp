@@ -129,7 +129,7 @@ void Toolbar::render()
                     const auto p = driver.systemAgent.loadProject(queueBrowser.lastSelected.parent_path());
                     if (p)
                     {
-                        driver.activeProject.emplace(*p);
+                        driver.resetProject(*p);
                         const auto readValue = driver.xmlio.readQueue(driver.activeProject->queue);
                         if (readValue == XMLIO::Statii::FAILED)
                         {
@@ -203,7 +203,8 @@ void Toolbar::render()
                     {
                         if (driver.systemAgent.createNewProject(nuProjectBrowser.lastSelected/nuProjectContents))
                         {
-                            driver.activeProject.emplace(nuProjectBrowser.lastSelected/nuProjectContents);
+                            const auto p = nuProjectBrowser.lastSelected/nuProjectContents;
+                            driver.resetProject(p);
                             driver.xmlio.initQueue();
                             driver.xmlio.writeQueue(driver.activeProject->queue);
                             driver.xmlio.readQueue(driver.activeProject->queue);

@@ -148,6 +148,12 @@ void Driver::removeBlockFromQueue()
     xmlio.subtractBlock(activeBlockFile);
 }
 
+void Driver::resetProject(const Project& p)
+{
+    activeProject.emplace(p);
+    activeBlockFile.clear();
+}
+
 Driver::Mode Driver::getMode() const
 {
     return current_mode;

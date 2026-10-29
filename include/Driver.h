@@ -36,6 +36,7 @@ class Driver
         void        addToActiveBlock(const fs::path& trackPath);
         void        removeTrackFromBlock(int index);
         void        removeBlockFromQueue();
+        void        resetProject(const Project& p);
         enum        Mode {EDIT = 0, PERFORM};
         Mode        getMode() const;
         std::deque<msgData> messageDeck;
