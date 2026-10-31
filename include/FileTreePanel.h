@@ -24,6 +24,6 @@ class FileTreePanel : public IPanel
         Driver&                     driver;
         BrowserHelper               helper;
         bool                        showDotFiles = false;
-        std::vector<std::string>    validExtensions = {".mp3", ".wav", ".flac", ".m4a"};
+        std::vector<std::string>    validExtensions = {".mp3", ".wav", ".flac"}; //".m4a"
 };
         
