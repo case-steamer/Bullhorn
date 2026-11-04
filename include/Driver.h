@@ -56,4 +56,8 @@ class Driver
         void stop();
         WorkQueue               qBucket;
         std::mutex              excluder;
+        /*The mutex and guard below are to be used by a block worker (as defined in
+        Driver.cpp) to control which thread has authority to be broadcasting
+        at any given time.*/
+        std::mutex                  broadcast_protector;
 };
