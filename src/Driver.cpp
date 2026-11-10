@@ -74,7 +74,10 @@ std::thread Driver::startPerform()
             Queue::BlockEntry next;
             {
                 std::lock_guard<std::mutex> qLock(excluder);
-                if (qBucket.empty()) break;
+                if (qBucket.empty())
+                {
+                    break;
+                }
                 next = qBucket.front();
                 qBucket.pop();
             }
@@ -95,16 +98,24 @@ std::thread Driver::startPerform()
             std::unique_lock<std::mutex> stopLock(guard);
             auto state = performance_listener.wait_for(stopLock, std::chrono::seconds((int)localParser.secondsUntil()), [this]{return !performance_state;});
             if (state)
-                break;
-            for (const Block::Track& track : next.block.allTracks)
             {
-                if (!performance_state)
-                    break;
-                if (next.isOverride && audioPlayer.isPlaying())
+                break;
+            }
+            stopLock.unlock();
+            {
+                std::lock_guard<std::mutex> broadcast_guard(broadcast_protector);
+                for (const Block::Track& track : next.block.allTracks)
                 {
-                    audioPlayer.interrupt();
+                    if (!performance_state)
+                    {
+                        break;
+                    }
+                    if (next.isOverride && audioPlayer.isPlaying())
+                    {
+                        audioPlayer.interrupt();
+                    }
+                    audioPlayer.playTrack(track.filepath, track.volume);
                 }
-                audioPlayer.playTrack(track.filepath, track.volume);
             }
         }
     };
@@ -163,12 +174,12 @@ void Driver::stop()
 {
     //need to implement threading so that the gui render() isn't dependent on 
     //the return from executor.join().
-    audioPlayer.interrupt();
     auto func = [this]()
     {
-        std::unique_lock<std::mutex> stopLock(guard);
+        std::unique_lock<std::mutex> gate(guard);
         performance_state = false;
-        stopLock.unlock();
+        gate.unlock();
+        audioPlayer.interrupt();
         performance_listener.notify_all();
         executor.join();
     };
