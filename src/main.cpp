@@ -30,14 +30,19 @@ Produced by James Haining
     Blocks are scheduled on 24 hour time. Inside the queue list, you will see a
     small checkbox that says "override". This is where you determine if block B
     should interrupt block A if they should happen to overlap. If this box is not
-    checked, block B will not perform until block A has run fully.
+    checked, block B will not perform until block A has run fully. However, if the
+    override box is checked, block A will cancel playback when block B triggers,
+    and block B will play.
 
     At this time, Bullhorn does not have support for m4a files. A future version of
     this program will correct that, but for now m4a files will have to be converted
     to a supported file type. Currently supported filetypes are .mp3, .wav, & .flac.
     Why this matters to the end user is that while it would be very convenient to
     be able to simply import voice memos from a users smart phone, at this time that
-    functionality is not there. A future version will fix this.
+    functionality is not there. A future version will fix this. For now, if you 
+    do want to follow this methodology, you will have to first convert said voice
+    memos into a compatible audio format. This can be accomplished easily from the
+    terminal using ffmpeg.
 */
 
 #include <SDL.h>
