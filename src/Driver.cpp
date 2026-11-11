@@ -69,6 +69,7 @@ std::thread Driver::startPerform()
     
     auto blockWorker = [&]()
     {
+        preempt = true;
         while (true)
         {
             Queue::BlockEntry next;
@@ -102,17 +103,20 @@ std::thread Driver::startPerform()
                 break;
             }
             stopLock.unlock();
+            if (next.isOverride)
+            {
+                preempt = true;
+                audioPlayer.interrupt();
+            }
             {
                 std::lock_guard<std::mutex> broadcast_guard(broadcast_protector);
+                audioPlayer.engage();
+                preempt = false;
                 for (const Block::Track& track : next.block.allTracks)
                 {
-                    if (!performance_state)
+                    if (!performance_state || preempt)
                     {
                         break;
-                    }
-                    if (next.isOverride && audioPlayer.isPlaying())
-                    {
-                        audioPlayer.interrupt();
                     }
                     audioPlayer.playTrack(track.filepath, track.volume);
                 }

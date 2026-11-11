@@ -9,6 +9,7 @@
 #include <thread>
 #include <functional>
 #include <optional>
+#include <atomic>
 
 #include "TimeParser.h"
 #include "FileSysOp.h"
@@ -49,15 +50,16 @@ class Driver
         Mode                    current_mode = Mode::EDIT;
         std::mutex              guard;
         std::condition_variable performance_listener;
-        bool                    performance_state = false;
+        std::atomic<bool>       performance_state = false;
         std::thread             executor;
         std::thread             stopper;
         std::function<void()>   onTrigger = [this](){executor = startPerform();};
         void stop();
         WorkQueue               qBucket;
         std::mutex              excluder;
-        /*The mutex and guard below are to be used by a block worker (as defined in
+        /*The mutex and atomic below are to be used by a block worker (as defined in
         Driver.cpp) to control which thread has authority to be broadcasting
         at any given time.*/
         std::mutex                  broadcast_protector;
+        std::atomic<bool>           preempt = false;
 };
