@@ -204,7 +204,7 @@ void MasterPanel::render()
             ImGui::EndDisabled();
         }
 
-        if (driver.qFinished)
+        if (driver.qFinished && driver.getMode() == Driver::PERFORM)
         {
             driver.onTrigger();
         }

@@ -125,15 +125,15 @@ std::thread Driver::startPerform()
         }
     };
 
-    auto func = [blockWorker](this)
+    auto func = [blockWorker, this]()
     {
         std::thread worker1(blockWorker);
         std::thread worker2(blockWorker);
         worker1.join();
         worker2.join();
-        if (this-> performance_state)
+        if (this->performance_state)
         {
-            this-> qFinished = true;
+           this->qFinished = true;
         }
     };
 

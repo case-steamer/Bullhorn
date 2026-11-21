@@ -39,6 +39,7 @@ class Driver
         void        removeBlockFromQueue();
         void        resetProject(const Project& p);
         enum        Mode {EDIT = 0, PERFORM};
+        std::function<void()>   onTrigger = [this](){executor = startPerform();};
         std::atomic<bool>    qFinished = true;
         Mode        getMode() const;
         std::deque<msgData> messageDeck;
@@ -54,7 +55,6 @@ class Driver
         std::atomic<bool>       performance_state = false;
         std::thread             executor;
         std::thread             stopper;
-        std::function<void()>   onTrigger = [this](){executor = startPerform();};
         void stop();
         WorkQueue               qBucket;
         std::mutex              excluder;
