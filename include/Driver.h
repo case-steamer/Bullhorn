@@ -39,10 +39,11 @@ class Driver
         void        removeBlockFromQueue();
         void        resetProject(const Project& p);
         enum        Mode {EDIT = 0, PERFORM};
+        std::atomic<bool>    qFinished = true;
         Mode        getMode() const;
         std::deque<msgData> messageDeck;
         void        pushMessage(const std::string& message);
-        void         destroy();
+        void        destroy();
         ~Driver();
 
     private:

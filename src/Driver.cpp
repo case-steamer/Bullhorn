@@ -50,6 +50,7 @@ void Driver::refreshQueue()
 
 std::thread Driver::startPerform()
 {
+    qFinished = false;
     refreshQueue();
     audioPlayer.engage();
     while (!qBucket.empty())
@@ -124,12 +125,16 @@ std::thread Driver::startPerform()
         }
     };
 
-    auto func = [blockWorker]()
+    auto func = [blockWorker](this)
     {
         std::thread worker1(blockWorker);
         std::thread worker2(blockWorker);
         worker1.join();
         worker2.join();
+        if (this-> performance_state)
+        {
+            this-> qFinished = true;
+        }
     };
 
     performance_state = true;

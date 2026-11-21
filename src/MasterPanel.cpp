@@ -204,6 +204,11 @@ void MasterPanel::render()
             ImGui::EndDisabled();
         }
 
+        if (driver.qFinished)
+        {
+            driver.onTrigger();
+        }
+
         ImGui::SetCursorPos(ImVec2(0, workHeight));
         ImGui::BeginChild("Notifications", ImVec2(rightWidth, notifHeight), true);
         notifBar.render();
