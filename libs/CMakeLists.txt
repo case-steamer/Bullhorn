@@ -22,6 +22,18 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(imgui)
 
+if(UNIX AND NOT APPLE)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(
+        FFMPEG REQUIRED IMPORTED_TARGET
+        libavformat
+        libavcodec
+        libswresample
+        libavutil
+    )
+    target_link_libraries(Bullhorn PkgConfig::FFMPEG)
+endif()
+
 target_sources(Bullhorn PRIVATE
     ${imgui_SOURCE_DIR}/imgui.cpp
     ${imgui_SOURCE_DIR}/imgui_draw.cpp
